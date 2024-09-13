@@ -12,3 +12,4 @@ This repository is meant to be used throughout the semester to help you organize
 # NAMES
 - Yu Lin Lu
 - Mitchell Comer
+- Tyler Vo
