@@ -10,5 +10,5 @@ This repository is meant to be used throughout the semester to help you organize
 - `Code Smell` This directory will be used later in the semester for your group assignments related to Code Smells.
 
 # NAMES
-Yu Lin Lu
-Mitchell Comer
+>Yu Lin Lu
+>Mitchell Comer
