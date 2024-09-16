@@ -14,3 +14,4 @@ This repository is meant to be used throughout the semester to help you organize
 - Mitchell Comer
 - Tyler Vo
 - Lucas Liebermann
+- Neil Dave
