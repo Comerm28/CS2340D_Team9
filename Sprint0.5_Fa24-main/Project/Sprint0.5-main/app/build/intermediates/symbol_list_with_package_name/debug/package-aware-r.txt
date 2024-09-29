@@ -3117,6 +3117,7 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
+id accomodations
 id actionDown
 id actionDownUp
 id actionUp
@@ -3163,6 +3164,7 @@ id beginning
 id bestChoice
 id blocking
 id bottom
+id bottomButtonBar
 id bounce
 id bounceBoth
 id bounceEnd
@@ -3218,8 +3220,10 @@ id design_menu_item_action_area
 id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
+id destination
 id dialog_button
 id dimensions
+id dining
 id direct
 id disableHome
 id disableIntraAutoTransition
@@ -3307,6 +3311,7 @@ id line3
 id linear
 id listMode
 id list_item
+id logistics
 id m3_side_sheet
 id marquee
 id masked
@@ -3438,6 +3443,7 @@ id save_overlay_view
 id sawtooth
 id scale
 id screen
+id screens
 id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
@@ -3539,6 +3545,8 @@ id transition_layout_save
 id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
+id transportation
+id travelCommunity
 id triangle
 id unchecked
 id uniform
@@ -3694,6 +3702,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout fragment_logistics
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -3785,6 +3794,7 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string accomodation
 string androidx_startup
 string app_name
 string appbar_scrolling_view_behavior
@@ -3798,6 +3808,8 @@ string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
 string clear_text_end_icon_content_description
+string destination
+string dining
 string error_a11y_label
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
@@ -3806,6 +3818,7 @@ string fab_transformation_sheet_behavior
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string item_view_role_description
+string logistics
 string m3_exceed_max_badge_text_suffix
 string m3_ref_typeface_brand_medium
 string m3_ref_typeface_brand_regular
@@ -3918,6 +3931,8 @@ string searchview_navigation_content_description
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string status_bar_notification_info_overflow
+string transportation
+string travel_community
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

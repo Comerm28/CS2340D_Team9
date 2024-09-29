@@ -2,7 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <string name="accomodation">Accomodation</string>
     <string name="app_name">SprintProject</string>
+    <string name="destination">Destination</string>
+    <string name="dining">Dining</string>
+    <string name="logistics">Logistics</string>
+    <string name="transportation">Transportation</string>
+    <string name="travel_community">Travel Community</string>
     <style name="Base.Theme.SprintProject" parent="Theme.Material3.DayNight.NoActionBar">
         
         
