@@ -1,10 +1,13 @@
-#Sat Sep 28 19:31:47 EDT 2024
-base.0=C\:\\Users\\mitch\\Documents\\GitHub\\CS2340-D-_Team-9-\\Sprint0.5_Fa24-main\\Project\\Sprint0.5-main\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\mitch\\Documents\\GitHub\\CS2340-D-_Team-9-\\Sprint0.5_Fa24-main\\Project\\Sprint0.5-main\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\mitch\\Documents\\GitHub\\CS2340-D-_Team-9-\\Sprint0.5_Fa24-main\\Project\\Sprint0.5-main\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
+#Mon Sep 30 20:32:22 EDT 2024
+base.0=/Users/tvo/Desktop/CS/2340/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/Users/tvo/Desktop/CS/2340/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.2=/Users/tvo/Desktop/CS/2340/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/build/intermediates/dex/debug/mergeProjectDexDebug/15/classes.dex
+base.3=/Users/tvo/Desktop/CS/2340/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/build/intermediates/dex/debug/mergeProjectDexDebug/8/classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=15/classes.dex
+path.3=8/classes.dex
 renamed.0=classes.dex
 renamed.1=classes2.dex
 renamed.2=classes3.dex
+renamed.3=classes4.dex

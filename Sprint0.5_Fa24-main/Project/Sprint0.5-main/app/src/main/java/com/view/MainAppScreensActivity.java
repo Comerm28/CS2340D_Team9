@@ -1,47 +1,45 @@
 package com.view;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
-import android.annotation.SuppressLint;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Button;
-
 import com.example.sprintproject.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.view.Logistics;
+import android.util.Log;
 
 public class MainAppScreensActivity extends AppCompatActivity {
-
-    @SuppressLint("NonConstantResourceId")
+    private static final String TAG = "MainAppScreensActivity"; // Tag for logging
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_app_screens);
+        Log.d(TAG, "MainAppScreensActivity created");
+        // Initialize buttons
+        Button logisticsButton = findViewById(R.id.button_logistics);
+        Button destinationButton = findViewById(R.id.button_destination);
+        Button diningButton = findViewById(R.id.button_dining);
+        Button accommodationButton = findViewById(R.id.button_accommodation);
+        Button transportationButton = findViewById(R.id.button_transportation);
+        Button communityButton = findViewById(R.id.button_community);
 
+        // Set button click listeners to switch fragments
+        logisticsButton.setOnClickListener(v -> switchFragment(new LogisticsFragment()));
+        destinationButton.setOnClickListener(v -> switchFragment(new DestinationFragment()));
+        diningButton.setOnClickListener(v -> switchFragment(new DiningFragment()));
+        accommodationButton.setOnClickListener(v -> switchFragment(new AccommodationFragment()));
+        transportationButton.setOnClickListener(v -> switchFragment(new TransportationFragment()));
+        communityButton.setOnClickListener(v -> switchFragment(new CommunityFragment()));
+
+        // Set the default fragment when the activity is created
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.screens, new Logistics())
-                    .commit();
+            switchFragment(new LogisticsFragment()); // Show LogisticsFragment by default
         }
-
-        Button button1 = findViewById(R.id.logistics);
-        Button button2 = findViewById(R.id.destination);
-        Button button3 = findViewById(R.id.dining);
-        Button button4 = findViewById(R.id.accomodations);
-        Button button5 = findViewById(R.id.transportation);
-        Button button6 = findViewById(R.id.travelCommunity);
-
-        button1.setOnClickListener(v -> switchFragment(new Logistics()));
     }
 
-    private void switchFragment(Fragment f) {
+    private void switchFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.screens, f)
+                .replace(R.id.fragment_container, fragment)
                 .commit();
     }
 }
