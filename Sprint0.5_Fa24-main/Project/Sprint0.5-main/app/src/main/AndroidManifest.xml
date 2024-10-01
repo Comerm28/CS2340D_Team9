@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,15 +11,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SprintProject"
         tools:targetApi="31">
+
+        <!-- Start screen -->
         <activity
-            android:name="com.view.MainAppScreensActivity"
+            android:name="com.view.StartScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+
+
+        <!-- Login screen -->
+        <activity
+            android:name="com.view.LoginActivity"
+            android:exported="true" />
+
+        <!-- Account creation screen -->
+        <activity
+            android:name="com.view.CreateAccountActivity"
+            android:exported="true" />
+
+        <!-- Main app screen -->
+        <activity
+            android:name="com.view.MainAppScreensActivity"
+            android:exported="true" />
+
+
+    </application>
 </manifest>

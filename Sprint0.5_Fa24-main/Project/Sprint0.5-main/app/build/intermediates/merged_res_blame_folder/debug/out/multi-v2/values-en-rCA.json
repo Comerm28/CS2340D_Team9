@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.sprintproject.app-mergeDebugResources-29:/values-en-rCA/values-en-rCA.xml",
+            "outputFile": "com.example.sprintproject.app-mergeDebugResources-41:/values-en-rCA/values-en-rCA.xml",
             "map": [
                 {
                     "source": "/Users/tvo/.gradle/caches/transforms-3/9b6677a25abbbd7b5fd251814a79378d/transformed/appcompat-1.6.1/res/values-en-rCA/values-en-rCA.xml",

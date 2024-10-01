@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.sprintproject.app-mergeDebugResources-29:/values-v23/values-v23.xml",
+            "outputFile": "com.example.sprintproject.app-mergeDebugResources-41:/values-v23/values-v23.xml",
             "map": [
                 {
                     "source": "/Users/tvo/.gradle/caches/transforms-3/a139f965eb27f1afdd3595e4259f1295/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
