@@ -10,8 +10,14 @@ public class Authenticator {
         dbRef = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void addAccount(String username, String password){
+    public boolean addAccount(String username, String password){
         dbRef.child(username).setValue(password);
+        return true;
+    }
+
+    public boolean authenticate(String username, String password){
+        //todo: authenticate?
+        return true;
     }
 
     public int getFirebaseData(){
