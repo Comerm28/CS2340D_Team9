@@ -40,5 +40,11 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
             startActivity(intent);
         });
+
+        // quit Button functionality
+        findViewById(R.id.quitButton).setOnClickListener(view -> {
+            Log.d(TAG, "Quit button clicked"); // Log statement for quit button click
+            finishAffinity(); // Close the app
+        });
     }
 }
