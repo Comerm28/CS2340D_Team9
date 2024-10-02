@@ -14,15 +14,19 @@
 
         <!-- Start screen -->
         <activity
-            android:name="com.view.StartScreenActivity"
+            android:name="com.view.SplashScreenActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true">
-            <intent-filter>
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-
+        <!-- Start screen -->
+        <activity
+            android:name="com.view.StartScreenActivity"
+            android:exported="true" />
 
         <!-- Login screen -->
         <activity

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.sprintproject.app-mergeDebugResources-41:/values-v23/values-v23.xml",
+            "outputFile": "com.example.sprintproject.app-mergeDebugResources-45:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/tvo/.gradle/caches/transforms-3/a139f965eb27f1afdd3595e4259f1295/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/tvo/.gradle/caches/transforms-3/b89e885c04249e2b5ef6bf01192e3f39/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/tvo/.gradle/caches/transforms-3/01213299418de143c440c868acbaa44e/transformed/material-1.11.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/tvo/.gradle/caches/transforms-3/c163b5b147e1607f34d967d9987126ff/transformed/material-1.11.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,5,9,13,16,19,22,25,28,32",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -42,7 +42,7 @@
                     }
                 },
                 {
-                    "source": "/Users/tvo/.gradle/caches/transforms-3/9b6677a25abbbd7b5fd251814a79378d/transformed/appcompat-1.6.1/res/values-v23/values-v23.xml",
+                    "source": "/Users/tvo/.gradle/caches/transforms-3/e6d657dcd05e9177f44d93be389d18e2/transformed/appcompat-1.6.1/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
