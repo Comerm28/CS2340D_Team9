@@ -4,7 +4,7 @@
             "outputFile": "com.example.sprintproject.app-mergeDebugResources-45:/values-v22/values-v22.xml",
             "map": [
                 {
-                    "source": "/Users/tvo/.gradle/caches/transforms-3/e6d657dcd05e9177f44d93be389d18e2/transformed/appcompat-1.6.1/res/values-v22/values-v22.xml",
+                    "source": "C:\\Users\\mitch\\.gradle\\caches\\transforms-3\\e6d657dcd05e9177f44d93be389d18e2\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",
