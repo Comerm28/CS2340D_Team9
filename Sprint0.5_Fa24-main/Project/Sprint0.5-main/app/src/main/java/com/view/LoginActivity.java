@@ -40,5 +40,10 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // quit Button functionality
+        findViewById(R.id.quitButton).setOnClickListener(view -> {
+            Log.d(TAG, "Quit button clicked"); // Log statement for quit button click
+            finishAffinity(); // Close the app
+        });
     }
 }
