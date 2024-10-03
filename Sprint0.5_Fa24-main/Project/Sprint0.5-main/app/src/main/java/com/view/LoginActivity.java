@@ -6,12 +6,14 @@ import android.util.Log;  // Import Log
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.sprintproject.R;
-import com.viewmodel.LoginViewModel;
+import com.google.android.material.snackbar.Snackbar;
+import com.viewmodel.AuthenticationViewModel;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity"; // Tag for logging
-    private LoginViewModel loginViewModel;
+    private AuthenticationViewModel authenticationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,20 +21,17 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Log.d(TAG, "LoginActivity created"); // Log statement
 
-        loginViewModel = new LoginViewModel();
+        authenticationViewModel = new AuthenticationViewModel();
         EditText usernameEditText = findViewById(R.id.usernameEditText);
         EditText passwordEditText = findViewById(R.id.passwordEditText);
 
         findViewById(R.id.loginButton).setOnClickListener(view -> {
             Log.d(TAG, "Login button clicked"); // Log statement for login button click
-            Intent intent = new Intent(LoginActivity.this, MainAppScreensActivity.class);
-            if(loginViewModel.OnLogin(usernameEditText.getText().toString(), passwordEditText.getText().toString())){
-                startActivity(intent);
-                finish(); // finish LoginActivity
-            }
-            else{
-                //todo: prob just write a message somewhere that its invalid or something
-            }
+            String username = usernameEditText.getText().toString();
+            String password = passwordEditText.getText().toString();
+            authenticationViewModel.logIn(username, password,
+                    () -> startActivity(new Intent(this, MainAppScreensActivity.class)),
+                    fail -> Snackbar.make(view, fail, Snackbar.LENGTH_LONG).show());
         });
 
         findViewById(R.id.createAccountButton).setOnClickListener(view -> {
