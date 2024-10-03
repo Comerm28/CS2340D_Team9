@@ -19,9 +19,9 @@ public class AuthenticationViewModel extends ViewModel {
     }
 
     public void signUp(String username, String password, Runnable onSuccess, Consumer<String> onFail) {
-        // username contains invalid characters, so fail
-        if (!User.isValidUsername(username)) {
-            onFail.accept("Username may not contain special characters.");
+        // validate login info format
+        if (!isValidLogin(username, password)) {
+            onFail.accept("Improperly formatted login info.");
             return;
         }
 
@@ -35,9 +35,9 @@ public class AuthenticationViewModel extends ViewModel {
     }
 
     public void logIn(String username, String password, Runnable onSuccess, Consumer<String> onFail) {
-        // username contains invalid characters, so fail
-        if (!User.isValidUsername(username)) {
-            onFail.accept("Username may not contain special characters.");
+        // validate login info format
+        if (!isValidLogin(username, password)) {
+            onFail.accept("Improperly formatted login info.");
             return;
         }
 
@@ -46,6 +46,20 @@ public class AuthenticationViewModel extends ViewModel {
         mAuth.signInWithEmailAndPassword(User.formatEmail(username), password)
                 .addOnSuccessListener(task -> onSuccess.run())
                 .addOnFailureListener(fail -> onFail.accept(fail.getMessage().replace("email address", "username")));
+    }
+
+
+    // returns whether the login information is properly formatted
+    private boolean isValidLogin(String username, String password) {
+        if (username == null || password == null) {
+            return false;
+        }
+
+        if (username.isEmpty() || password.isEmpty()) {
+            return false;
+        }
+
+        return !username.matches("^.*[^a-zA-Z0-9 ].*$");
     }
 
 }
