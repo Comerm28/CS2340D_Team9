@@ -7,10 +7,6 @@ public class User {
         this.username = username;
     }
 
-    public static boolean isValidUsername(String username) {
-        return !username.matches("^.*[^a-zA-Z0-9 ].*$");
-    }
-
     public static String formatEmail(String username) {
         return username + "@a.com";
     }

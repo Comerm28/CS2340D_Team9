@@ -1,0 +1,27 @@
+<!-- res/layout/activity_splash_screen.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2196F3">
+
+    <ImageView
+        android:id="@+id/splash_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/splash_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/splash_image"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="16dp"
+        android:text="WanderSync: A Collaborative Travel Management System"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>
