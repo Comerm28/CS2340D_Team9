@@ -13,6 +13,7 @@ public class AuthenticationViewModel extends ViewModel {
     private final DatabaseReference dbRef;
     private final FirebaseAuth mAuth;
 
+    // initialize viewmodel
     public AuthenticationViewModel() {
         dbRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
