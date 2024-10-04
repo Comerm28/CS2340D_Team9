@@ -40,9 +40,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         // Handle login button click
         loginButton.setOnClickListener(view -> {
-            String username = createUsernameEditText.getText().toString();
-            String password = createPasswordEditText.getText().toString();
-            authenticationViewModel.logIn(username, password, () -> startActivity(new Intent(this, MainAppScreensActivity.class)), fail -> Snackbar.make(view, fail, Snackbar.LENGTH_LONG).show());
+            startActivity(new Intent(this, LoginActivity.class));
         });
     }
 
