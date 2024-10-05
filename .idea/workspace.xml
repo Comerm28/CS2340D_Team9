@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1b1a69b-9cc0-421b-b8dc-321fc799bdb6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/src/main/java/com/view/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/src/main/java/com/viewmodel/AuthenticationViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/src/main/java/com/viewmodel/AuthenticationViewModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +19,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2mUKHwMZY38YJUGecHQdXWREwMK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,10 +35,10 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "project__setup__dirs",
+    "git-widget-placeholder": "ylinlu6220-patch-1",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mitch/Documents/GitHub/CS2340-D-_Team-9-",
-    "settings.editor.selected.configurable": "AndroidSdkUpdater"
+    "last_opened_file_path": "C:/Users/ylinl/OneDrive/Documents/2340/cs2340_checks.xml",
+    "settings.editor.selected.configurable": "org.infernus.idea.checkstyle.CheckStyleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
