@@ -22,7 +22,7 @@ public class AuthenticationViewModel extends ViewModel {
     public void signUp(String username, String password, Runnable onSuccess, Consumer<String> onFail) {
         // validate login info format
         if (!isValidLogin(username, password)) {
-            onFail.accept("Improperly formatted login info.");
+            onFail.accept("Login info improperly formatted.");
             return;
         }
 
@@ -38,7 +38,7 @@ public class AuthenticationViewModel extends ViewModel {
     public void logIn(String username, String password, Runnable onSuccess, Consumer<String> onFail) {
         // validate login info format
         if (!isValidLogin(username, password)) {
-            onFail.accept("Improperly formatted login info.");
+            onFail.accept("Login info improperly formatted.");
             return;
         }
 
@@ -52,14 +52,9 @@ public class AuthenticationViewModel extends ViewModel {
 
     // returns whether the login information is properly formatted
     private boolean isValidLogin(String username, String password) {
-        if (username == null || password == null) {
+        if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
             return false;
         }
-
-        if (username.isEmpty() || password.isEmpty()) {
-            return false;
-        }
-
         return !username.matches("^.*[^a-zA-Z0-9 ].*$");
     }
 
