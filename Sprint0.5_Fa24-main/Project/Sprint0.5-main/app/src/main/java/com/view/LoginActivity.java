@@ -35,7 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.createAccountButton).setOnClickListener(view -> {
-            Log.d(TAG, "Create Account button clicked"); // Log statement for create account button click
+            Log.d(TAG, "Create Account button clicked");
+            // Log statement for create account button click
             Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
             startActivity(intent);
         });

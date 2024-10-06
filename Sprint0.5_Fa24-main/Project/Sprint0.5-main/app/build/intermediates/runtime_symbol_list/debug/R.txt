@@ -3676,6 +3676,7 @@ int id unlabeled 0x7f0801ff
 int id up 0x7f080200
 int id useLogo 0x7f080201
 int id usernameEditText 0x7f080202
+int id validCharacters 0x7f080217
 int id vertical_only 0x7f080203
 int id view_offset_helper 0x7f080204
 int id view_transition 0x7f080205
