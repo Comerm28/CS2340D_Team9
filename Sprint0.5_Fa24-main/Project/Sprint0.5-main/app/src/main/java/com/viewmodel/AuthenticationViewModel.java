@@ -19,10 +19,12 @@ public class AuthenticationViewModel extends ViewModel {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void signUp(String username, String password, Runnable onSuccess, Consumer<String> onFail) {
+    public void signUp(String username, String password, Runnable onSuccess,
+                       Consumer<String> onFail) {
         // validate login info format
         if (!isValidLogin(username, password)) {
-            onFail.accept("Login info improperly formatted.");
+            onFail.accept("Login info improperly formatted. "
+                    + "Cannot have whitespace or invalid characters.");
             return;
         }
 
@@ -32,13 +34,17 @@ public class AuthenticationViewModel extends ViewModel {
                 .addOnSuccessListener(task -> {
                     dbRef.child("users").child(username).setValue(new User(username));
                     onSuccess.run();
-                }).addOnFailureListener(fail -> onFail.accept(fail.getMessage().replace("email address", "username")));
+                }).addOnFailureListener(fail ->
+                        onFail.accept(fail.getMessage().replace(
+                                "email address", "username")));
     }
 
-    public void logIn(String username, String password, Runnable onSuccess, Consumer<String> onFail) {
+    public void logIn(String username, String password,
+                      Runnable onSuccess, Consumer<String> onFail) {
         // validate login info format
         if (!isValidLogin(username, password)) {
-            onFail.accept("Login info improperly formatted.");
+            onFail.accept("Login info improperly formatted. "
+                    + "Cannot have whitespace or invalid characters.");
             return;
         }
 
@@ -46,16 +52,17 @@ public class AuthenticationViewModel extends ViewModel {
         // else call onFail with the error message
         mAuth.signInWithEmailAndPassword(User.formatEmail(username), password)
                 .addOnSuccessListener(task -> onSuccess.run())
-                .addOnFailureListener(fail -> onFail.accept(fail.getMessage().replace("email address", "username")));
+                .addOnFailureListener(fail -> onFail.accept(fail.getMessage().
+                        replace("email address", "username")));
     }
 
 
     // returns whether the login information is properly formatted
     private boolean isValidLogin(String username, String password) {
-        if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
+        if (username == null || password == null
+                || username.trim().isEmpty() || password.trim().isEmpty()) {
             return false;
         }
-        return !username.matches("^.*[^a-zA-Z0-9 ].*$");
+        return username.matches("^[a-zA-Z0-9_]+$");
     }
-
 }

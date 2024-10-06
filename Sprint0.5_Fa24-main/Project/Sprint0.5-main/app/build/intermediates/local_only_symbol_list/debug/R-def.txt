@@ -25,6 +25,7 @@ id splash_image
 id splash_text
 id startButton
 id usernameEditText
+id validCharacters
 id welcomeTextView
 layout activity_create_account
 layout activity_login

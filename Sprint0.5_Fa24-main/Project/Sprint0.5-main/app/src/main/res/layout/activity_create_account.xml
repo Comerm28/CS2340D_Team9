@@ -9,9 +9,17 @@
         android:id="@+id/createAccountTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:text="Create an Account"
         android:textSize="24sp"
-        android:textStyle="bold"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id = "@+id/validCharacters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valid characters: a-z, A-Z, 0-9, _"
+        android:textSize="16sp"
         android:layout_marginBottom="24dp" />
 
     <EditText

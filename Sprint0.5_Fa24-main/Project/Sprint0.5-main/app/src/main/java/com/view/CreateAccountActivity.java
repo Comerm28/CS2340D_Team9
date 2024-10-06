@@ -32,7 +32,8 @@ public class CreateAccountActivity extends AppCompatActivity {
             String username = createUsernameEditText.getText().toString();
             String password = createPasswordEditText.getText().toString();
             authenticationViewModel.signUp(username, password, () -> {
-                //todo: maybe bundle user name and password and autofill them into the edittext on login screen?
+                //todo: maybe bundle user name and password
+                // and autofill them into the edittext on login screen?
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
             }, fail -> Snackbar.make(view, fail, Snackbar.LENGTH_LONG).show());
