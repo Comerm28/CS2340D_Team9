@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1b1a69b-9cc0-421b-b8dc-321fc799bdb6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/info.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint0.5_Fa24-main/Project/Sprint0.5-main/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/Sprint0.5_Fa24-main/Project/Sprint0.5-main/.settings/org.eclipse.buildship.core.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
