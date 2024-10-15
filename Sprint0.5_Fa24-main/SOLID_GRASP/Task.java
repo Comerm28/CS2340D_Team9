@@ -46,5 +46,7 @@ public abstract class Task {
     }
 
     // Abstract method to define specific task behavior
+    // If a task is recurring, then it could be stated through this method
     public abstract void performTask();
 }
+
