@@ -10,8 +10,8 @@ public abstract class Task {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
-        this.priority = priority;
-        this.status = SharedDataTypes.Status.NOT_STARTED; // Default status is NOT_STARTED
+        this.priority = SharedDataTypes.Priority.LOW_PRIORITY; // By default
+        this.status = SharedDataTypes.Status.NOT_STARTED; // By default
     }
 
     // Getter methods for Task properties
@@ -33,6 +33,11 @@ public abstract class Task {
 
     public SharedDataTypes.Status getStatus() {
         return status;
+    }
+
+    // Method to update task priority
+    public void updatePriority(SharedDataTypes.Priority newPriority) {
+        this.priority = newPriority;
     }
 
     // Method to update task status
