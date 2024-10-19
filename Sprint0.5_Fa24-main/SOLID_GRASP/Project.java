@@ -44,8 +44,8 @@ public class Project {
         return members.add(new_member);
     }
 
-    public boolean remove_task(TeamMember removed_member)
+    public boolean remove_member(TeamMember removed_member)
     {
-        return tasks.remove(removed_member);
+        return members.remove(removed_member);
     }
 }
