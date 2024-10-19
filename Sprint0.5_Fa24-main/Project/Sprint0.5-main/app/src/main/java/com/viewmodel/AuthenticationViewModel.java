@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.model.User;
+import com.model.UserDestinationData;
 
 import java.util.function.Consumer;
 
@@ -33,6 +34,7 @@ public class AuthenticationViewModel extends ViewModel {
         mAuth.createUserWithEmailAndPassword(User.formatEmail(username), password)
                 .addOnSuccessListener(task -> {
                     dbRef.child("users").child(username).setValue(new User(username));
+                    dbRef.child("destinations").child(username).setValue(new UserDestinationData(username));
                     onSuccess.run();
                 }).addOnFailureListener(fail ->
                         onFail.accept(fail.getMessage().replace(
@@ -51,9 +53,16 @@ public class AuthenticationViewModel extends ViewModel {
         // attempt to create the user, and if successful, call onSuccess,
         // else call onFail with the error message
         mAuth.signInWithEmailAndPassword(User.formatEmail(username), password)
-                .addOnSuccessListener(task -> onSuccess.run())
+                .addOnSuccessListener(task -> loginSuccess(username, onSuccess))
                 .addOnFailureListener(fail -> onFail.accept(fail.getMessage().
                         replace("email address", "username")));
+    }
+
+    private void loginSuccess(String username, Runnable onSuccess)
+    {
+        CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
+        currentUserInfo.setUser(new User(username));
+        onSuccess.run();
     }
 
 
