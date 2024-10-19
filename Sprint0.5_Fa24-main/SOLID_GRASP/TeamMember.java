@@ -1,10 +1,17 @@
 public abstract class TeamMember {
     protected String name;
     protected String email;
-    protected String role; // requirement: "Some team members might have specific roles or responsibilities within a project"
+    protected SharedDataTypes.Role role; // requirement: "Some team members might have specific roles or responsibilities within a project"
 
     // Constructor to initialize name and email
-    public TeamMember(String name, String email, String role) {
+    public TeamMember(String name, String email) {
+        this.name = name;
+        this.email = email;
+        role = SharedDataTypes.Role.TEAM_MEMBER; // by default
+    }
+
+    // Constructor to initialize name, email, and role
+    public TeamMember(String name, String email, SharedDataTypes.Role role) {
         this.name = name;
         this.email = email;
         this.role = role;
@@ -23,16 +30,17 @@ public abstract class TeamMember {
         return email;
     }
 
-    public String getRole() {
+    public SharedDataTypes.Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    // Method to update task status
+    public void updateRole(SharedDataTypes.Role newRole) {
+        this.role = newRole;
     }
 
     // Example: Check if the member is responsible for overseeing a project
     public boolean isProjectManager() {
-        return "Project Manager".equalsIgnoreCase(this.role);
+        return SharedDataTypes.Role.PROJECT_MANAGER.equals(this.role);
     }
 }

@@ -9,4 +9,8 @@ public class SharedDataTypes {
         IN_PROGRESS,
         NOT_STARTED
     }
+    enum Role{
+        TEAM_MEMBER,
+        PROJECT_MANAGER
+    }
 }
