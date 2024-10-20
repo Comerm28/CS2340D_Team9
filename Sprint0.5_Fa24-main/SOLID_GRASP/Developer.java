@@ -9,6 +9,6 @@ public class Developer extends TeamMember {
         super(name, email, SharedDataTypes.Role.DEVELOPER, projects);
     }
     public void workOnProject() {
-        SimpleLogger.info(name + " is working on the project.");
+        //worker tasks
     }
 }
