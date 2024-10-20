@@ -14,44 +14,53 @@ public abstract class Task {
         this.status = SharedDataTypes.Status.NOT_STARTED; // By default
     }
 
+    public Task(String title, String description, String dueDate, SharedDataTypes.Priority priority, SharedDataTypes.Status status) {
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+        this.status = status;
+    }
+
     // Getter methods for Task properties
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getDueDate() {
         return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 
     public SharedDataTypes.Priority getPriority() {
         return priority;
     }
 
+    public void setPriority(SharedDataTypes.Priority priority) {
+        this.priority = priority;
+    }
+
     public SharedDataTypes.Status getStatus() {
         return status;
     }
 
-    // Method to update task priority
-    public void updatePriority(SharedDataTypes.Priority newPriority) {
-        this.priority = newPriority;
+    public void setStatus(SharedDataTypes.Status status) {
+        this.status = status;
     }
-
-    // Method to update task status
-    public void updateStatus(SharedDataTypes.Status newStatus) {
-        this.status = newStatus;
-    }
-
-    // Method to mark task as completed
-    public boolean isCompleted() {
-        return status == SharedDataTypes.Status.COMPLETED;
-    }
-
-    // Abstract method to define specific task behavior
-    // If a task is recurring, then it could be stated through this method
-    public abstract void performTask();
 }
 

@@ -6,46 +6,86 @@ public class Project {
     private List<Task> tasks;
     private String name;
     private String description;
-    private String start_date;
-    private String end_date;
+    private String startDate;
+    private String endDate;
 
-    public Project(String name, String description, String start_date, String end_date)
+    public Project(String name, String description, String startDate, String endDate)
     {
         this.name = name;
         this.description = description;
-        this.start_date = start_date;
-        this.end_date = end_date;
-        members = new ArrayList<>();
-        tasks = new ArrayList<>();
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.members = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
-    public Project(String name, String description, String start_date, String end_date, List<TeamMember> members, List<Task> tasks)
+    public Project(String name, String description, String startDate, String endDate, List<TeamMember> members, List<Task> tasks)
     {
         this.name = name;
         this.description = description;
-        this.start_date = start_date;
-        this.end_date = end_date;
-        members = new ArrayList<>(members);
-        tasks = new ArrayList<>(tasks);
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.members = new ArrayList<>(members);
+        this.tasks = new ArrayList<>(tasks);
     }
 
-    public boolean add_task(Task new_task)
-    {
-        return tasks.add(new_task);
+    public String getName() {
+        return name;
     }
 
-    public boolean remove_task(Task removed_task)
-    {
-        return tasks.remove(removed_task);
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public boolean add_member(TeamMember new_member)
-    {
-        return members.add(new_member);
+    public String getDescription() {
+        return description;
     }
 
-    public boolean remove_member(TeamMember removed_member)
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public List<Task> getTasks() {
+        return new ArrayList<>(tasks);
+    }
+
+    public List<TeamMember> getMembers() {
+        return new ArrayList<>(members);
+    }
+
+    public boolean addTask(Task newTask)
     {
-        return members.remove(removed_member);
+        return tasks.add(newTask);
+    }
+
+    public boolean removeTask(Task removedTask)
+    {
+        return tasks.remove(removedTask);
+    }
+
+    public boolean addMember(TeamMember newMember)
+    {
+        return members.add(newMember);
+    }
+
+    public boolean removeMember(TeamMember removedMember)
+    {
+        return members.remove(removedMember);
     }
 }
