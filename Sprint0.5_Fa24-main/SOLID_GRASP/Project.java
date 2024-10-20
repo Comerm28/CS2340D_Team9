@@ -69,23 +69,23 @@ public class Project {
         return new ArrayList<>(members);
     }
 
-    public boolean addTask(Task newTask)
+    public void addTask(Task newTask)
     {
-        return tasks.add(newTask);
+        tasks.add(newTask);
     }
 
-    public boolean removeTask(Task removedTask)
+    public void removeTask(Task removedTask)
     {
-        return tasks.remove(removedTask);
+        tasks.remove(removedTask);
     }
 
-    public boolean addMember(TeamMember newMember)
+    public void addMember(TeamMember newMember)
     {
-        return members.add(newMember);
+        members.add(newMember);
     }
 
-    public boolean removeMember(TeamMember removedMember)
+    public void removeMember(TeamMember removedMember)
     {
-        return members.remove(removedMember);
+        members.remove(removedMember);
     }
 }
