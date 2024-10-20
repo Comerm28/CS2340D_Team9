@@ -21,10 +21,7 @@ public class Project {
 
     public Project(String name, String description, String startDate, String endDate, List<TeamMember> members, List<Task> tasks)
     {
-        this.name = name;
-        this.description = description;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this(name, description, startDate, endDate);
         this.members = new ArrayList<>(members);
         this.tasks = new ArrayList<>(tasks);
     }
