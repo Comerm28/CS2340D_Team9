@@ -4,14 +4,14 @@ public abstract class TeamMember {
     protected SharedDataTypes.Role role; // requirement: "Some team members might have specific roles or responsibilities within a project"
 
     // Constructor to initialize name and email
-    public TeamMember(String name, String email) {
+    protected TeamMember(String name, String email) {
         this.name = name;
         this.email = email;
         role = SharedDataTypes.Role.TEAM_MEMBER; // by default
     }
 
     // Constructor to initialize name, email, and role
-    public TeamMember(String name, String email, SharedDataTypes.Role role) {
+    protected TeamMember(String name, String email, SharedDataTypes.Role role) {
         this.name = name;
         this.email = email;
         this.role = role;
