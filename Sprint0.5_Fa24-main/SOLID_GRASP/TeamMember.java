@@ -17,30 +17,28 @@ public abstract class TeamMember {
         this.role = role;
     }
 
-    // Abstract methods for joining and leaving a project
-    public abstract boolean joinProject(Project project);
-    public abstract boolean leaveProject(Project project);
-
     // Getters and setters
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public SharedDataTypes.Role getRole() {
         return role;
     }
 
-    // Method to update task status
-    public void updateRole(SharedDataTypes.Role newRole) {
-        this.role = newRole;
-    }
-
-    // Example: Check if the member is responsible for overseeing a project
-    public boolean isProjectManager() {
-        return SharedDataTypes.Role.PROJECT_MANAGER.equals(this.role);
+    public void setRole(SharedDataTypes.Role role) {
+        this.role = role;
     }
 }
