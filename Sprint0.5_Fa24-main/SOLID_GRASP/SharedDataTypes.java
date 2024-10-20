@@ -10,7 +10,7 @@ public class SharedDataTypes {
         NOT_STARTED
     }
     enum Role{
-        TEAM_MEMBER,
+        DEVELOPER,
         PROJECT_MANAGER
     }
 }
