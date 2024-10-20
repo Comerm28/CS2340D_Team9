@@ -8,7 +8,7 @@ public abstract class TeamMember {
     protected List<Project> projects;
 
     // Constructor to initialize name and email
-    public TeamMember(String name, String email) {
+    protected TeamMember(String name, String email) {
         this.name = name;
         this.email = email;
         this.role = SharedDataTypes.Role.DEVELOPER; // by default
@@ -16,17 +16,14 @@ public abstract class TeamMember {
     }
 
     // Constructor to initialize name, email, and role
-    public TeamMember(String name, String email, SharedDataTypes.Role role) {
-        this.name = name;
-        this.email = email;
+    protected TeamMember(String name, String email, SharedDataTypes.Role role) {
+        this(name, email);
         this.role = role;
         this.projects = new ArrayList<>();
     }
 
-    public TeamMember(String name, String email, SharedDataTypes.Role role, List<Project> projects) {
-        this.name = name;
-        this.email = email;
-        this.role = role;
+    protected TeamMember(String name, String email, SharedDataTypes.Role role, List<Project> projects) {
+        this(name, email, role);
         this.projects = new ArrayList<>(projects);
     }
 
@@ -66,4 +63,6 @@ public abstract class TeamMember {
     public void leaveProject(Project project) {
         projects.remove(project);
     }
+
+    public abstract void workOnProject();
 }

@@ -6,7 +6,7 @@ public abstract class Task {
     protected SharedDataTypes.Status status;
 
     // Constructor to initialize Task fields
-    public Task(String title, String description, String dueDate) {
+    protected Task(String title, String description, String dueDate) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -14,10 +14,8 @@ public abstract class Task {
         this.status = SharedDataTypes.Status.NOT_STARTED; // By default
     }
 
-    public Task(String title, String description, String dueDate, SharedDataTypes.Priority priority, SharedDataTypes.Status status) {
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
+    protected Task(String title, String description, String dueDate, SharedDataTypes.Priority priority, SharedDataTypes.Status status) {
+        this(title, description, dueDate);
         this.priority = priority;
         this.status = status;
     }
