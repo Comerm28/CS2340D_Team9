@@ -8,6 +8,6 @@ public class ProjectManager extends TeamMember {
         super(name, email, SharedDataTypes.Role.PROJECT_MANAGER, projects);
     }
     public void workOnProject() {
-        System.out.println(name + " is managing the project.");
+        SimpleLogger.info(name + " is managing the project.");
     }
 }
