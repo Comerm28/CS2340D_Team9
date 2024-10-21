@@ -1,12 +1,12 @@
 package com.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class UserDestinationData {
     private String username;
-    private ArrayList<Destination> destinations;
+    private List<Destination> destinations;
 
-    public UserDestinationData(String username, ArrayList<Destination> destinations)
+    public UserDestinationData(String username, List<Destination> destinations)
     {
         this.username = username;
         this.destinations = destinations;
@@ -26,11 +26,11 @@ public class UserDestinationData {
         this.username = username;
     }
 
-    public ArrayList<Destination> getDestinations() {
+    public List<Destination> getDestinations() {
         return destinations;
     }
 
-    public void setDestinations(ArrayList<Destination> destinations) {
+    public void setDestinations(List<Destination> destinations) {
         this.destinations = destinations;
     }
 }

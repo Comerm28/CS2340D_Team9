@@ -47,14 +47,12 @@ public class CurrentUserInfo {
 
                 } else {
                     // Handle the case where the user does not exist
-                    System.out.println("User not found.");
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Handle possible errors
-                System.err.println("Error: " + databaseError.getMessage());
             }
         });
     }
