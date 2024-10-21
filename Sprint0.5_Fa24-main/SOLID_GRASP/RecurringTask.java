@@ -1,4 +1,4 @@
-package SOLID_GRASP;
+package solidgrasp;
 
 public class RecurringTask extends Task {
     String recurrenceFrequency;
