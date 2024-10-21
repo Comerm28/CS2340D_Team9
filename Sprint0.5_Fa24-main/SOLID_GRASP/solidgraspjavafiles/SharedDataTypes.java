@@ -1,4 +1,4 @@
-package solidgrasp;
+package solidgraspjavafiles;
 
 public class SharedDataTypes {
     enum Priority{
