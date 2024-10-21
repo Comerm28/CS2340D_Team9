@@ -1,4 +1,4 @@
-package solidgrasp;
+package solidgraspjavafiles;
 
 public abstract class Task {
     protected String title;
