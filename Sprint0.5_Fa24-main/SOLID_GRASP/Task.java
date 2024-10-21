@@ -1,4 +1,4 @@
-package SOLID_GRASP;
+package solidgrasp;
 
 public abstract class Task {
     protected String title;

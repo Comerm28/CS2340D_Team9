@@ -1,4 +1,4 @@
-package SOLID_GRASP;
+package solidgrasp;
 
 import java.util.ArrayList;
 import java.util.List;
