@@ -1,3 +1,5 @@
+package SOLID_GRASP;
+
 public class RecurringTask extends Task {
     String recurrenceFrequency;
     public RecurringTask(String title, String description, String dueDate) {
