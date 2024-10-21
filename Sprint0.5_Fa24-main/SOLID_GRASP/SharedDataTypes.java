@@ -1,3 +1,5 @@
+package SOLID_GRASP;
+
 public class SharedDataTypes {
     enum Priority{
         HIGH_PRIORITY,
