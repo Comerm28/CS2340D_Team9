@@ -1,4 +1,6 @@
 package com.viewmodel;
+import androidx.annotation.NonNull;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -39,7 +41,7 @@ public class CurrentUserInfo {
         this.user = user;
         dbRef.child("destinations").child(user.getUsername()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Check if the user exists
                 if (dataSnapshot.exists()) {
                     // Get the User object from the snapshot
@@ -51,7 +53,7 @@ public class CurrentUserInfo {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle possible errors
             }
         });

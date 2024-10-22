@@ -1,5 +1,7 @@
 package com.viewmodel;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,15 +55,16 @@ public class AuthenticationViewModel extends ViewModel {
         // attempt to create the user, and if successful, call onSuccess,
         // else call onFail with the error message
         mAuth.signInWithEmailAndPassword(User.formatEmail(username), password)
-                .addOnSuccessListener(task -> loginSuccess(username, onSuccess))
+                .addOnSuccessListener(task -> this.loginSuccess(username, onSuccess))
                 .addOnFailureListener(fail -> onFail.accept(fail.getMessage().
                         replace("email address", "username")));
     }
 
-    private void loginSuccess(String username, Runnable onSuccess)
+    public void loginSuccess(String username, Runnable onSuccess)
     {
         CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
-        currentUserInfo.setUser(new User(username));
+        User user = new User(username);
+        currentUserInfo.setUser(user);
         onSuccess.run();
     }
 
