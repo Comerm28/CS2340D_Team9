@@ -25,7 +25,7 @@ public class DestinationFragment extends Fragment {
     private EditText travelLocationInput, estimatedStartDateInput, estimatedEndDateInput;
     private List<String> travelLogs;
 
-    // Declare logTravelDialog at the class level
+
     private AlertDialog logTravelDialog;
 
     private boolean isVacationCalculatorVisible = false;
@@ -49,7 +49,6 @@ public class DestinationFragment extends Fragment {
         // Call to update the display with the placeholder
         updateTravelLogsDisplay();
 
-        // Set up button click listeners
         calculateVacationTimeButton.setOnClickListener(v -> toggleVacationCalculator());
         logTravelButton.setOnClickListener(v -> showLogTravelForm());
 
@@ -124,9 +123,8 @@ public class DestinationFragment extends Fragment {
 
         // Check if there are any logs; if not, show the default placeholder
         if (travelLogs.isEmpty()) {
-            // Create a placeholder TextView
             TextView defaultLogView = new TextView(getContext());
-            defaultLogView.setText("Destination:                          0 days planned");
+            defaultLogView.setText("Destination:                                                0 days planned");
             defaultLogView.setPadding(8, 8, 8, 8);  // Add some padding
             travelLogsContainer.addView(defaultLogView);
         } else {
@@ -140,9 +138,8 @@ public class DestinationFragment extends Fragment {
     }
 
 
-
     private int calculateDuration(String startDate, String endDate) {
         // Placeholder logic for duration calculation
-        return 5;  // Replace with actual logic
+        return 5;  // ViewModel needs to replace with actual logic
     }
 }
