@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+#Tue Oct 22 18:23:15 EDT 2024
+=======
+<<<<<<< HEAD
 #Mon Oct 21 15:05:14 EDT 2024
 base.0=/home/ash/prj/android/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/home/ash/prj/android/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
@@ -11,6 +14,7 @@ base.5=/home/ash/prj/android/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprin
 #Tue Oct 22 14:21:35 EDT 2024
 =======
 #Tue Oct 22 14:28:50 EDT 2024
+>>>>>>> main
 >>>>>>> main
 base.0=/Users/tvo/Desktop/CS/2340/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/Users/tvo/Desktop/CS/2340/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex

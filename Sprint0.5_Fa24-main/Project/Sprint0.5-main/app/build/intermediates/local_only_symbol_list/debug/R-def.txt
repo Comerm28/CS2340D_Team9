@@ -4,7 +4,6 @@ color black
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
-id autoCalculateButton
 id button_accommodation
 id button_community
 id button_destination
@@ -13,7 +12,6 @@ id button_logistics
 id button_transportation
 id calculateVacationTimeButton
 id calculatedField
-id cancelButton
 id createAccountButton
 id createAccountTitle
 id createPasswordEditText
@@ -29,13 +27,12 @@ id loginTitle
 id passwordEditText
 id quitButton
 id registerButton
+id resultDisplayLayout
 id splash_image
 id splash_text
 id startButton
 id startDateInput
-id submitButton
 id travelLogsContainer
-id travelLogsLabel
 id usernameEditText
 id vacationTimeCalculatorForm
 id validCharacters

@@ -19,12 +19,16 @@ public class User {
     public String getUsername() {
         return username;
     }
+<<<<<<< HEAD
+=======
 
     public List<Destination> getDestinations() {
         return destinations;
     }
 
+>>>>>>> main
     public void setUsername(String username) {
         this.username = username;
     }
+
 }
