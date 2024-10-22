@@ -37,8 +37,6 @@
             android:layout_weight="1"
             android:text="Dining" />
 
-
-
         <Button
             android:id="@+id/button_accommodation"
             android:layout_width="0dp"

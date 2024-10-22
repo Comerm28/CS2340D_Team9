@@ -34,9 +34,9 @@ public class DestinationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_destination, container, false);
 
+        // Initialization of views
         vacationTimeCalculatorForm = view.findViewById(R.id.vacationTimeCalculatorForm);
         travelLogsContainer = view.findViewById(R.id.travelLogsContainer);
-
         startDateInput = view.findViewById(R.id.startDateInput);
         endDateInput = view.findViewById(R.id.endDateInput);
         durationInput = view.findViewById(R.id.durationInput);
@@ -46,11 +46,16 @@ public class DestinationFragment extends Fragment {
 
         travelLogs = new ArrayList<>();
 
+        // Call to update the display with the placeholder
+        updateTravelLogsDisplay();
+
+        // Set up button click listeners
         calculateVacationTimeButton.setOnClickListener(v -> toggleVacationCalculator());
         logTravelButton.setOnClickListener(v -> showLogTravelForm());
 
         return view;
     }
+
 
     private void toggleVacationCalculator() {
         if (isVacationCalculatorVisible) {
@@ -81,22 +86,22 @@ public class DestinationFragment extends Fragment {
         Button logTravelSubmitButton = new Button(getContext());
         logTravelSubmitButton.setText("Submit Travel Log");
 
-        // Set the click listener for the submit button
-        logTravelSubmitButton.setOnClickListener(v -> submitTravelLog());
-
-        travelLogLayout.addView(logTravelSubmitButton);
-
         // Create the dialog reference
-        logTravelDialog = new AlertDialog.Builder(getContext())
+        AlertDialog logTravelDialog = new AlertDialog.Builder(getContext())
                 .setTitle("Log Travel")
                 .setView(travelLogLayout)
                 .setNegativeButton("Cancel", null)
                 .create(); // Create the dialog
 
+        // Set the click listener to submit the travel log
+        logTravelSubmitButton.setOnClickListener(v -> submitTravelLog(logTravelDialog)); // Pass the dialog reference
+
+        travelLogLayout.addView(logTravelSubmitButton);
         logTravelDialog.show(); // Show the dialog
     }
 
-    private void submitTravelLog() {
+
+    private void submitTravelLog(AlertDialog logTravelDialog) {
         if (TextUtils.isEmpty(travelLocationInput.getText().toString()) ||
                 TextUtils.isEmpty(estimatedStartDateInput.getText().toString()) ||
                 TextUtils.isEmpty(estimatedEndDateInput.getText().toString())) {
@@ -105,9 +110,9 @@ public class DestinationFragment extends Fragment {
         }
 
         String location = travelLocationInput.getText().toString();
-        String duration = calculateDuration(estimatedStartDateInput.getText().toString(), estimatedEndDateInput.getText().toString()) + " days";
+        String duration = calculateDuration(estimatedStartDateInput.getText().toString(), estimatedEndDateInput.getText().toString()) + " days planned";
 
-        String logEntry = "Destination: " + location + " - " + duration;
+        String logEntry = "Destination: " + location + "                              " + duration;
         travelLogs.add(logEntry);
         updateTravelLogsDisplay();
 
@@ -119,8 +124,10 @@ public class DestinationFragment extends Fragment {
 
         // Check if there are any logs; if not, show the default placeholder
         if (travelLogs.isEmpty()) {
+            // Create a placeholder TextView
             TextView defaultLogView = new TextView(getContext());
-            defaultLogView.setText("Destination: 0 days planned.");
+            defaultLogView.setText("Destination:                          0 days planned");
+            defaultLogView.setPadding(8, 8, 8, 8);  // Add some padding
             travelLogsContainer.addView(defaultLogView);
         } else {
             for (String log : travelLogs) {
@@ -131,6 +138,8 @@ public class DestinationFragment extends Fragment {
             }
         }
     }
+
+
 
     private int calculateDuration(String startDate, String endDate) {
         // Placeholder logic for duration calculation
