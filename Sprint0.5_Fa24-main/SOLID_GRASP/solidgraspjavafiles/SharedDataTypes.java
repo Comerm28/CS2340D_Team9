@@ -1,3 +1,5 @@
+package solidgraspjavafiles;
+
 public class SharedDataTypes {
     enum Priority{
         HIGH_PRIORITY,
@@ -8,5 +10,9 @@ public class SharedDataTypes {
         COMPLETED,
         IN_PROGRESS,
         NOT_STARTED
+    }
+    enum Role{
+        DEVELOPER,
+        PROJECT_MANAGER
     }
 }

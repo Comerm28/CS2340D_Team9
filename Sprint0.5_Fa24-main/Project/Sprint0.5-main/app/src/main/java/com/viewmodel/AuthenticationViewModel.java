@@ -1,5 +1,7 @@
 package com.viewmodel;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -7,6 +9,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.model.Database;
 import com.model.User;
+import com.model.UserDestinationData;
 
 import java.util.function.Consumer;
 
@@ -31,6 +34,14 @@ public class AuthenticationViewModel extends ViewModel {
         }
 
         Database.getInstance().logIn(User.formatEmail(username), password, onSuccess, onFail);
+    }
+
+    public void loginSuccess(String username, Runnable onSuccess)
+    {
+        CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
+        User user = new User(username);
+        currentUserInfo.setUser(user);
+        onSuccess.run();
     }
 
 
