@@ -5,11 +5,9 @@ import java.util.List;
 
 public class User {
     private String username;
-    private List<Destination> destinations;
 
     public User(String username) {
         this.username = username;
-        this.destinations = new ArrayList<>();
     }
 
     public static String formatEmail(String username) {
@@ -18,10 +16,6 @@ public class User {
 
     public String getUsername() {
         return username;
-    }
-
-    public List<Destination> getDestinations() {
-        return destinations;
     }
 
     public void setUsername(String username) {

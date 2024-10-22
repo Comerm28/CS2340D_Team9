@@ -22,7 +22,7 @@ public class AuthenticationViewModel extends ViewModel {
             return;
         }
 
-        Database.getInstance().signUp(User.formatEmail(username), password, onSuccess, onFail);
+        Database.getInstance().signUp(username, password, onSuccess, onFail);
     }
 
     public void logIn(String username, String password, Runnable onSuccess, Consumer<String> onFail) {
@@ -33,7 +33,7 @@ public class AuthenticationViewModel extends ViewModel {
             return;
         }
 
-        Database.getInstance().logIn(User.formatEmail(username), password, onSuccess, onFail);
+        Database.getInstance().logIn(username, password, onSuccess, onFail);
     }
 
     public void loginSuccess(String username, Runnable onSuccess)
