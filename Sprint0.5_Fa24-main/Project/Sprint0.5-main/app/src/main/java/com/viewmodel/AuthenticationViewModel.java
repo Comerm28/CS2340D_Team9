@@ -7,23 +7,14 @@ import androidx.lifecycle.ViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.model.Database;
 import com.model.User;
 import com.model.UserDestinationData;
 
 import java.util.function.Consumer;
 
 public class AuthenticationViewModel extends ViewModel {
-    private final DatabaseReference dbRef;
-    private final FirebaseAuth mAuth;
-
-    // initialize viewmodel
-    public AuthenticationViewModel() {
-        dbRef = FirebaseDatabase.getInstance().getReference();
-        mAuth = FirebaseAuth.getInstance();
-    }
-
-    public void signUp(String username, String password, Runnable onSuccess,
-                       Consumer<String> onFail) {
+    public void signUp(String username, String password, Runnable onSuccess, Consumer<String> onFail) {
         // validate login info format
         if (!isValidLogin(username, password)) {
             onFail.accept("Login info improperly formatted. "
@@ -31,20 +22,10 @@ public class AuthenticationViewModel extends ViewModel {
             return;
         }
 
-        // attempt to create the user, and if successful, call onSuccess,
-        // else call onFail with the error message
-        mAuth.createUserWithEmailAndPassword(User.formatEmail(username), password)
-                .addOnSuccessListener(task -> {
-                    dbRef.child("users").child(username).setValue(new User(username));
-                    dbRef.child("destinations").child(username).setValue(new UserDestinationData(username));
-                    onSuccess.run();
-                }).addOnFailureListener(fail ->
-                        onFail.accept(fail.getMessage().replace(
-                                "email address", "username")));
+        Database.getInstance().signUp(User.formatEmail(username), password, onSuccess, onFail);
     }
 
-    public void logIn(String username, String password,
-                      Runnable onSuccess, Consumer<String> onFail) {
+    public void logIn(String username, String password, Runnable onSuccess, Consumer<String> onFail) {
         // validate login info format
         if (!isValidLogin(username, password)) {
             onFail.accept("Login info improperly formatted. "
@@ -52,12 +33,7 @@ public class AuthenticationViewModel extends ViewModel {
             return;
         }
 
-        // attempt to create the user, and if successful, call onSuccess,
-        // else call onFail with the error message
-        mAuth.signInWithEmailAndPassword(User.formatEmail(username), password)
-                .addOnSuccessListener(task -> this.loginSuccess(username, onSuccess))
-                .addOnFailureListener(fail -> onFail.accept(fail.getMessage().
-                        replace("email address", "username")));
+        Database.getInstance().logIn(User.formatEmail(username), password, onSuccess, onFail);
     }
 
     public void loginSuccess(String username, Runnable onSuccess)
