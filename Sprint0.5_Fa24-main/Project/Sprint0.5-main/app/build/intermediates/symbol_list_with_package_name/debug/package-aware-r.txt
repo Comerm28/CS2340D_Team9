@@ -3249,7 +3249,6 @@ id arc
 id asConfigured
 id async
 id auto
-id autoCalculateButton
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
@@ -3280,7 +3279,6 @@ id cache_measures
 id calculateVacationTimeButton
 id calculatedField
 id callMeasure
-id cancelButton
 id cancel_button
 id carryVelocity
 id center
@@ -3559,6 +3557,7 @@ id ratio
 id rectangles
 id registerButton
 id report_drawn
+id resultDisplayLayout
 id reverseSawtooth
 id right
 id rightToLeft
@@ -3632,7 +3631,6 @@ id staticPostLayout
 id stop
 id stretch
 id submenuarrow
-id submitButton
 id submit_area
 id supportScrollUp
 id tabMode
@@ -3681,7 +3679,6 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id travelLogsContainer
-id travelLogsLabel
 id triangle
 id unchecked
 id uniform

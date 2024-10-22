@@ -13,6 +13,5 @@
         android:textStyle="bold"
         android:paddingBottom="16dp" />
 
-    <!-- Additional UI components for Logistics can be added here -->
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.view;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,70 +13,127 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import com.example.sprintproject.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class DestinationFragment extends Fragment {
 
-    private LinearLayout vacationTimeCalculatorForm;
+    private LinearLayout vacationTimeCalculatorForm, travelLogsContainer;
     private EditText startDateInput, endDateInput, durationInput;
     private TextView calculatedField;
-    private Button calculateVacationTimeButton, autoCalculateButton, logTravelButton, submitButton, cancelButton;
+    private Button calculateVacationTimeButton, logTravelButton;
+    private EditText travelLocationInput, estimatedStartDateInput, estimatedEndDateInput;
     private List<String> travelLogs;
+
+    // Declare logTravelDialog at the class level
+    private AlertDialog logTravelDialog;
+
+    private boolean isVacationCalculatorVisible = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_destination, container, false);
 
-        // Initialize UI components
-        TextView headerTextView = view.findViewById(R.id.headerText);
-        headerTextView.setText("Destination");
-
         vacationTimeCalculatorForm = view.findViewById(R.id.vacationTimeCalculatorForm);
-        vacationTimeCalculatorForm.setVisibility(View.GONE); // Initially hidden
+        travelLogsContainer = view.findViewById(R.id.travelLogsContainer);
 
         startDateInput = view.findViewById(R.id.startDateInput);
         endDateInput = view.findViewById(R.id.endDateInput);
         durationInput = view.findViewById(R.id.durationInput);
         calculatedField = view.findViewById(R.id.calculatedField);
-
         calculateVacationTimeButton = view.findViewById(R.id.calculateVacationTimeButton);
-        autoCalculateButton = view.findViewById(R.id.autoCalculateButton);
         logTravelButton = view.findViewById(R.id.logTravelButton);
-        submitButton = view.findViewById(R.id.submitButton);
-        cancelButton = view.findViewById(R.id.cancelButton);
 
         travelLogs = new ArrayList<>();
 
-        // Set up button listeners
-        calculateVacationTimeButton.setOnClickListener(v -> {
-            // Show the vacation time input form
-            if (vacationTimeCalculatorForm.getVisibility() == View.GONE) {
-                vacationTimeCalculatorForm.setVisibility(View.VISIBLE);
-            } else {
-                vacationTimeCalculatorForm.setVisibility(View.GONE);
-            }
-        });
-
-        autoCalculateButton.setOnClickListener(v -> {
-            // Logic for automatic calculation based on two filled inputs
-            // To be implemented by ViewModel
-            Toast.makeText(getContext(), "Auto calculation logic to be implemented", Toast.LENGTH_SHORT).show();
-        });
-
-        submitButton.setOnClickListener(v -> {
-            // Logic for submitting travel log
-            // To be implemented by ViewModel
-            Toast.makeText(getContext(), "Submit logic to be implemented", Toast.LENGTH_SHORT).show();
-        });
-
-        cancelButton.setOnClickListener(v -> {
-            // Logic for canceling input
-            vacationTimeCalculatorForm.setVisibility(View.GONE);
-        });
+        calculateVacationTimeButton.setOnClickListener(v -> toggleVacationCalculator());
+        logTravelButton.setOnClickListener(v -> showLogTravelForm());
 
         return view;
+    }
+
+    private void toggleVacationCalculator() {
+        if (isVacationCalculatorVisible) {
+            vacationTimeCalculatorForm.setVisibility(View.GONE);
+            isVacationCalculatorVisible = false;
+        } else {
+            vacationTimeCalculatorForm.setVisibility(View.VISIBLE);
+            isVacationCalculatorVisible = true;
+        }
+    }
+
+    private void showLogTravelForm() {
+        LinearLayout travelLogLayout = new LinearLayout(getContext());
+        travelLogLayout.setOrientation(LinearLayout.VERTICAL);
+
+        travelLocationInput = new EditText(getContext());
+        estimatedStartDateInput = new EditText(getContext());
+        estimatedEndDateInput = new EditText(getContext());
+
+        travelLocationInput.setHint("Travel Location");
+        estimatedStartDateInput.setHint("Estimated Start Date");
+        estimatedEndDateInput.setHint("Estimated End Date");
+
+        travelLogLayout.addView(travelLocationInput);
+        travelLogLayout.addView(estimatedStartDateInput);
+        travelLogLayout.addView(estimatedEndDateInput);
+
+        Button logTravelSubmitButton = new Button(getContext());
+        logTravelSubmitButton.setText("Submit Travel Log");
+
+        // Set the click listener for the submit button
+        logTravelSubmitButton.setOnClickListener(v -> submitTravelLog());
+
+        travelLogLayout.addView(logTravelSubmitButton);
+
+        // Create the dialog reference
+        logTravelDialog = new AlertDialog.Builder(getContext())
+                .setTitle("Log Travel")
+                .setView(travelLogLayout)
+                .setNegativeButton("Cancel", null)
+                .create(); // Create the dialog
+
+        logTravelDialog.show(); // Show the dialog
+    }
+
+    private void submitTravelLog() {
+        if (TextUtils.isEmpty(travelLocationInput.getText().toString()) ||
+                TextUtils.isEmpty(estimatedStartDateInput.getText().toString()) ||
+                TextUtils.isEmpty(estimatedEndDateInput.getText().toString())) {
+            Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String location = travelLocationInput.getText().toString();
+        String duration = calculateDuration(estimatedStartDateInput.getText().toString(), estimatedEndDateInput.getText().toString()) + " days";
+
+        String logEntry = "Destination: " + location + " - " + duration;
+        travelLogs.add(logEntry);
+        updateTravelLogsDisplay();
+
+        logTravelDialog.dismiss(); // Dismiss the dialog after submitting the log
+    }
+
+    private void updateTravelLogsDisplay() {
+        travelLogsContainer.removeAllViews();  // Clear existing views
+
+        // Check if there are any logs; if not, show the default placeholder
+        if (travelLogs.isEmpty()) {
+            TextView defaultLogView = new TextView(getContext());
+            defaultLogView.setText("Destination: 0 days planned.");
+            travelLogsContainer.addView(defaultLogView);
+        } else {
+            for (String log : travelLogs) {
+                TextView logTextView = new TextView(getContext());
+                logTextView.setText(log);
+                logTextView.setPadding(8, 8, 8, 8);  // Add some padding
+                travelLogsContainer.addView(logTextView);  // Add new logs
+            }
+        }
+    }
+
+    private int calculateDuration(String startDate, String endDate) {
+        // Placeholder logic for duration calculation
+        return 5;  // Replace with actual logic
     }
 }

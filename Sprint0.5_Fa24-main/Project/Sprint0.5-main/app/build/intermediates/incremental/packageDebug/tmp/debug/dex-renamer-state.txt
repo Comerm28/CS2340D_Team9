@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#Tue Oct 22 14:21:35 EDT 2024
-=======
-#Tue Oct 22 14:28:50 EDT 2024
->>>>>>> main
+#Tue Oct 22 18:01:12 EDT 2024
 base.0=/Users/tvo/Desktop/CS/2340/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/Users/tvo/Desktop/CS/2340/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
 base.2=/Users/tvo/Desktop/CS/2340/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/build/intermediates/dex/debug/mergeProjectDexDebug/15/classes.dex

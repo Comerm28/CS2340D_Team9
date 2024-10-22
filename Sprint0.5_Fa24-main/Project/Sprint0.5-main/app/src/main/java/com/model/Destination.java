@@ -30,7 +30,6 @@ public class Destination {
     public Date getEndDate() {
         return new Date(startDate.getTime() + durationDays);
     }
-
     public static Date calculateMissingStartDate(int durationDays, Date endDate) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(endDate);
