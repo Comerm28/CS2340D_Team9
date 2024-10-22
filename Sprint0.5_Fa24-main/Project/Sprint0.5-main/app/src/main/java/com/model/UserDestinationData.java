@@ -7,6 +7,8 @@ public class UserDestinationData {
     private String username;
     private List<Destination> destinations;
 
+    public UserDestinationData(){}
+
     public UserDestinationData(String username, List<Destination> destinations)
     {
         this.username = username;
