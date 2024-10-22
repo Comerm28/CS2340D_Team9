@@ -1,18 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/destinationFragmentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Destination Header -->
     <TextView
         android:id="@+id/headerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Destination"
         android:textSize="24sp"
         android:textStyle="bold"
         android:paddingBottom="16dp" />
 
-    <!-- Additional UI components for Logistics can be added here -->
+    <!-- Log Travel Button -->
+    <Button
+        android:id="@+id/logTravelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Travel" />
+
+    <!-- Calculate Vacation Time Button -->
+    <Button
+        android:id="@+id/calculateVacationTimeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calculate Vacation Time"
+        android:layout_marginTop="16dp" />
+
+    <!-- Travel Logs List Placeholder -->
+    <!-- (This will be populated dynamically with travel log entries) -->
+    <TextView
+        android:id="@+id/travelLogsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Travel Logs:"
+        android:paddingTop="16dp"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/travelLogsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="8dp" />
+
+    <!-- Vacation Time Calculator Form (Initially Hidden) -->
+    <LinearLayout
+        android:id="@+id/vacationTimeCalculatorForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:paddingTop="16dp">
+
+        <!-- Start Date Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Date" />
+
+        <EditText
+            android:id="@+id/startDateInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Start Date" />
+
+        <!-- End Date Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End Date"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/endDateInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter End Date" />
+
+        <!-- Duration Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duration (Days)"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/durationInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Duration in Days" />
+
+        <!-- Auto Calculate Button -->
+        <Button
+            android:id="@+id/autoCalculateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Auto Calculate"
+            android:layout_marginTop="8dp" />
+
+        <!-- Calculated Field Display -->
+        <TextView
+            android:id="@+id/calculatedField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calculated Value"
+            android:visibility="gone"
+            android:paddingTop="8dp" />
+
+        <!-- Form Actions -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/submitButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Submit" />
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -3249,6 +3249,7 @@ id arc
 id asConfigured
 id async
 id auto
+id autoCalculateButton
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
@@ -3276,7 +3277,10 @@ id button_dining
 id button_logistics
 id button_transportation
 id cache_measures
+id calculateVacationTimeButton
+id calculatedField
 id callMeasure
+id cancelButton
 id cancel_button
 id carryVelocity
 id center
@@ -3330,6 +3334,7 @@ id design_menu_item_action_area
 id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
+id destinationFragmentLayout
 id dialog_button
 id dimensions
 id direct
@@ -3347,6 +3352,7 @@ id dragRight
 id dragStart
 id dragUp
 id dropdown_menu
+id durationInput
 id easeIn
 id easeInOut
 id easeOut
@@ -3356,6 +3362,7 @@ id edit_query
 id elastic
 id embed
 id end
+id endDateInput
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
@@ -3424,6 +3431,7 @@ id linear
 id listMode
 id list_item
 id locale
+id logTravelButton
 id loginButton
 id loginTitle
 id ltr
@@ -3615,6 +3623,7 @@ id src_over
 id standard
 id start
 id startButton
+id startDateInput
 id startHorizontal
 id startToEnd
 id startVertical
@@ -3623,6 +3632,7 @@ id staticPostLayout
 id stop
 id stretch
 id submenuarrow
+id submitButton
 id submit_area
 id supportScrollUp
 id tabMode
@@ -3670,6 +3680,8 @@ id transition_layout_save
 id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
+id travelLogsContainer
+id travelLogsLabel
 id triangle
 id unchecked
 id uniform
@@ -3677,6 +3689,7 @@ id unlabeled
 id up
 id useLogo
 id usernameEditText
+id vacationTimeCalculatorForm
 id validCharacters
 id vertical_only
 id view_offset_helper
