@@ -9,6 +9,13 @@ public class Destination {
     private Date startDate;
     private int durationDays;
 
+    public Destination() {}
+    public Destination(String location) {
+        this.locationName = location;
+        startDate = new Date();
+        durationDays = 1;
+    }
+
     public Destination(String locationName, Date startDate, int durationDays) {
         this.locationName = locationName;
         this.startDate = startDate;
