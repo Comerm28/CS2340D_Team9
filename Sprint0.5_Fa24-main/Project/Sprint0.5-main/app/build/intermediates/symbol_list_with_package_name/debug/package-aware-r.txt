@@ -3510,6 +3510,8 @@ id noState
 id none
 id normal
 id north
+id noteInput
+id notesContainer
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -3847,6 +3849,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_notes
 layout fragment_accommodation
 layout fragment_community
 layout fragment_destination
