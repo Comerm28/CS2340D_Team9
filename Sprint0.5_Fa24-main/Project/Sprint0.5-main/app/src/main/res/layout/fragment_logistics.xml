@@ -41,8 +41,14 @@
         android:id="@+id/viewNotesButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View/Add Notes"
+        android:text="Add Notes"
         android:layout_marginTop="16dp" />
 
+    <Button
+        android:id="@+id/listNotesButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Notes"
+        android:layout_marginTop="16dp" />
 
 </LinearLayout>
