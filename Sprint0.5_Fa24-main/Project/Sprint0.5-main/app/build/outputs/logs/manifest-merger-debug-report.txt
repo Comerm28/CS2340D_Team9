@@ -12,6 +12,7 @@ MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/tvo/.gradle/caches/trans
 MERGED from [com.google.firebase:firebase-database:21.0.0] /Users/tvo/.gradle/caches/transforms-3/84e99e89a3be3e7e9aefa9acc47a2a8d/transformed/firebase-database-21.0.0/AndroidManifest.xml:15:1-38:12
 MERGED from [androidx.navigation:navigation-fragment:2.5.3] /Users/tvo/.gradle/caches/transforms-3/9d9306ddf91f8e026d9ba7a12ee09179/transformed/navigation-fragment-2.5.3/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-auth:23.0.0] /Users/tvo/.gradle/caches/transforms-3/dd64357df5ffa1ab8da1097272420508/transformed/firebase-auth-23.0.0/AndroidManifest.xml:17:1-75:12
+MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0] /Users/tvo/.gradle/caches/transforms-3/e00a5d8279361af7f522e7c24a11793c/transformed/MPAndroidChart-v3.1.0/AndroidManifest.xml:2:1-20:12
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/tvo/.gradle/caches/transforms-3/7c799e7bd409ac6f909146c75e01c545/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:2:1-18:12
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/tvo/.gradle/caches/transforms-3/17f23d194c7263d3a7a3d5a8ae0ee5e8/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-common:21.0.0] /Users/tvo/.gradle/caches/transforms-3/2d8b9d92d4d0d64a8b1e67eef6c2f25c/transformed/firebase-common-21.0.0/AndroidManifest.xml:15:1-41:12
@@ -219,6 +220,8 @@ MERGED from [androidx.navigation:navigation-fragment:2.5.3] /Users/tvo/.gradle/c
 MERGED from [androidx.navigation:navigation-fragment:2.5.3] /Users/tvo/.gradle/caches/transforms-3/9d9306ddf91f8e026d9ba7a12ee09179/transformed/navigation-fragment-2.5.3/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-auth:23.0.0] /Users/tvo/.gradle/caches/transforms-3/dd64357df5ffa1ab8da1097272420508/transformed/firebase-auth-23.0.0/AndroidManifest.xml:21:5-23:151
 MERGED from [com.google.firebase:firebase-auth:23.0.0] /Users/tvo/.gradle/caches/transforms-3/dd64357df5ffa1ab8da1097272420508/transformed/firebase-auth-23.0.0/AndroidManifest.xml:21:5-23:151
+MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0] /Users/tvo/.gradle/caches/transforms-3/e00a5d8279361af7f522e7c24a11793c/transformed/MPAndroidChart-v3.1.0/AndroidManifest.xml:16:5-18:41
+MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0] /Users/tvo/.gradle/caches/transforms-3/e00a5d8279361af7f522e7c24a11793c/transformed/MPAndroidChart-v3.1.0/AndroidManifest.xml:16:5-18:41
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/tvo/.gradle/caches/transforms-3/7c799e7bd409ac6f909146c75e01c545/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] /Users/tvo/.gradle/caches/transforms-3/7c799e7bd409ac6f909146c75e01c545/transformed/firebase-common-ktx-21.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /Users/tvo/.gradle/caches/transforms-3/17f23d194c7263d3a7a3d5a8ae0ee5e8/transformed/firebase-auth-interop-20.0.0/AndroidManifest.xml:5:5-44

@@ -48,10 +48,6 @@
         "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/activity_main_app_screens.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/drawable_ic_dining.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/drawable/ic_dining.xml"
-    },
-    {
         "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_fragment_logistics.xml.flat",
         "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/fragment_logistics.xml"
     },
@@ -62,6 +58,10 @@
     {
         "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_fragment_logistics.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/fragment_logistics.xml"
     },
     {
         "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_fragment_transportation.xml.flat",
@@ -78,6 +78,10 @@
     {
         "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/drawable_ic_launcher_foreground.xml.flat",
         "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_dialog_notes.xml.flat",
+        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/dialog_notes.xml"
     },
     {
         "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-hdpi_ic_launcher_round.webp.flat",
@@ -110,9 +114,5 @@
     {
         "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_activity_create_account.xml.flat",
         "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/activity_create_account.xml"
-    },
-    {
-        "merged": "com.example.sprintproject.app-merged_res-51:/layout_activity_main_app_screens.xml.flat",
-        "source": "com.example.sprintproject.app-main-53:/layout/activity_main_app_screens.xml"
     }
 ]
