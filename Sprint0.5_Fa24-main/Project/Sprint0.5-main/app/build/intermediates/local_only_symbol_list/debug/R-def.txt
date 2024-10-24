@@ -21,12 +21,14 @@ id durationInput
 id endDateInput
 id fragment_container
 id headerText
+id inviteUsersButton
 id logTravelButton
 id loginButton
 id loginTitle
 id noteInput
 id notesContainer
 id passwordEditText
+id pieChart
 id quitButton
 id registerButton
 id resultDisplayLayout
@@ -38,6 +40,8 @@ id travelLogsContainer
 id usernameEditText
 id vacationTimeCalculatorForm
 id validCharacters
+id viewNotesButton
+id visualizeTripDaysButton
 id welcomeTextView
 layout activity_create_account
 layout activity_login
