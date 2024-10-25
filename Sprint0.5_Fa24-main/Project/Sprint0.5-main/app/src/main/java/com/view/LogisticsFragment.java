@@ -73,6 +73,13 @@ public class LogisticsFragment extends Fragment {
         entries.add(new PieEntry(unusedDays, "Unused Allotted Days"));
 
         PieDataSet dataSet = new PieDataSet(entries, "Trip Days");
+
+        // Set colors for the PieDataSet
+        List<Integer> colors = new ArrayList<>();
+        colors.add(getResources().getColor(R.color.plannedDaysColor)); // color for planned days
+        colors.add(getResources().getColor(R.color.unusedDaysColor)); // color for unused days
+        dataSet.setColors(colors);
+
         PieData pieData = new PieData(dataSet);
 
         // Display the pie chart

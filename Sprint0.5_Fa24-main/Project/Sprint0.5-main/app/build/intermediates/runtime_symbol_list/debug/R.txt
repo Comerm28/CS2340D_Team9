@@ -2133,6 +2133,7 @@ int color mtrl_textinput_focused_box_stroke_color 0x7f0502f6
 int color mtrl_textinput_hovered_box_stroke_color 0x7f0502f7
 int color notification_action_color_filter 0x7f0502f8
 int color notification_icon_bg_color 0x7f0502f9
+int color plannedDaysColor 0x7f050311
 int color primary_dark_material_dark 0x7f0502fa
 int color primary_dark_material_light 0x7f0502fb
 int color primary_material_dark 0x7f0502fc
@@ -2155,6 +2156,7 @@ int color switch_thumb_normal_material_dark 0x7f05030c
 int color switch_thumb_normal_material_light 0x7f05030d
 int color tooltip_background_dark 0x7f05030e
 int color tooltip_background_light 0x7f05030f
+int color unusedDaysColor 0x7f050312
 int color white 0x7f050310
 int dimen abc_action_bar_content_inset_material 0x7f060000
 int dimen abc_action_bar_content_inset_with_nav 0x7f060001

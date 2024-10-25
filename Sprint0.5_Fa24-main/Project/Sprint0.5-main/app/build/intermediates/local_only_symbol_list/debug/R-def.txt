@@ -1,6 +1,8 @@
 R_DEF: Internal format may change without notice
 local
 color black
+color plannedDaysColor
+color unusedDaysColor
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
