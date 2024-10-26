@@ -34,14 +34,7 @@ public class AuthenticationViewModel extends ViewModel {
         }
 
         Database.getInstance().logIn(username, password, onSuccess, onFail);
-    }
 
-    public void loginSuccess(String username, Runnable onSuccess)
-    {
-        CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
-        User user = new User(username);
-        currentUserInfo.setUser(user);
-        onSuccess.run();
     }
 
 
