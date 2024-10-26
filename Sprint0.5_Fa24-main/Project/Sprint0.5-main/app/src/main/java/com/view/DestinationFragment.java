@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.sprintproject.R;
 import com.viewmodel.DestinationViewModel;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,7 +105,7 @@ public class DestinationFragment extends Fragment {
     }
 
 
-    private void submitTravelLog(AlertDialog logTravelDialog) {
+    private void submitTravelLog(AlertDialog logTravelDialog){
         if (TextUtils.isEmpty(travelLocationInput.getText().toString()) ||
                 TextUtils.isEmpty(estimatedStartDateInput.getText().toString()) ||
                 TextUtils.isEmpty(estimatedEndDateInput.getText().toString())) {
@@ -150,7 +151,6 @@ public class DestinationFragment extends Fragment {
 
 
     private int calculateDuration(String startDate, String endDate) {
-        // Placeholder logic for duration calculation
-        return 5;  // ViewModel needs to replace with actual logic
+        return destinationViewModel.getDurationFromStrings(startDate, endDate);  // ViewModel needs to replace with actual logic
     }
 }

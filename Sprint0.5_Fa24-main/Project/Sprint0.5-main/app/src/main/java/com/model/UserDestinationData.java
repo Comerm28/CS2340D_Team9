@@ -8,6 +8,7 @@ import java.util.List;
 public class UserDestinationData {
     private String username;
     private List<Destination> destinations;
+    private int allotedVacationDays;
 
     public UserDestinationData(){ }
 
@@ -46,5 +47,13 @@ public class UserDestinationData {
             this.destinations = new ArrayList<>();
         }
         destinations.add(destination);
+    }
+
+    public int getAllotedVacationDays() {
+        return allotedVacationDays;
+    }
+
+    public void setAllotedVacationDays(int allotedVacationDays) {
+        this.allotedVacationDays = allotedVacationDays;
     }
 }

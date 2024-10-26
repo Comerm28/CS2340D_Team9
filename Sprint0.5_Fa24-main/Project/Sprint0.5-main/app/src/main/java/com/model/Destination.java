@@ -7,19 +7,17 @@ import java.util.concurrent.TimeUnit;
 public class Destination {
     private String locationName;
     private Date startDate;
+    private Date endDate;
     private int durationDays;
 
     public Destination() {}
-    public Destination(String location) {
-        this.locationName = location;
-        startDate = new Date();
-        durationDays = 1;
-    }
 
-    public Destination(String locationName, Date startDate, int durationDays) {
+    public Destination(String locationName, Date startDate, Date endDate) {
         this.locationName = locationName;
         this.startDate = startDate;
-        this.durationDays = durationDays;
+        this.endDate = endDate;
+        long diffInMillis = Math.abs(endDate.getTime() - startDate.getTime());
+        this.durationDays = (int) (diffInMillis / (24 * 60 * 60 * 1000));
     }
 
     public String getLocationName() {
@@ -30,13 +28,12 @@ public class Destination {
         return startDate;
     }
 
+    public Date getEndDate(){ return endDate; }
+
     public long getDurationDays() {
         return durationDays;
     }
 
-    public Date getEndDate() {
-        return new Date(startDate.getTime() + durationDays);
-    }
     public static Date calculateMissingStartDate(int durationDays, Date endDate) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(endDate);
