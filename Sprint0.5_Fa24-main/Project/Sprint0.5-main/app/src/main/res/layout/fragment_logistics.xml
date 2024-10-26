@@ -13,5 +13,42 @@
         android:textStyle="bold"
         android:paddingBottom="16dp" />
 
+    <!-- Button to visualize allotted vs planned trip days -->
+    <Button
+        android:id="@+id/visualizeTripDaysButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Visualize Trip Days" />
+
+    <!-- Pie Chart for showing trip days -->
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Button to invite users -->
+    <Button
+        android:id="@+id/inviteUsersButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Invite Users"
+        android:layout_marginTop="16dp" />
+
+    <!-- Button to add/view notes -->
+    <Button
+        android:id="@+id/viewNotesButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Notes"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/listNotesButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Notes"
+        android:layout_marginTop="16dp" />
 
 </LinearLayout>
