@@ -19,6 +19,8 @@ import com.viewmodel.DestinationViewModel;
 import com.model.Destination;
 import com.viewmodel.CurrentUserInfo;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
@@ -277,12 +279,19 @@ public class DestinationFragment extends Fragment {
             defaultLogView.setText("Destination:                                                0 days planned");
             defaultLogView.setPadding(8, 8, 8, 8);  // Add some padding
             travelLogsContainer.addView(defaultLogView);
-        } else {
+        } else if (travelLogs.size() < 5) {
             for (String log : travelLogs) {
                 TextView logTextView = new TextView(getContext());
                 logTextView.setText(log);
                 logTextView.setPadding(8, 8, 8, 8);  // Add some padding
                 travelLogsContainer.addView(logTextView);  // Add new logs
+            }
+        } else {
+            for (int i = travelLogs.size() - 5; i < travelLogs.size(); i++) {
+                TextView logTextView = new TextView(getContext());
+                logTextView.setText(travelLogs.get(i));
+                logTextView.setPadding(8,8,8,8);
+                travelLogsContainer.addView(logTextView);
             }
         }
     }
