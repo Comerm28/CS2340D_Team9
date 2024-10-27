@@ -37,7 +37,7 @@ public class Database {
         // else call onFail with the error message
         mAuth.createUserWithEmailAndPassword(User.formatEmail(username), password)
                 .addOnSuccessListener(task -> {
-                    dbRef.child("users").child(username).setValue(new User(username));
+                    CurrentUserInfo.getInstance().setUser(new User(username));
                     onSuccess.run();
                 }).addOnFailureListener(fail ->
                         onFail.accept(fail.getMessage().replace("email address", "username"))

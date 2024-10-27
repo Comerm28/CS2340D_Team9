@@ -13,6 +13,8 @@ public class UserDestinationData {
     private String collaboratorUsername;
 
     public UserDestinationData() {
+        this.destinations = new ArrayList<>();
+        this.notes = new ArrayList<>();
     }
 
     public UserDestinationData(String username, List<Destination> destinations) {
@@ -26,6 +28,7 @@ public class UserDestinationData {
     public UserDestinationData(String username) {
         this.username = username;
         this.destinations = new ArrayList<>();
+        this.notes = new ArrayList<>();
     }
 
     public String getUsername() {
