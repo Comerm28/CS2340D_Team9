@@ -8,7 +8,9 @@ import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
+import com.model.Database;
 import com.model.Destination;
+import com.model.User;
 import com.model.UserDestinationData;
 
 import java.text.ParseException;
@@ -78,8 +80,16 @@ public class DestinationViewModel extends ViewModel {
         {
             int dur = (int) Destination.calculateMissingDays(st, en);
             UserDestinationData currentDestData = CurrentUserInfo.getInstance().getUserDestinationData();
-            currentDestData.setAllotedVacationDays(dur);
-            CurrentUserInfo.getInstance().updateDestinationData();
+            if(currentDestData.isCollaborating())
+            {
+                currentDestData = Database.getInstance().getUserDestinationData(currentDestData.getCollaboratorUsername());
+                currentDestData.setAllotedVacationDays(dur);
+                Database.getInstance().updateDestinationData(new User(currentDestData.getCollaboratorUsername()), currentDestData);
+            }
+            else {
+                currentDestData.setAllotedVacationDays(dur);
+                Database.getInstance().updateDestinationData(CurrentUserInfo.getInstance().getUser(), currentDestData);
+            }
             return Integer.toString(dur);
         }
 
@@ -95,8 +105,16 @@ public class DestinationViewModel extends ViewModel {
             if(dur >= 0){
                 Date start = Destination.calculateMissingStartDate(dur, en);
                 UserDestinationData currentDestData = CurrentUserInfo.getInstance().getUserDestinationData();
-                currentDestData.setAllotedVacationDays(dur);
-                CurrentUserInfo.getInstance().updateDestinationData();
+                if(currentDestData.isCollaborating())
+                {
+                    currentDestData = Database.getInstance().getUserDestinationData(currentDestData.getCollaboratorUsername());
+                    currentDestData.setAllotedVacationDays(dur);
+                    Database.getInstance().updateDestinationData(new User(currentDestData.getCollaboratorUsername()), currentDestData);
+                }
+                else {
+                    currentDestData.setAllotedVacationDays(dur);
+                    Database.getInstance().updateDestinationData(CurrentUserInfo.getInstance().getUser(), currentDestData);
+                }
                 return start.toString();
             }
 
@@ -115,8 +133,16 @@ public class DestinationViewModel extends ViewModel {
             if(dur >= 0){
                 Date start = Destination.calculateMissingStartDate(dur, st);
                 UserDestinationData currentDestData = CurrentUserInfo.getInstance().getUserDestinationData();
-                currentDestData.setAllotedVacationDays(dur);
-                CurrentUserInfo.getInstance().updateDestinationData();
+                if(currentDestData.isCollaborating())
+                {
+                    currentDestData = Database.getInstance().getUserDestinationData(currentDestData.getCollaboratorUsername());
+                    currentDestData.setAllotedVacationDays(dur);
+                    Database.getInstance().updateDestinationData(new User(currentDestData.getCollaboratorUsername()), currentDestData);
+                }
+                else {
+                    currentDestData.setAllotedVacationDays(dur);
+                    Database.getInstance().updateDestinationData(CurrentUserInfo.getInstance().getUser(), currentDestData);
+                }
                 return start.toString();
             }
 

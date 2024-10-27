@@ -88,6 +88,10 @@ public class CurrentUserInfo {
         }
     }
 
+    public UserDestinationData getUserDestinationData() {
+        return userDestinationData;
+    }
+
     public int getAllottedVacationDays()
     {
         if(userDestinationData.isCollaborating())
