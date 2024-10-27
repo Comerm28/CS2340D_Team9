@@ -1,5 +1,6 @@
 package com.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -10,7 +11,8 @@ public class Destination {
     private Date endDate;
     private int durationDays;
 
-    public Destination() {}
+    public Destination() {
+    }
 
     public Destination(String locationName, Date startDate, Date endDate) {
         this.locationName = locationName;
@@ -28,7 +30,9 @@ public class Destination {
         return startDate;
     }
 
-    public Date getEndDate(){ return endDate; }
+    public Date getEndDate() {
+        return endDate;
+    }
 
     public long getDurationDays() {
         return durationDays;
@@ -48,7 +52,25 @@ public class Destination {
         return calendar.getTime();
     }
 
-    public static long calculateMissingDays(Date startDate, Date endDate) {
-        return TimeUnit.MILLISECONDS.toDays(endDate.getTime() - startDate.getTime());
+    public static int calculateMissingDays(Date startDate, Date endDate) {
+        return (int) TimeUnit.MILLISECONDS.toDays(endDate.getTime() - startDate.getTime());
+    }
+
+
+    public static Date parseDate(String date) {
+        if (date == null || date.trim().isEmpty()) {
+            return null;
+        }
+
+        if (date.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
+            SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+            formatter.setLenient(false);
+            try {
+                return formatter.parse(date);
+            } catch (Exception e) {
+                return null;
+            }
+        }
+        return null;
     }
 }

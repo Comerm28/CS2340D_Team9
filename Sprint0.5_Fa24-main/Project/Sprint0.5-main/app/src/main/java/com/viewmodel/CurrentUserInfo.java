@@ -1,4 +1,5 @@
 package com.viewmodel;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +20,7 @@ import com.model.User;
 import com.model.UserDestinationData;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class CurrentUserInfo {
     private static CurrentUserInfo instance;
@@ -51,8 +53,7 @@ public class CurrentUserInfo {
                     // Get the User object from the snapshot
                     userDestinationData = dataSnapshot.getValue(UserDestinationData.class);
 
-                    if(userDestinationData == null)
-                    {
+                    if (userDestinationData == null) {
                         userDestinationData = new UserDestinationData(user.getUsername());
                         dbRef.child("destinations").child(user.getUsername()).setValue(userDestinationData);
                     }
@@ -71,20 +72,21 @@ public class CurrentUserInfo {
                 // Handle possible errors
             }
         });
+
+        dbRef.child("users").child(user.getUsername()).setValue(user);
     }
 
     public User getUser() {
         return user;
     }
 
-    public List<Destination> getDestinations()
-    {
-        if(userDestinationData.isCollaborating())
-        {
-            return Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername()).getDestinations();
-        }
-        else{
-            return userDestinationData.getDestinations();
+    public void getDestinations(Consumer<List<Destination>> onLoad, Consumer<String> onFail) {
+        if (userDestinationData.isCollaborating()) {
+            Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername(),
+                    destinationData -> onLoad.accept(destinationData.getDestinations()),
+                    onFail);
+        } else {
+            onLoad.accept(userDestinationData.getDestinations());
         }
     }
 
@@ -92,38 +94,23 @@ public class CurrentUserInfo {
         return userDestinationData;
     }
 
-    public int getAllottedVacationDays()
-    {
-        if(userDestinationData.isCollaborating())
-        {
-            return Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername()).getAllotedVacationDays();
+    public void getAllottedVacationDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
+        if (userDestinationData.isCollaborating()) {
+            Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername(),
+                    destinationData -> onLoad.accept(destinationData.getAllotedVacationDays()),
+                    onFail);
+        } else {
+            onLoad.accept(userDestinationData.getAllotedVacationDays());
         }
-        else{
-            return userDestinationData.getAllotedVacationDays();
-        }
     }
 
-    public int getPlannedDays(){
-        return userDestinationData.getPlannedDays();
-    }
-
-    public void setPlannedDays(int days){
-        userDestinationData.setPlannedDays(userDestinationData.getPlannedDays() + days);
-    }
-
-    public void setAllottedVacationDays(int days){
-        userDestinationData.setAllotedVacationDays(userDestinationData.getAllotedVacationDays() + days);
-    }
-
-
-    public List<String> getNotes()
-    {
-        if(userDestinationData.isCollaborating())
-        {
-            return Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername()).getNotes();
-        }
-        else{
-            return userDestinationData.getNotes();
+    public void getNotes(Consumer<List<String>> onLoad, Consumer<String> onFail) {
+        if (userDestinationData.isCollaborating()) {
+            Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername(),
+                    destinationData -> onLoad.accept(destinationData.getNotes()),
+                    onFail);
+        } else {
+            onLoad.accept(userDestinationData.getNotes());
         }
     }
 
@@ -137,5 +124,14 @@ public class CurrentUserInfo {
 
     public void updateDestinationData() {
         Database.getInstance().updateDestinationData(user, userDestinationData);
+    }
+
+
+    public int getPlannedDays() {
+        return userDestinationData.getPlannedDays();
+    }
+
+    public void setPlannedDays(int days) {
+        userDestinationData.setPlannedDays(userDestinationData.getPlannedDays() + days);
     }
 }
