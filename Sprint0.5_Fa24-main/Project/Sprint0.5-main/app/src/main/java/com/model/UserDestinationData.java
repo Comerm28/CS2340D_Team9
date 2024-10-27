@@ -12,6 +12,7 @@ public class UserDestinationData {
     private int allotedVacationDays;
     private boolean isCollaborating;
     private String collaboratorUsername;
+    private int plannedDays;
 
     public UserDestinationData(){ }
 
@@ -20,6 +21,7 @@ public class UserDestinationData {
         this.username = username;
         this.destinations = destinations;
         this.allotedVacationDays = 0;
+        this.plannedDays = 0;
         isCollaborating = false;
         collaboratorUsername = "";
         notes = new ArrayList<>();
@@ -62,6 +64,14 @@ public class UserDestinationData {
 
     public void setAllotedVacationDays(int allotedVacationDays) {
         this.allotedVacationDays = allotedVacationDays;
+    }
+
+    public int getPlannedDays() {
+        return plannedDays;
+    }
+
+    public void setPlannedDays(int days) {
+        this.plannedDays = plannedDays;
     }
 
     public boolean isCollaborating() {

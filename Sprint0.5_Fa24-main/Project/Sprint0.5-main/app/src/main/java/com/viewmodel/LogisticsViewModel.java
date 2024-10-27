@@ -18,17 +18,17 @@ public class LogisticsViewModel extends ViewModel {
 
     public int getAllottedDays()
     {
+        return currentInfo.getAllottedVacationDays();
+    }
+
+    public int getPlannedDays()
+    {
         int sum = 0;
         for(Destination d : currentInfo.getDestinations())
         {
             sum += (int) d.getDurationDays();
         }
         return sum;
-    }
-
-    public int getPlannedDays()
-    {
-        return currentInfo.getAllottedVacationDays();
     }
 
     public boolean inviteUser(String username)
@@ -38,11 +38,13 @@ public class LogisticsViewModel extends ViewModel {
         if(user != null)
         {
             UserDestinationData userDestinationData = db.getUserDestinationData(user);
-            userDestinationData.setCollaborating(true);
-            userDestinationData.setCollaboratorUsername(CurrentUserInfo.getInstance().getUser().getUsername());
-            db.updateDestinationData(new User(user), userDestinationData);
+            if (userDestinationData != null) {
+                userDestinationData.setCollaborating(true);
+                userDestinationData.setCollaboratorUsername(CurrentUserInfo.getInstance().getUser().getUsername());
+                db.updateDestinationData(new User(user), userDestinationData);
+                return true;
+            }
         }
-
         return false;
     }
 
@@ -50,13 +52,18 @@ public class LogisticsViewModel extends ViewModel {
     {
         Database db = Database.getInstance();
         UserDestinationData userDestinationData = db.getUserDestinationData(currentInfo.getUser().getUsername());
+
+        if (userDestinationData == null){
+            return;
+        }
         if(userDestinationData.isCollaborating())
         {
-            userDestinationData = db.getUserDestinationData(userDestinationData.getCollaboratorUsername());
-            userDestinationData.addNote(note);
-            db.updateDestinationData(new User(userDestinationData.getCollaboratorUsername()), userDestinationData);
-        }
-        else{
+            if (userDestinationData != null) {
+                userDestinationData = db.getUserDestinationData(userDestinationData.getCollaboratorUsername());
+                userDestinationData.addNote(note);
+                db.updateDestinationData(new User(userDestinationData.getCollaboratorUsername()), userDestinationData);
+            }
+        } else{
             userDestinationData.addNote(note);
             db.updateDestinationData(currentInfo.getUser(), userDestinationData);
         }

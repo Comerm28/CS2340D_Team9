@@ -1,22 +1,24 @@
 package com.view;
 
+import androidx.core.content.ContextCompat;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import com.example.sprintproject.R;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -32,15 +34,18 @@ public class LogisticsFragment extends Fragment {
 
     private PieChart pieChart;
     private Button visualizeTripDaysButton, inviteUsersButton, viewNotesButton, listNotesButton;
+    private EditText inviteUserEditText;
     private List<String> userNotes;
-    private SharedPreferences sharedPreferences;//to save Notes into the list of Notes
+    private SharedPreferences sharedPreferences;
     private LogisticsViewModel logisticsViewModel;
+    private AlertDialog notesDialog; // Reference for the notes dialog
+
+    private boolean isPieChartVisible = false;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_logistics, container, false);
 
-        //logistics viewmodel instantiation
         logisticsViewModel = new LogisticsViewModel();
 
         // Set up the header text
@@ -53,149 +58,140 @@ public class LogisticsFragment extends Fragment {
         inviteUsersButton = view.findViewById(R.id.inviteUsersButton);
         viewNotesButton = view.findViewById(R.id.viewNotesButton);
         listNotesButton = view.findViewById(R.id.listNotesButton);
+        inviteUserEditText = view.findViewById(R.id.inviteUserEditText);
 
-        // Initialize the SharedPreferences
-        sharedPreferences = getActivity().getSharedPreferences("NotesPrefs", Context.MODE_PRIVATE);
-        userNotes = loadNotes(); // Load existing notes
+        sharedPreferences = requireActivity().getSharedPreferences("NotesPrefs", Context.MODE_PRIVATE);
+        userNotes = loadNotes();
 
-        // Set up button listeners
-        visualizeTripDaysButton.setOnClickListener(v -> visualizeTripDays());
-        inviteUsersButton.setOnClickListener(v -> inviteUsers());
-        viewNotesButton.setOnClickListener(v -> showNotesDialog());
+        visualizeTripDaysButton.setOnClickListener(v -> toggleVisualizeTripDays());
+        inviteUsersButton.setOnClickListener(v -> inviteUser());
+        viewNotesButton.setOnClickListener(v -> showAddNoteDialog());
         listNotesButton.setOnClickListener(v -> showNotesListDialog());
 
         return view;
     }
 
-    private void visualizeTripDays() {
-        // Example values for allotted vs. planned days
-        float allottedDays = 10;
-        float plannedDays = 7;
-        float unusedDays = allottedDays - plannedDays;
+    private void toggleVisualizeTripDays() {
+        isPieChartVisible = !isPieChartVisible;
+        if (isPieChartVisible) {
+            visualizeTripDays();
+        } else {
+            pieChart.setVisibility(View.GONE);
+        }
+    }
 
-        // Create entries for the pie chart
+    private void visualizeTripDays() {
+        int allottedDays = logisticsViewModel.getAllottedDays();
+        int plannedDays = logisticsViewModel.getPlannedDays();
+
         List<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry(plannedDays, "Planned Days"));
-        entries.add(new PieEntry(unusedDays, "Unused Allotted Days"));
+        entries.add(new PieEntry(allottedDays, "Allotted Days"));
 
-        PieDataSet dataSet = new PieDataSet(entries, "Trip Days");
+        PieDataSet dataSet = new PieDataSet(entries, "");
+        dataSet.setColors(new int[]{
+                ContextCompat.getColor(getContext(), R.color.blue),
+                ContextCompat.getColor(getContext(), R.color.green)
+        });
         PieData pieData = new PieData(dataSet);
 
-        // Display the pie chart
         pieChart.setData(pieData);
-        pieChart.invalidate(); // refresh chart
+        pieChart.invalidate();
         pieChart.setVisibility(View.VISIBLE);
     }
 
-    private void inviteUsers() {
-        // Simulating the invite functionality with a Toast
-        Toast.makeText(getContext(), "Invite users to contribute to the trip planning.", Toast.LENGTH_SHORT).show();
+    private void inviteUser() {
+        String username = inviteUserEditText.getText().toString().trim();
+        if (!TextUtils.isEmpty(username)) {
+            boolean inviteSuccessful = logisticsViewModel.inviteUser(username);
+            if (inviteSuccessful) {
+                Toast.makeText(getContext(), "User invited successfully.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "User not found or invitation failed.", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getContext(), "Enter a username to invite.", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private void showNotesDialog() {
-        // Create a dialog to show notes and allow the user to add new notes
+    private void showAddNoteDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("User Notes");
+        builder.setTitle("Add Note");
 
-        // Create a layout for the dialog
-        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_notes, null);
-        EditText noteInput = dialogView.findViewById(R.id.noteInput);
-        LinearLayout notesContainer = dialogView.findViewById(R.id.notesContainer);
+        final EditText input = new EditText(getContext());
+        input.setHint("Enter your note");
+        builder.setView(input);
 
-        // Handle adding a new note
-        builder.setPositiveButton("Add Note", (dialog, which) -> {
-            String newNote = noteInput.getText().toString();
-            if (!TextUtils.isEmpty(newNote)) {
-                userNotes.add(newNote);
-                saveNotes(); // Save the updated list of notes
+        builder.setPositiveButton("Add", (dialog, which) -> {
+            String note = input.getText().toString().trim(); // Trim input to avoid empty notes
+            if (!TextUtils.isEmpty(note)) {
+                logisticsViewModel.addNoteToCurrentVacation(note);
+                userNotes.add(note);
+                saveNotes();
                 Toast.makeText(getContext(), "Note added.", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getContext(), "Please enter a note.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Note cannot be empty", Toast.LENGTH_SHORT).show();
             }
         });
 
-        builder.setView(dialogView);
-        builder.setNegativeButton("Close", null);
-        builder.show();
+        builder.setNegativeButton("Cancel", null);
+
+        try {
+            // Show the dialog
+            builder.show();
+        } catch (Exception e) {
+            // Log the error
+            Log.e("LogisticsFragment", "Error showing add note dialog", e);
+            Toast.makeText(getContext(), "Failed to open the note dialog.", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     private void showNotesListDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("List of Notes");
 
-        // Create a LinearLayout to display existing notes with delete buttons
         LinearLayout notesLayout = new LinearLayout(getContext());
         notesLayout.setOrientation(LinearLayout.VERTICAL);
 
         for (int i = 0; i < userNotes.size(); i++) {
             String note = userNotes.get(i);
-            LinearLayout noteLayout = new LinearLayout(getContext());
-            noteLayout.setOrientation(LinearLayout.HORIZONTAL);
-            noteLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-
-            TextView noteView = new TextView(getContext());
-            noteView.setText(note);
-            noteView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1)); // Changed: Set weight to 1
-            noteView.setPadding(16, 8, 0, 8);
-            noteLayout.addView(noteView);
-
-            // Create a delete button for each note
-            Button deleteButton = new Button(getContext());
-            deleteButton.setText("Delete");
-            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            buttonParams.setMargins(16, 0, 0, 0); // Add some margin for spacing
-            deleteButton.setLayoutParams(buttonParams); // Set layout params for delete button
-
-            int index = i; // Capture the current index for the delete button listener
-            deleteButton.setOnClickListener(v -> {
-                userNotes.remove(index);
-                saveNotes(); // Save the updated list of notes
-                Toast.makeText(getContext(), "Note deleted.", Toast.LENGTH_SHORT).show();
-                showUpdatedNotesList(notesLayout); // Update the current notes layout
-            });
-
-            noteLayout.addView(deleteButton);
+            LinearLayout noteLayout = createNoteLayout(note, i);
             notesLayout.addView(noteLayout);
         }
 
         builder.setView(notesLayout);
         builder.setNegativeButton("Close", null);
-        builder.show();
+
+        // Create and show the dialog
+        notesDialog = builder.create();
+        notesDialog.show();
     }
 
-    private void showUpdatedNotesList(LinearLayout notesLayout) {
-        notesLayout.removeAllViews(); // Clear current views
+    private LinearLayout createNoteLayout(String note, int index) {
+        LinearLayout noteLayout = new LinearLayout(getContext());
+        noteLayout.setOrientation(LinearLayout.HORIZONTAL);
 
-        // Re-add notes and buttons
-        for (int i = 0; i < userNotes.size(); i++) {
-            String note = userNotes.get(i);
-            LinearLayout noteLayout = new LinearLayout(getContext());
-            noteLayout.setOrientation(LinearLayout.HORIZONTAL);
+        TextView noteView = new TextView(getContext());
+        noteView.setText(note);
+        noteView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+        noteView.setPadding(16, 8, 0, 8);
+        noteLayout.addView(noteView);
 
-            TextView noteView = new TextView(getContext());
-            noteView.setText(note);
-            noteView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1)); // Changed: Set weight to 1
-            noteView.setPadding(16, 8, 0, 8);
-            noteLayout.addView(noteView);
+        Button deleteButton = new Button(getContext());
+        deleteButton.setText("Delete");
+        deleteButton.setOnClickListener(v -> {
+            userNotes.remove(index);
+            saveNotes();
+            Toast.makeText(getContext(), "Note deleted.", Toast.LENGTH_SHORT).show();
+            if (notesDialog != null && notesDialog.isShowing()) {
+                notesDialog.dismiss(); // Dismiss the current dialog
+            }
+            showNotesListDialog(); // Show updated notes list
+        });
 
-            // Create a delete button for each note
-            Button deleteButton = new Button(getContext());
-            deleteButton.setText("Delete");
-            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            buttonParams.setMargins(16, 0, 0, 0);
-            deleteButton.setLayoutParams(buttonParams); // Set layout params for delete button
-
-            int index = i; // The current index for the delete button listener
-            deleteButton.setOnClickListener(v -> {
-                userNotes.remove(index);
-                saveNotes(); // Save the updated list of notes
-                Toast.makeText(getContext(), "Note deleted.", Toast.LENGTH_SHORT).show();
-                showUpdatedNotesList(notesLayout); // Update the current notes layout
-            });
-
-            noteLayout.addView(deleteButton);
-            notesLayout.addView(noteLayout);
-        }
+        noteLayout.addView(deleteButton);
+        return noteLayout;
     }
 
     private void saveNotes() {
@@ -211,18 +207,7 @@ public class LogisticsFragment extends Fragment {
     private List<String> loadNotes() {
         String savedNotes = sharedPreferences.getString("userNotes", "");
         List<String> notesList = new ArrayList<>(Arrays.asList(savedNotes.split(",")));
-        notesList.removeIf(String::isEmpty); // Remove empty strings if any
+        notesList.removeIf(String::isEmpty);
         return notesList;
     }
-
-//    private void updateNotesDisplay(LinearLayout notesContainer) {
-//        notesContainer.removeAllViews(); // Clear any existing notes
-//
-//        // Display each note in the container
-//        for (String note : userNotes) {
-//            TextView noteView = new TextView(getContext());
-//            noteView.setText(note);
-//            notesContainer.addView(noteView);
-//        }
-//    }
 }

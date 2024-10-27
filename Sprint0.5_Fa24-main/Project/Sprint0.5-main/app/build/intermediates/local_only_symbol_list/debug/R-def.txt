@@ -1,6 +1,8 @@
 R_DEF: Internal format may change without notice
 local
 color black
+color blue
+color green
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -10,6 +12,7 @@ id button_destination
 id button_dining
 id button_logistics
 id button_transportation
+id calculateVacationTime
 id calculateVacationTimeButton
 id calculatedField
 id createAccountButton
@@ -21,6 +24,7 @@ id durationInput
 id endDateInput
 id fragment_container
 id headerText
+id inviteUserEditText
 id inviteUsersButton
 id listNotesButton
 id logTravelButton
@@ -32,7 +36,10 @@ id passwordEditText
 id pieChart
 id quitButton
 id registerButton
+id resetButton
 id resultDisplayLayout
+id resultScreen
+id resultTextView
 id splash_image
 id splash_text
 id startButton
