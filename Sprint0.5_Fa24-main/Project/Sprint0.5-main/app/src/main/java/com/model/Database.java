@@ -3,8 +3,11 @@ package com.model;
 import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.model.User;
 import com.viewmodel.CurrentUserInfo;
 
@@ -60,5 +63,49 @@ public class Database {
     public void updateDestinationData(User user, UserDestinationData userDestinationData)
     {
         dbRef.child("destinations").child(user.getUsername()).setValue(userDestinationData);
+    }
+
+    public String checkUser(String username)
+    {
+        String[] user = new String[1];
+        dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    user[0] = dataSnapshot.getValue(String.class);
+                } else {
+                    user[0] = null;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("Error: " + databaseError.getMessage());
+            }
+        });
+
+        return user[0];
+    }
+
+    public UserDestinationData getUserDestinationData(String username)
+    {
+        UserDestinationData[] user = new UserDestinationData[1];
+        dbRef.child("destinations").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    user[0] = dataSnapshot.getValue(UserDestinationData.class);
+                } else {
+                    user[0] = null;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("Error: " + databaseError.getMessage());
+            }
+        });
+
+        return user[0];
     }
 }

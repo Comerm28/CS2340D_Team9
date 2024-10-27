@@ -14,8 +14,11 @@ import com.google.firebase.database.DatabaseError;
 
 
 import com.model.Database;
+import com.model.Destination;
 import com.model.User;
 import com.model.UserDestinationData;
+
+import java.util.List;
 
 public class CurrentUserInfo {
     private static CurrentUserInfo instance;
@@ -74,8 +77,37 @@ public class CurrentUserInfo {
         return user;
     }
 
-    public UserDestinationData getUserDestinationData() {
-        return userDestinationData;
+    public List<Destination> getDestinations()
+    {
+        if(userDestinationData.isCollaborating())
+        {
+            return Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername()).getDestinations();
+        }
+        else{
+            return userDestinationData.getDestinations();
+        }
+    }
+
+    public int getAllottedVacationDays()
+    {
+        if(userDestinationData.isCollaborating())
+        {
+            return Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername()).getAllotedVacationDays();
+        }
+        else{
+            return userDestinationData.getAllotedVacationDays();
+        }
+    }
+
+    public List<String> getNotes()
+    {
+        if(userDestinationData.isCollaborating())
+        {
+            return Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername()).getNotes();
+        }
+        else{
+            return userDestinationData.getNotes();
+        }
     }
 
     public boolean isLoggedIn() {
@@ -86,8 +118,7 @@ public class CurrentUserInfo {
         user = null;
     }
 
-    public void updateDestinationData()
-    {
+    public void updateDestinationData() {
         Database.getInstance().updateDestinationData(user, userDestinationData);
     }
 }

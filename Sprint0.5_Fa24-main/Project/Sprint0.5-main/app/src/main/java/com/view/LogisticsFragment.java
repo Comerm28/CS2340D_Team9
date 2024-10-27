@@ -22,6 +22,8 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.viewmodel.LogisticsViewModel;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,11 +33,15 @@ public class LogisticsFragment extends Fragment {
     private PieChart pieChart;
     private Button visualizeTripDaysButton, inviteUsersButton, viewNotesButton, listNotesButton;
     private List<String> userNotes;
-    private SharedPreferences sharedPreferences; //to save Notes into the list of Notes
+    private SharedPreferences sharedPreferences;//to save Notes into the list of Notes
+    private LogisticsViewModel logisticsViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_logistics, container, false);
+
+        //logistics viewmodel instantiation
+        logisticsViewModel = new LogisticsViewModel();
 
         // Set up the header text
         TextView headerTextView = view.findViewById(R.id.headerText);

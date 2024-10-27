@@ -8,7 +8,10 @@ import java.util.List;
 public class UserDestinationData {
     private String username;
     private List<Destination> destinations;
+    private List<String> notes;
     private int allotedVacationDays;
+    private boolean isCollaborating;
+    private String collaboratorUsername;
 
     public UserDestinationData(){ }
 
@@ -16,6 +19,10 @@ public class UserDestinationData {
     {
         this.username = username;
         this.destinations = destinations;
+        this.allotedVacationDays = 0;
+        isCollaborating = false;
+        collaboratorUsername = "";
+        notes = new ArrayList<>();
     }
 
     public UserDestinationData(String username)
@@ -55,5 +62,29 @@ public class UserDestinationData {
 
     public void setAllotedVacationDays(int allotedVacationDays) {
         this.allotedVacationDays = allotedVacationDays;
+    }
+
+    public boolean isCollaborating() {
+        return isCollaborating;
+    }
+
+    public void setCollaborating(boolean collaborating) {
+        isCollaborating = collaborating;
+    }
+
+    public String getCollaboratorUsername() {
+        return collaboratorUsername;
+    }
+
+    public void setCollaboratorUsername(String collaboratorUsername) {
+        this.collaboratorUsername = collaboratorUsername;
+    }
+
+    public List<String> getNotes() {
+        return notes;
+    }
+
+    public void addNote(String note) {
+        notes.add(note);
     }
 }
