@@ -19,6 +19,11 @@ import com.viewmodel.DestinationViewModel;
 import com.model.Destination;
 import com.viewmodel.CurrentUserInfo;
 
+import org.w3c.dom.Text;
+
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +31,7 @@ public class DestinationFragment extends Fragment {
 
     private LinearLayout vacationTimeCalculatorForm, travelLogsContainer;
     private EditText startDateInput, endDateInput, durationInput;
-    private TextView calculatedField;
+    private TextView calculatedField, travelLocationLabel, startDateLabel, endDateLabel;
     private Button calculateVacationTimeButton, logTravelButton;
     private EditText travelLocationInput, estimatedStartDateInput, estimatedEndDateInput;
     private List<String> travelLogs;
@@ -191,16 +196,29 @@ public class DestinationFragment extends Fragment {
         LinearLayout travelLogLayout = new LinearLayout(getContext());
         travelLogLayout.setOrientation(LinearLayout.VERTICAL);
 
+        travelLocationLabel = new TextView(getContext());
+        travelLocationLabel.setText("Travel Location");
         travelLocationInput = new EditText(getContext());
+        startDateLabel = new TextView(getContext());
+        startDateLabel.setText("Estimated Start Date (MM-DD-YYYY)");
         estimatedStartDateInput = new EditText(getContext());
+        endDateLabel = new TextView(getContext());
+        endDateLabel.setText("Estimated End Date (MM-DD-YYYY)");
         estimatedEndDateInput = new EditText(getContext());
 
-        travelLocationInput.setHint("Travel Location");
-        estimatedStartDateInput.setHint("Estimated Start Date (MM-DD-YYYY)");
-        estimatedEndDateInput.setHint("Estimated End Date (MM-DD-YYYY)");
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        String todayDate = dateFormat.format(calendar.getTime());
 
+        travelLocationInput.setText("Atlanta");
+        estimatedStartDateInput.setText(todayDate);
+        estimatedEndDateInput.setText(todayDate);
+
+        travelLogLayout.addView(travelLocationLabel);
         travelLogLayout.addView(travelLocationInput);
+        travelLogLayout.addView(startDateLabel);
         travelLogLayout.addView(estimatedStartDateInput);
+        travelLogLayout.addView(endDateLabel);
         travelLogLayout.addView(estimatedEndDateInput);
 
         Button logTravelSubmitButton = new Button(getContext());
@@ -261,12 +279,19 @@ public class DestinationFragment extends Fragment {
             defaultLogView.setText("Destination:                                                0 days planned");
             defaultLogView.setPadding(8, 8, 8, 8);  // Add some padding
             travelLogsContainer.addView(defaultLogView);
-        } else {
+        } else if (travelLogs.size() < 5) {
             for (String log : travelLogs) {
                 TextView logTextView = new TextView(getContext());
                 logTextView.setText(log);
                 logTextView.setPadding(8, 8, 8, 8);  // Add some padding
                 travelLogsContainer.addView(logTextView);  // Add new logs
+            }
+        } else {
+            for (int i = travelLogs.size() - 5; i < travelLogs.size(); i++) {
+                TextView logTextView = new TextView(getContext());
+                logTextView.setText(travelLogs.get(i));
+                logTextView.setPadding(8,8,8,8);
+                travelLogsContainer.addView(logTextView);
             }
         }
     }
