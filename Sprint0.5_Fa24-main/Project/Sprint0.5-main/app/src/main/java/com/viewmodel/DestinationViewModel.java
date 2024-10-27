@@ -24,8 +24,16 @@ public class DestinationViewModel extends ViewModel {
         if(st != null && en != null && st.compareTo(en) <= 0 && isValidDestination(destination))
         {
             UserDestinationData userDestinationData = CurrentUserInfo.getInstance().getUserDestinationData();
-            userDestinationData.addDestination(new Destination(destination, st, en));
-            CurrentUserInfo.getInstance().updateDestinationData();
+            if(userDestinationData.isCollaborating())
+            {
+                userDestinationData = Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername());
+                userDestinationData.addDestination(new Destination(destination, st, en));
+                Database.getInstance().updateDestinationData(new User(userDestinationData.getCollaboratorUsername()), userDestinationData);
+            }
+            else{
+                userDestinationData.addDestination(new Destination(destination, st, en));
+                CurrentUserInfo.getInstance().updateDestinationData();
+            }
             return true;
         }
 
