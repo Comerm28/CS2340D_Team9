@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="plannedDaysColor">#FF8A65</color> <!-- color for planned days -->
     <color name="unusedDaysColor">#4FC3F7</color> <!-- color for unused days -->
+
 </resources>
