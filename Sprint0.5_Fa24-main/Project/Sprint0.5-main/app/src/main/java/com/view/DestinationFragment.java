@@ -15,15 +15,19 @@ import androidx.fragment.app.Fragment;
 import com.example.sprintproject.R;
 import com.viewmodel.DestinationViewModel;
 
+import org.w3c.dom.Text;
+
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DestinationFragment extends Fragment {
 
     private LinearLayout vacationTimeCalculatorForm, travelLogsContainer;
     private EditText startDateInput, endDateInput, durationInput;
-    private TextView calculatedField;
+    private TextView calculatedField, travelLocationLabel, startDateLabel, endDateLabel;
     private Button calculateVacationTimeButton, logTravelButton;
     private EditText travelLocationInput, estimatedStartDateInput, estimatedEndDateInput;
     private List<String> travelLogs;
@@ -75,16 +79,29 @@ public class DestinationFragment extends Fragment {
         LinearLayout travelLogLayout = new LinearLayout(getContext());
         travelLogLayout.setOrientation(LinearLayout.VERTICAL);
 
+        travelLocationLabel = new TextView(getContext());
+        travelLocationLabel.setText("Travel Location");
         travelLocationInput = new EditText(getContext());
+        startDateLabel = new TextView(getContext());
+        startDateLabel.setText("Estimated Start Date");
         estimatedStartDateInput = new EditText(getContext());
+        endDateLabel = new TextView(getContext());
+        endDateLabel.setText("Estimated End Date");
         estimatedEndDateInput = new EditText(getContext());
 
-        travelLocationInput.setHint("Travel Location");
-        estimatedStartDateInput.setHint("Estimated Start Date");
-        estimatedEndDateInput.setHint("Estimated End Date");
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        String todayDate = dateFormat.format(calendar.getTime());
 
+        travelLocationInput.setText("Default location");
+        estimatedStartDateInput.setText(todayDate);
+        estimatedEndDateInput.setText(todayDate);
+
+        travelLogLayout.addView(travelLocationLabel);
         travelLogLayout.addView(travelLocationInput);
+        travelLogLayout.addView(startDateLabel);
         travelLogLayout.addView(estimatedStartDateInput);
+        travelLogLayout.addView(endDateLabel);
         travelLogLayout.addView(estimatedEndDateInput);
 
         Button logTravelSubmitButton = new Button(getContext());
