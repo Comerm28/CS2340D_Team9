@@ -1,71 +1,63 @@
+
 package com.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 
+import com.google.firebase.database.DatabaseError;
 import com.model.Database;
 import com.model.Destination;
 import com.model.User;
 import com.model.UserDestinationData;
 
+import java.util.function.Consumer;
+
 
 public class LogisticsViewModel extends ViewModel {
     private final CurrentUserInfo currentInfo;
 
-    public LogisticsViewModel()
-    {
+    public LogisticsViewModel() {
         currentInfo = CurrentUserInfo.getInstance();
     }
 
-    public int getAllottedDays()
-    {
-        return currentInfo.getAllottedVacationDays();
+    public void getAllottedDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
+        currentInfo.getAllottedVacationDays(onLoad, onFail);
     }
 
-    public int getPlannedDays()
-    {
-        int sum = 0;
-        for(Destination d : currentInfo.getDestinations())
-        {
-            sum += (int) d.getDurationDays();
-        }
-        return sum;
-    }
-
-    public boolean inviteUser(String username)
-    {
-        Database db = Database.getInstance();
-        String user = db.checkUser(username);
-        if(user != null)
-        {
-            UserDestinationData userDestinationData = db.getUserDestinationData(user);
-            if (userDestinationData != null) {
-                userDestinationData.setCollaborating(true);
-                userDestinationData.setCollaboratorUsername(CurrentUserInfo.getInstance().getUser().getUsername());
-                db.updateDestinationData(new User(user), userDestinationData);
-                return true;
+    public void getPlannedDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
+        currentInfo.getDestinations(destinations -> {
+            int sum = 0;
+            for (Destination d : destinations) {
+                sum += (int) d.getDurationDays();
             }
-        }
-        return false;
+            onLoad.accept(sum);
+        }, onFail);
     }
 
-    public void addNoteToCurrentVacation(String note)
-    {
+    public void inviteUser(String username, Runnable onSuccess, Consumer<String> onFail) {
         Database db = Database.getInstance();
-        UserDestinationData userDestinationData = db.getUserDestinationData(currentInfo.getUser().getUsername());
+        db.getUserDestinationData(username, destinationData -> {
+            destinationData.setCollaborating(true);
+            destinationData.setCollaboratorUsername(CurrentUserInfo.getInstance().getUser().getUsername());
+            db.updateDestinationData(new User(username), destinationData);
+            onSuccess.run();
+        }, onFail);
+    }
 
-        if (userDestinationData == null){
-            return;
-        }
-        if(userDestinationData.isCollaborating())
-        {
-            if (userDestinationData != null) {
-                userDestinationData = db.getUserDestinationData(userDestinationData.getCollaboratorUsername());
-                userDestinationData.addNote(note);
-                db.updateDestinationData(new User(userDestinationData.getCollaboratorUsername()), userDestinationData);
-            }
-        } else{
-            userDestinationData.addNote(note);
-            db.updateDestinationData(currentInfo.getUser(), userDestinationData);
-        }
+    public void addNoteToCurrentVacation(String note, Runnable onSuccess, Consumer<String> onFail) {
+        Database db = Database.getInstance();
+        db.getUserDestinationData(currentInfo.getUser().getUsername(),
+                destinationData -> {
+                    if (destinationData.isCollaborating()) {
+                        db.getUserDestinationData(destinationData.getCollaboratorUsername(), destinationData2 -> {
+                            destinationData.addNote(note);
+                            db.updateDestinationData(new User(destinationData.getCollaboratorUsername()), destinationData);
+                            onSuccess.run();
+                        }, onFail);
+                    } else {
+                        destinationData.addNote(note);
+                        db.updateDestinationData(currentInfo.getUser(), destinationData);
+                    }
+                },
+                onFail);
     }
 }

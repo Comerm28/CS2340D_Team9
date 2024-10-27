@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.example.sprintproject.R;
+import com.model.User;
 import com.viewmodel.DestinationViewModel;
 import com.model.Destination;
 import com.viewmodel.CurrentUserInfo;
@@ -25,6 +26,7 @@ import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DestinationFragment extends Fragment {
@@ -86,15 +88,17 @@ public class DestinationFragment extends Fragment {
         travelLogs.clear();
 
         // Retrieve the user's destinations from CurrentUserInfo and populate travel logs
-        List<Destination> destinations = currentUser.getDestinations();
-        for (Destination destination : destinations) {
-            String logEntry = "Destination: " + destination.getLocationName() + "                             " +
-                    destination.getDurationDays() + " days planned";
-            travelLogs.add(logEntry);
-        }
-
-        // Update the display with the loaded travel logs
-        updateTravelLogsDisplay();
+        currentUser.getDestinations(destinationList -> {
+                    for (Destination destination : destinationList) {
+                        String logEntry = "Destination: " + destination.getLocationName() + "                             " +
+                                destination.getDurationDays() + " days planned";
+                        travelLogs.add(logEntry);
+                    }
+                    // Update the display with the loaded travel logs
+                    updateTravelLogsDisplay();
+                }, fail ->
+                        Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show()
+        );
     }
 
     private void toggleVacationCalculator() {
@@ -116,41 +120,33 @@ public class DestinationFragment extends Fragment {
         boolean endDateFilled = !endDate.isEmpty();
         boolean durationFilled = !duration.isEmpty();
 
-        int calculatedDays;
-
+        User user = CurrentUserInfo.getInstance().getUser();
         if (!startDateFilled && durationFilled && endDateFilled) {
-            // If user enters endDate and duration, use the entered duration
-            calculatedDays = Integer.parseInt(duration); // Convert to integer if needed
-            showResultDialog(calculatedDays);
-
-            // Store the entered vacation days
-            CurrentUserInfo.getInstance().setPlannedDays(calculatedDays);
+            Date calculated = Destination.calculateMissingStartDate(Integer.parseInt(duration), Destination.parseDate(endDate));
+            user.setStartDate(calculated);
+            user.setEndDate(Destination.parseDate(endDate));
+            user.setAllottedVacationDays(Integer.parseInt(duration));
+            showResultDialog(calculated.toString());
         } else if (startDateFilled && durationFilled && !endDateFilled) {
-            // If user enters startDate and duration, use the entered duration
-            calculatedDays = Integer.parseInt(duration); // Convert to integer if needed
-            showResultDialog(calculatedDays);
-
-            // Store the entered vacation days
-            CurrentUserInfo.getInstance().setPlannedDays(calculatedDays);
-
+            Date calculated = Destination.calculateMissingEndDate(Integer.parseInt(duration), Destination.parseDate(startDate));
+            user.setStartDate(Destination.parseDate(startDate));
+            user.setEndDate(calculated);
+            user.setAllottedVacationDays(Integer.parseInt(duration));
+            showResultDialog(calculated.toString());
         } else if (startDateFilled && endDateFilled && !durationFilled) {
-            // If user enters startDate and endDate, calculate the duration
-            String result = destinationViewModel.getDurationFromDates(startDate, endDate);
-            if (result != null) {
-                calculatedDays = Integer.parseInt(result); // Convert to integer if needed
-                showResultDialog(calculatedDays);
-
-                // Store the calculated vacation days
-                CurrentUserInfo.getInstance().setPlannedDays(calculatedDays);
-            } else {
-                Toast.makeText(getContext(), "Invalid. Please check your input.", Toast.LENGTH_SHORT).show();
-            }
+            int calculated = Destination.calculateMissingDays(Destination.parseDate(startDate), Destination.parseDate(endDate));
+            user.setStartDate(Destination.parseDate(startDate));
+            user.setEndDate(Destination.parseDate(endDate));
+            user.setAllottedVacationDays(calculated);
+            showResultDialog(Integer.toString(calculated));
         } else {
             Toast.makeText(getContext(), "Please fill in two out of three fields.", Toast.LENGTH_SHORT).show();
+            return;
         }
+        CurrentUserInfo.getInstance().setUser(user);
     }
 
-    private void showResultDialog(int calculatedDays) {
+    private void showResultDialog(String text) {
         // Create a LinearLayout for the dialog
         LinearLayout dialogLayout = new LinearLayout(getContext());
         dialogLayout.setOrientation(LinearLayout.VERTICAL);
@@ -158,7 +154,7 @@ public class DestinationFragment extends Fragment {
 
         // Create TextView for the result
         TextView resultTextView = new TextView(getContext());
-        resultTextView.setText("Result: " + calculatedDays + " days");
+        resultTextView.setText("Result: " + text);
         resultTextView.setTextSize(18); // Set the text size
         dialogLayout.addView(resultTextView); // Add result TextView to the layout
 
@@ -178,7 +174,6 @@ public class DestinationFragment extends Fragment {
                 dialog.dismiss(); // Dismiss the dialog
             });
         });
-
 
         dialog.show(); // Show the dialog
     }
@@ -290,7 +285,7 @@ public class DestinationFragment extends Fragment {
             for (int i = travelLogs.size() - 5; i < travelLogs.size(); i++) {
                 TextView logTextView = new TextView(getContext());
                 logTextView.setText(travelLogs.get(i));
-                logTextView.setPadding(8,8,8,8);
+                logTextView.setPadding(8, 8, 8, 8);
                 travelLogsContainer.addView(logTextView);
             }
         }

@@ -1,3 +1,4 @@
+
 package com.model;
 
 import androidx.lifecycle.ViewModel;
@@ -52,60 +53,50 @@ public class Database {
                         replace("email address", "username")));
     }
 
-    public void loginSuccess(String username, Runnable onSuccess)
-    {
+    public void loginSuccess(String username, Runnable onSuccess) {
         CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
         User user = new User(username);
         currentUserInfo.setUser(user);
         onSuccess.run();
     }
 
-    public void updateDestinationData(User user, UserDestinationData userDestinationData)
-    {
+    public void updateDestinationData(User user, UserDestinationData userDestinationData) {
         dbRef.child("destinations").child(user.getUsername()).setValue(userDestinationData);
     }
 
-    public String checkUser(String username)
-    {
-        String[] user = new String[1];
-        dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+    public void checkUser(String username, Consumer<String> dataLoaded, Consumer<String> onFail) {
+        dbRef.child("users").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    user[0] = dataSnapshot.getValue(String.class);
+                    dataLoaded.accept(dataSnapshot.getValue(String.class));
                 } else {
-                    user[0] = null;
+                    onFail.accept("User not present");
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                System.out.println("Error: " + databaseError.getMessage());
+                onFail.accept(databaseError.getMessage());
             }
         });
-
-        return user[0];
     }
 
-    public UserDestinationData getUserDestinationData(String username)
-    {
-        UserDestinationData[] user = new UserDestinationData[1];
+    public void getUserDestinationData(String username, Consumer<UserDestinationData> dataLoaded, Consumer<String> onFail) {
         dbRef.child("destinations").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    user[0] = dataSnapshot.getValue(UserDestinationData.class);
+                    dataLoaded.accept(dataSnapshot.getValue(UserDestinationData.class));
                 } else {
-                    user[0] = null;
+                    onFail.accept("User not present.");
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                System.out.println("Error: " + databaseError.getMessage());
+                onFail.accept(databaseError.getMessage());
             }
         });
-
-        return user[0];
     }
 }

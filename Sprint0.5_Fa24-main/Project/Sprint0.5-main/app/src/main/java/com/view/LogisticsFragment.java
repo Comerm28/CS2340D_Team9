@@ -1,6 +1,7 @@
 package com.view;
 
 import androidx.core.content.ContextCompat;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -81,34 +83,40 @@ public class LogisticsFragment extends Fragment {
     }
 
     private void visualizeTripDays() {
-        int allottedDays = logisticsViewModel.getAllottedDays();
-        int plannedDays = logisticsViewModel.getPlannedDays();
+        logisticsViewModel.getAllottedDays(allottedDays -> {
+                    logisticsViewModel.getPlannedDays(plannedDays -> {
 
-        List<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(plannedDays, "Planned Days"));
-        entries.add(new PieEntry(allottedDays, "Allotted Days"));
+                                List<PieEntry> entries = new ArrayList<>();
+                                entries.add(new PieEntry(plannedDays, "Planned Days"));
+                                entries.add(new PieEntry(allottedDays, "Allotted Days"));
 
-        PieDataSet dataSet = new PieDataSet(entries, "");
-        dataSet.setColors(new int[]{
-                ContextCompat.getColor(getContext(), R.color.blue),
-                ContextCompat.getColor(getContext(), R.color.green)
-        });
-        PieData pieData = new PieData(dataSet);
+                                PieDataSet dataSet = new PieDataSet(entries, "");
+                                dataSet.setColors(new int[]{
+                                        ContextCompat.getColor(getContext(), R.color.blue),
+                                        ContextCompat.getColor(getContext(), R.color.green)
+                                });
+                                PieData pieData = new PieData(dataSet);
 
-        pieChart.setData(pieData);
-        pieChart.invalidate();
-        pieChart.setVisibility(View.VISIBLE);
+                                pieChart.setData(pieData);
+                                pieChart.invalidate();
+                                pieChart.setVisibility(View.VISIBLE);
+
+                            }, fail ->
+                                    Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show()
+                    );
+                }, fail ->
+                        Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show()
+        );
+
     }
 
     private void inviteUser() {
         String username = inviteUserEditText.getText().toString().trim();
         if (!TextUtils.isEmpty(username)) {
-            boolean inviteSuccessful = logisticsViewModel.inviteUser(username);
-            if (inviteSuccessful) {
-                Toast.makeText(getContext(), "User invited successfully.", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getContext(), "User not found or invitation failed.", Toast.LENGTH_SHORT).show();
-            }
+            logisticsViewModel.inviteUser(username, () -> Toast.makeText(getContext(),
+                            "User invited successfully.", Toast.LENGTH_SHORT).show(),
+                    fail -> Toast.makeText(getContext(), "User not found or invitation failed.", Toast.LENGTH_SHORT).show()
+            );
         } else {
             Toast.makeText(getContext(), "Enter a username to invite.", Toast.LENGTH_SHORT).show();
         }
@@ -125,10 +133,11 @@ public class LogisticsFragment extends Fragment {
         builder.setPositiveButton("Add", (dialog, which) -> {
             String note = input.getText().toString().trim(); // Trim input to avoid empty notes
             if (!TextUtils.isEmpty(note)) {
-                logisticsViewModel.addNoteToCurrentVacation(note);
-                userNotes.add(note);
-                saveNotes();
-                Toast.makeText(getContext(), "Note added.", Toast.LENGTH_SHORT).show();
+                logisticsViewModel.addNoteToCurrentVacation(note, () -> {
+                    saveNotes();
+                    Toast.makeText(getContext(), "Note added.", Toast.LENGTH_SHORT).show();
+                    userNotes.add(note);
+                }, fail -> Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show());
             } else {
                 Toast.makeText(getContext(), "Note cannot be empty", Toast.LENGTH_SHORT).show();
             }
