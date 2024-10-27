@@ -1,5 +1,7 @@
 package com.viewmodel;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +21,7 @@ import com.model.Destination;
 import com.model.User;
 import com.model.UserDestinationData;
 
+import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -97,10 +100,10 @@ public class CurrentUserInfo {
     public void getAllottedVacationDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
         if (userDestinationData.isCollaborating()) {
             Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername(),
-                    destinationData -> onLoad.accept(destinationData.getAllotedVacationDays()),
+                    destinationData -> onLoad.accept(user.getAllottedVacationDays()),
                     onFail);
         } else {
-            onLoad.accept(userDestinationData.getAllotedVacationDays());
+            onLoad.accept(user.getAllottedVacationDays());
         }
     }
 
@@ -126,12 +129,13 @@ public class CurrentUserInfo {
         Database.getInstance().updateDestinationData(user, userDestinationData);
     }
 
-
-    public int getPlannedDays() {
-        return userDestinationData.getPlannedDays();
-    }
-
-    public void setPlannedDays(int days) {
-        userDestinationData.setPlannedDays(userDestinationData.getPlannedDays() + days);
+    public void getPlannedDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
+        getDestinations(destinations -> {
+            int sum = 0;
+            for (Destination d : destinations) {
+                sum += (int) d.getDurationDays();
+            }
+            onLoad.accept(sum);
+        }, onFail);
     }
 }

@@ -23,15 +23,6 @@ public class LogisticsViewModel extends ViewModel {
         currentInfo.getAllottedVacationDays(onLoad, onFail);
     }
 
-    public void getPlannedDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
-        currentInfo.getDestinations(destinations -> {
-            int sum = 0;
-            for (Destination d : destinations) {
-                sum += (int) d.getDurationDays();
-            }
-            onLoad.accept(sum);
-        }, onFail);
-    }
 
     public void inviteUser(String username, Runnable onSuccess, Consumer<String> onFail) {
         Database db = Database.getInstance();
