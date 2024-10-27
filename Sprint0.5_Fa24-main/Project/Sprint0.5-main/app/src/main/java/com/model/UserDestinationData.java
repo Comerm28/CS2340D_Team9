@@ -9,26 +9,21 @@ public class UserDestinationData {
     private String username;
     private List<Destination> destinations;
     private List<String> notes;
-    private int allotedVacationDays;
     private boolean isCollaborating;
     private String collaboratorUsername;
-    private int plannedDays;
 
-    public UserDestinationData(){ }
+    public UserDestinationData() {
+    }
 
-    public UserDestinationData(String username, List<Destination> destinations)
-    {
+    public UserDestinationData(String username, List<Destination> destinations) {
         this.username = username;
         this.destinations = destinations;
-        this.allotedVacationDays = 0;
-        this.plannedDays = 0;
         isCollaborating = false;
         collaboratorUsername = "";
         notes = new ArrayList<>();
     }
 
-    public UserDestinationData(String username)
-    {
+    public UserDestinationData(String username) {
         this.username = username;
         this.destinations = new ArrayList<>();
     }
@@ -49,29 +44,11 @@ public class UserDestinationData {
         this.destinations = destinations;
     }
 
-    public void addDestination(Destination destination)
-    {
-        if(destinations == null)
-        {
+    public void addDestination(Destination destination) {
+        if (destinations == null) {
             this.destinations = new ArrayList<>();
         }
         destinations.add(destination);
-    }
-
-    public int getAllotedVacationDays() {
-        return allotedVacationDays;
-    }
-
-    public void setAllotedVacationDays(int allotedVacationDays) {
-        this.allotedVacationDays = allotedVacationDays;
-    }
-
-    public int getPlannedDays() {
-        return plannedDays;
-    }
-
-    public void setPlannedDays(int days) {
-        this.plannedDays = plannedDays;
     }
 
     public boolean isCollaborating() {

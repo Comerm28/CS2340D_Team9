@@ -26,6 +26,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.viewmodel.CurrentUserInfo;
 import com.viewmodel.LogisticsViewModel;
 
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class LogisticsFragment extends Fragment {
 
     private void visualizeTripDays() {
         logisticsViewModel.getAllottedDays(allottedDays -> {
-                    logisticsViewModel.getPlannedDays(plannedDays -> {
+                    CurrentUserInfo.getInstance().getPlannedDays(plannedDays -> {
 
                                 List<PieEntry> entries = new ArrayList<>();
                                 entries.add(new PieEntry(plannedDays, "Planned Days"));

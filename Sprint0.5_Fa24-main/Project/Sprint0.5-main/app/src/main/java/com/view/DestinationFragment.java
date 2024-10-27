@@ -121,27 +121,31 @@ public class DestinationFragment extends Fragment {
         boolean durationFilled = !duration.isEmpty();
 
         User user = CurrentUserInfo.getInstance().getUser();
-        if (!startDateFilled && durationFilled && endDateFilled) {
-            Date calculated = Destination.calculateMissingStartDate(Integer.parseInt(duration), Destination.parseDate(endDate));
-            user.setStartDate(calculated);
-            user.setEndDate(Destination.parseDate(endDate));
-            user.setAllottedVacationDays(Integer.parseInt(duration));
-            showResultDialog(calculated.toString());
-        } else if (startDateFilled && durationFilled && !endDateFilled) {
-            Date calculated = Destination.calculateMissingEndDate(Integer.parseInt(duration), Destination.parseDate(startDate));
-            user.setStartDate(Destination.parseDate(startDate));
-            user.setEndDate(calculated);
-            user.setAllottedVacationDays(Integer.parseInt(duration));
-            showResultDialog(calculated.toString());
-        } else if (startDateFilled && endDateFilled && !durationFilled) {
-            int calculated = Destination.calculateMissingDays(Destination.parseDate(startDate), Destination.parseDate(endDate));
-            user.setStartDate(Destination.parseDate(startDate));
-            user.setEndDate(Destination.parseDate(endDate));
-            user.setAllottedVacationDays(calculated);
-            showResultDialog(Integer.toString(calculated));
-        } else {
-            Toast.makeText(getContext(), "Please fill in two out of three fields.", Toast.LENGTH_SHORT).show();
-            return;
+        try {
+            if (!startDateFilled && durationFilled && endDateFilled) {
+                Date calculated = Destination.calculateMissingStartDate(Integer.parseInt(duration), Destination.parseDate(endDate));
+                user.setStartDate(calculated);
+                user.setEndDate(Destination.parseDate(endDate));
+                user.setAllottedVacationDays(Integer.parseInt(duration));
+                showResultDialog(calculated.toString());
+            } else if (startDateFilled && durationFilled && !endDateFilled) {
+                Date calculated = Destination.calculateMissingEndDate(Integer.parseInt(duration), Destination.parseDate(startDate));
+                user.setStartDate(Destination.parseDate(startDate));
+                user.setEndDate(calculated);
+                user.setAllottedVacationDays(Integer.parseInt(duration));
+                showResultDialog(calculated.toString());
+            } else if (startDateFilled && endDateFilled && !durationFilled) {
+                int calculated = Destination.calculateMissingDays(Destination.parseDate(startDate), Destination.parseDate(endDate));
+                user.setStartDate(Destination.parseDate(startDate));
+                user.setEndDate(Destination.parseDate(endDate));
+                user.setAllottedVacationDays(calculated);
+                showResultDialog(Integer.toString(calculated));
+            } else {
+                Toast.makeText(getContext(), "Please fill in two out of three fields.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Invalid date format.", Toast.LENGTH_SHORT).show();
         }
         CurrentUserInfo.getInstance().setUser(user);
     }
@@ -251,9 +255,6 @@ public class DestinationFragment extends Fragment {
             // Log travel was successful
             int durationDays = destinationViewModel.getDurationFromStrings(startDate, endDate);
             String duration = durationDays >= 0 ? durationDays + " days planned" : "Invalid duration";
-
-            // Store the planned days in CurrentUserInfo
-            CurrentUserInfo.getInstance().setPlannedDays(durationDays);
 
             String logEntry = "Destination: " + location + "                              " + duration;
             travelLogs.add(logEntry);
