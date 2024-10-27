@@ -1406,6 +1406,7 @@ color background_floating_material_light
 color background_material_dark
 color background_material_light
 color black
+color blue
 color bright_foreground_disabled_material_dark
 color bright_foreground_disabled_material_light
 color bright_foreground_inverse_material_dark
@@ -1479,6 +1480,7 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color green
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color m3_appbar_overlay_color
@@ -3276,6 +3278,7 @@ id button_dining
 id button_logistics
 id button_transportation
 id cache_measures
+id calculateVacationTime
 id calculateVacationTimeButton
 id calculatedField
 id callMeasure
@@ -3412,6 +3415,7 @@ id included
 id indeterminate
 id info
 id invisible
+id inviteUserEditText
 id inviteUsersButton
 id inward
 id italic
@@ -3562,7 +3566,10 @@ id ratio
 id rectangles
 id registerButton
 id report_drawn
+id resetButton
 id resultDisplayLayout
+id resultScreen
+id resultTextView
 id reverseSawtooth
 id right
 id rightToLeft

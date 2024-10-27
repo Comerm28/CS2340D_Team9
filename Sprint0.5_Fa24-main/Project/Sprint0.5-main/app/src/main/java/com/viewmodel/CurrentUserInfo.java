@@ -103,6 +103,19 @@ public class CurrentUserInfo {
         }
     }
 
+    public int getPlannedDays(){
+        return userDestinationData.getPlannedDays();
+    }
+
+    public void setPlannedDays(int days){
+        userDestinationData.setPlannedDays(userDestinationData.getPlannedDays() + days);
+    }
+
+    public void setAllottedVacationDays(int days){
+        userDestinationData.setAllotedVacationDays(userDestinationData.getAllotedVacationDays() + days);
+    }
+
+
     public List<String> getNotes()
     {
         if(userDestinationData.isCollaborating())

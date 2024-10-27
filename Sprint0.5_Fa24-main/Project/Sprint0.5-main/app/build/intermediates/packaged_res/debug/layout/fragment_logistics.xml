@@ -9,6 +9,7 @@
         android:id="@+id/headerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Logistics"
         android:textSize="24sp"
         android:textStyle="bold"
         android:paddingBottom="16dp" />
@@ -18,15 +19,26 @@
         android:id="@+id/visualizeTripDaysButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Visualize Trip Days" />
+        android:text="Visualize Trip Days"
+        android:layout_marginTop="8dp" />
 
-    <!-- Pie Chart for showing trip days -->
+    <!-- Pie Chart for showing trip days with distinct colors -->
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pieChart"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:visibility="gone"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFFFFF" />
+
+    <!-- EditText for inviting users -->
+    <EditText
+        android:id="@+id/inviteUserEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter user email or username"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="16dp" />
 
     <!-- Button to invite users -->
     <Button
@@ -34,9 +46,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Invite Users"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="8dp" />
 
-    <!-- Button to add/view notes -->
+    <!-- Buttons for notes actions -->
     <Button
         android:id="@+id/viewNotesButton"
         android:layout_width="match_parent"
