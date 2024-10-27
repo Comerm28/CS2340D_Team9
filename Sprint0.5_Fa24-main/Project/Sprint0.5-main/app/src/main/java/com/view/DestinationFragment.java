@@ -13,6 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import com.example.sprintproject.R;
+import com.viewmodel.DestinationViewModel;
+
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +27,7 @@ public class DestinationFragment extends Fragment {
     private Button calculateVacationTimeButton, logTravelButton;
     private EditText travelLocationInput, estimatedStartDateInput, estimatedEndDateInput;
     private List<String> travelLogs;
+    private DestinationViewModel destinationViewModel;
 
 
     private AlertDialog logTravelDialog;
@@ -43,6 +47,7 @@ public class DestinationFragment extends Fragment {
         calculatedField = view.findViewById(R.id.calculatedField);
         calculateVacationTimeButton = view.findViewById(R.id.calculateVacationTimeButton);
         logTravelButton = view.findViewById(R.id.logTravelButton);
+        destinationViewModel = new DestinationViewModel();
 
         travelLogs = new ArrayList<>();
 
@@ -100,22 +105,29 @@ public class DestinationFragment extends Fragment {
     }
 
 
-    private void submitTravelLog(AlertDialog logTravelDialog) {
+    private void submitTravelLog(AlertDialog logTravelDialog){
         if (TextUtils.isEmpty(travelLocationInput.getText().toString()) ||
                 TextUtils.isEmpty(estimatedStartDateInput.getText().toString()) ||
                 TextUtils.isEmpty(estimatedEndDateInput.getText().toString())) {
             Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
+        else if(destinationViewModel.logTravel(estimatedEndDateInput.getText().toString(), estimatedStartDateInput.getText().toString(), travelLocationInput.getText().toString()))
+        {
+            String location = travelLocationInput.getText().toString();
+            String duration = calculateDuration(estimatedStartDateInput.getText().toString(), estimatedEndDateInput.getText().toString()) + " days planned";
 
-        String location = travelLocationInput.getText().toString();
-        String duration = calculateDuration(estimatedStartDateInput.getText().toString(), estimatedEndDateInput.getText().toString()) + " days planned";
+            String logEntry = "Destination: " + location + "                              " + duration;
+            travelLogs.add(logEntry);
+            updateTravelLogsDisplay();
 
-        String logEntry = "Destination: " + location + "                              " + duration;
-        travelLogs.add(logEntry);
-        updateTravelLogsDisplay();
-
-        logTravelDialog.dismiss(); // Dismiss the dialog after submitting the log
+            logTravelDialog.dismiss(); // Dismiss the dialog after submitting the log
+        }
+        else
+        {
+            //todo handle ui when destinationviewmodel does not mess with user input
+            logTravelDialog.dismiss();
+        }
     }
 
     private void updateTravelLogsDisplay() {
@@ -139,7 +151,6 @@ public class DestinationFragment extends Fragment {
 
 
     private int calculateDuration(String startDate, String endDate) {
-        // Placeholder logic for duration calculation
-        return 5;  // ViewModel needs to replace with actual logic
+        return destinationViewModel.getDurationFromStrings(startDate, endDate);  // ViewModel needs to replace with actual logic
     }
 }

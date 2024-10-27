@@ -1573,7 +1573,10 @@ com.example.sprintproject:id/META = 0x7f080005
 com.example.sprintproject:id/BOTTOM_START = 0x7f080002
 com.example.sprintproject:style/Widget.MaterialComponents.TabLayout.PrimarySurface = 0x7f110441
 com.example.sprintproject:drawable/tooltip_frame_light = 0x7f0700f6
+<<<<<<< HEAD
 com.example.sprintproject:drawable/test_level_drawable = 0x7f0700f4
+=======
+>>>>>>> main
 com.example.sprintproject:drawable/notification_tile_bg = 0x7f0700f2
 com.example.sprintproject:drawable/notification_bg_normal_pressed = 0x7f0700ee
 com.example.sprintproject:color/material_dynamic_tertiary70 = 0x7f050268
@@ -1636,7 +1639,11 @@ com.example.sprintproject:drawable/ic_keyboard_black_24dp = 0x7f07009f
 com.example.sprintproject:id/open_search_view_background = 0x7f080167
 com.example.sprintproject:attr/number = 0x7f03036a
 com.example.sprintproject:drawable/ic_clock_black_24dp = 0x7f07009e
+<<<<<<< HEAD
 com.example.sprintproject:color/primary_dark_material_light = 0x7f0502fc
+=======
+com.example.sprintproject:color/primary_dark_material_light = 0x7f0502fb
+>>>>>>> main
 com.example.sprintproject:drawable/ic_arrow_back_black_24 = 0x7f07009c
 com.example.sprintproject:drawable/googleg_standard_color_18 = 0x7f07009b
 com.example.sprintproject:attr/actionViewClass = 0x7f030026
@@ -1703,6 +1710,14 @@ com.example.sprintproject:color/m3_sys_color_dark_surface_container_low = 0x7f05
 com.example.sprintproject:drawable/abc_list_divider_mtrl_alpha = 0x7f07004e
 com.example.sprintproject:color/m3_dynamic_dark_hint_foreground = 0x7f05008c
 com.example.sprintproject:drawable/abc_item_background_holo_light = 0x7f07004c
+<<<<<<< HEAD
+=======
+com.example.sprintproject:dimen/design_snackbar_action_inline_max_width = 0x7f060080
+com.example.sprintproject:dimen/m3_comp_fab_primary_small_container_height = 0x7f060122
+com.example.sprintproject:color/m3_ref_palette_dynamic_neutral24 = 0x7f0500b2
+com.example.sprintproject:color/mtrl_switch_thumb_icon_tint = 0x7f0502e9
+com.example.sprintproject:drawable/tooltip_frame_dark = 0x7f0700f5
+>>>>>>> main
 com.example.sprintproject:style/RtlUnderlay.Widget.AppCompat.ActionButton.Overflow = 0x7f110155
 com.example.sprintproject:dimen/abc_action_bar_stacked_max_height = 0x7f060009
 com.example.sprintproject:drawable/abc_seekbar_thumb_material = 0x7f070063
@@ -2161,6 +2176,10 @@ com.example.sprintproject:styleable/MaterialCheckBox = 0x7f12005a
 com.example.sprintproject:id/src_atop = 0x7f0801cb
 com.example.sprintproject:dimen/m3_comp_navigation_drawer_standard_container_elevation = 0x7f060148
 com.example.sprintproject:dimen/m3_comp_navigation_drawer_hover_state_layer_opacity = 0x7f060144
+<<<<<<< HEAD
+=======
+com.example.sprintproject:drawable/test_level_drawable = 0x7f0700f4
+>>>>>>> main
 com.example.sprintproject:dimen/m3_comp_navigation_drawer_focus_state_layer_opacity = 0x7f060143
 com.example.sprintproject:style/TextAppearance.Material3.LabelLarge = 0x7f1101ee
 com.example.sprintproject:color/material_dynamic_secondary40 = 0x7f050258
@@ -2201,7 +2220,11 @@ com.example.sprintproject:dimen/m3_comp_fab_primary_pressed_state_layer_opacity 
 com.example.sprintproject:dimen/m3_comp_filled_card_focus_state_layer_opacity = 0x7f060129
 com.example.sprintproject:dimen/m3_comp_fab_primary_large_icon_size = 0x7f06011f
 com.example.sprintproject:layout/abc_list_menu_item_radio = 0x7f0b0011
+<<<<<<< HEAD
 com.example.sprintproject:color/tooltip_background_dark = 0x7f05030f
+=======
+com.example.sprintproject:color/tooltip_background_dark = 0x7f05030e
+>>>>>>> main
 com.example.sprintproject:dimen/mtrl_calendar_day_corner = 0x7f060272
 com.example.sprintproject:style/Base.V14.ThemeOverlay.MaterialComponents.Dialog.Alert = 0x7f11009f
 com.example.sprintproject:dimen/abc_list_item_height_large_material = 0x7f060030
@@ -2543,6 +2566,7 @@ com.example.sprintproject:attr/paddingStartSystemWindowInsets = 0x7f03037c
 com.example.sprintproject:dimen/abc_action_bar_default_height_material = 0x7f060002
 com.example.sprintproject:id/packed = 0x7f080177
 com.example.sprintproject:dimen/abc_action_bar_content_inset_with_nav = 0x7f060001
+<<<<<<< HEAD
 com.example.sprintproject:string/abc_action_bar_home_description = 0x7f100000
 com.example.sprintproject:attr/triggerId = 0x7f0304dd
 com.example.sprintproject:color/unusedDaysColor = 0x7f050311
@@ -2565,6 +2589,26 @@ com.example.sprintproject:color/primary_text_default_material_light = 0x7f050300
 com.example.sprintproject:dimen/mtrl_btn_snackbar_margin_horizontal = 0x7f060266
 com.example.sprintproject:color/primary_dark_material_dark = 0x7f0502fb
 com.example.sprintproject:color/plannedDaysColor = 0x7f0502fa
+=======
+com.example.sprintproject:color/tooltip_background_light = 0x7f05030f
+com.example.sprintproject:style/Base.Widget.AppCompat.DropDownItem.Spinner = 0x7f1100db
+com.example.sprintproject:color/switch_thumb_normal_material_light = 0x7f05030d
+com.example.sprintproject:color/switch_thumb_disabled_material_light = 0x7f050309
+com.example.sprintproject:string/password_toggle_content_description = 0x7f1000b7
+com.example.sprintproject:dimen/m3_comp_outlined_text_field_disabled_input_text_opacity = 0x7f060159
+com.example.sprintproject:color/secondary_text_disabled_material_light = 0x7f050307
+com.example.sprintproject:color/secondary_text_disabled_material_dark = 0x7f050306
+com.example.sprintproject:color/ripple_material_light = 0x7f050303
+com.example.sprintproject:color/ripple_material_dark = 0x7f050302
+com.example.sprintproject:color/primary_text_disabled_material_light = 0x7f050301
+com.example.sprintproject:attr/listLayout = 0x7f0302d4
+com.example.sprintproject:color/primary_text_disabled_material_dark = 0x7f050300
+com.example.sprintproject:style/Widget.Material3.FloatingActionButton.Small.Tertiary = 0x7f11038d
+com.example.sprintproject:id/mtrl_calendar_days_of_week = 0x7f080137
+com.example.sprintproject:color/primary_text_default_material_light = 0x7f0502ff
+com.example.sprintproject:dimen/mtrl_btn_snackbar_margin_horizontal = 0x7f060266
+com.example.sprintproject:color/primary_dark_material_dark = 0x7f0502fa
+>>>>>>> main
 com.example.sprintproject:layout/select_dialog_item_material = 0x7f0b0073
 com.example.sprintproject:color/notification_icon_bg_color = 0x7f0502f9
 com.example.sprintproject:dimen/material_textinput_max_width = 0x7f06023e
@@ -2579,11 +2623,14 @@ com.example.sprintproject:attr/itemBackground = 0x7f030257
 com.example.sprintproject:color/mtrl_tabs_icon_color_selector = 0x7f0502ee
 com.example.sprintproject:color/mtrl_switch_track_tint = 0x7f0502ec
 com.example.sprintproject:color/mtrl_switch_track_decoration_tint = 0x7f0502eb
+<<<<<<< HEAD
 com.example.sprintproject:drawable/tooltip_frame_dark = 0x7f0700f5
 com.example.sprintproject:dimen/design_snackbar_action_inline_max_width = 0x7f060080
 com.example.sprintproject:dimen/m3_comp_fab_primary_small_container_height = 0x7f060122
 com.example.sprintproject:color/m3_ref_palette_dynamic_neutral24 = 0x7f0500b2
 com.example.sprintproject:color/mtrl_switch_thumb_icon_tint = 0x7f0502e9
+=======
+>>>>>>> main
 com.example.sprintproject:style/Widget.MaterialComponents.ChipGroup = 0x7f110407
 com.example.sprintproject:layout/mtrl_picker_dialog = 0x7f0b0062
 com.example.sprintproject:attr/simpleItemSelectedColor = 0x7f0303ed
@@ -2982,7 +3029,11 @@ com.example.sprintproject:attr/drawerArrowStyle = 0x7f03019e
 com.example.sprintproject:attr/motionEasingEmphasizedInterpolator = 0x7f030346
 com.example.sprintproject:attr/textAppearanceHeadlineMedium = 0x7f030466
 com.example.sprintproject:color/m3_sys_color_dynamic_light_error_container = 0x7f0501aa
+<<<<<<< HEAD
 com.example.sprintproject:color/switch_thumb_material_dark = 0x7f05030b
+=======
+com.example.sprintproject:color/switch_thumb_material_dark = 0x7f05030a
+>>>>>>> main
 com.example.sprintproject:attr/imageButtonStyle = 0x7f030244
 com.example.sprintproject:color/m3_sys_color_dynamic_light_background = 0x7f0501a8
 com.example.sprintproject:drawable/abc_ic_commit_search_api_mtrl_alpha = 0x7f070041
@@ -3185,7 +3236,11 @@ com.example.sprintproject:color/m3_ref_palette_neutral92 = 0x7f050121
 com.example.sprintproject:style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse = 0x7f1101b3
 com.example.sprintproject:color/m3_ref_palette_neutral90 = 0x7f050120
 com.example.sprintproject:integer/mtrl_calendar_header_orientation = 0x7f090032
+<<<<<<< HEAD
 com.example.sprintproject:color/switch_thumb_disabled_material_dark = 0x7f050309
+=======
+com.example.sprintproject:color/switch_thumb_disabled_material_dark = 0x7f050308
+>>>>>>> main
 com.example.sprintproject:color/m3_ref_palette_neutral87 = 0x7f05011f
 com.example.sprintproject:color/material_slider_halo_color = 0x7f0502b8
 com.example.sprintproject:style/Widget.Material3.CircularProgressIndicator.Small = 0x7f110373

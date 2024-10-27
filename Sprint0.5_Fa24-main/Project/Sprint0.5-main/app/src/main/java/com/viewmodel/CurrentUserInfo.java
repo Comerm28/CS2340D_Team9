@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DatabaseError;
 
 
+import com.model.Database;
 import com.model.User;
 import com.model.UserDestinationData;
 
@@ -47,8 +48,18 @@ public class CurrentUserInfo {
                     // Get the User object from the snapshot
                     userDestinationData = dataSnapshot.getValue(UserDestinationData.class);
 
+                    if(userDestinationData == null)
+                    {
+                        userDestinationData = new UserDestinationData(user.getUsername());
+                        dbRef.child("destinations").child(user.getUsername()).setValue(userDestinationData);
+                    }
+
+                    userDestinationData.setUsername(user.getUsername());
+
                 } else {
-                    // Handle the case where the user does not exist
+                    userDestinationData = new UserDestinationData(user.getUsername());
+                    dbRef.child("destinations").child(user.getUsername()).setValue(userDestinationData);
+                    userDestinationData.setUsername(user.getUsername());
                 }
             }
 
@@ -73,5 +84,10 @@ public class CurrentUserInfo {
 
     public void clearUser() {
         user = null;
+    }
+
+    public void updateDestinationData()
+    {
+        Database.getInstance().updateDestinationData(user, userDestinationData);
     }
 }
