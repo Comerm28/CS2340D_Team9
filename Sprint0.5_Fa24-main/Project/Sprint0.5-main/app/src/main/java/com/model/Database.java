@@ -1,5 +1,6 @@
-
 package com.model;
+
+import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -47,16 +48,30 @@ public class Database {
         // attempt to create the user, and if successful, call onSuccess,
         // else call onFail with the error message
         mAuth.signInWithEmailAndPassword(User.formatEmail(username), password)
-                .addOnSuccessListener(task -> loginSuccess(username, onSuccess))
+                .addOnSuccessListener(task -> {
+                    CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
+                    dbRef.child("users").child(username).addListenerForSingleValueEvent(
+                            new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (!snapshot.exists()) {
+                                        onFail.accept("Failed to log in.");
+                                        return;
+                                    }
+
+                                    currentUserInfo.setUser(snapshot.getValue(User.class));
+                                    onSuccess.run();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    onFail.accept("Failed to log in.");
+                                }
+                            }
+                    );
+                })
                 .addOnFailureListener(fail -> onFail.accept(fail.getMessage().
                         replace("email address", "username")));
-    }
-
-    public void loginSuccess(String username, Runnable onSuccess) {
-        CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
-        User user = new User(username);
-        currentUserInfo.setUser(user);
-        onSuccess.run();
     }
 
     public void updateDestinationData(User user, UserDestinationData userDestinationData) {
