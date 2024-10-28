@@ -24,7 +24,7 @@ public class DestinationViewModelTest {
     public void testLogTravel_InvalidDestination_ReturnsFalse() {
         String start = "01-01-2023";
         String end = "01-10-2023";
-        String destination = ""; // Invalid destination
+        String destination = "";
 
         boolean result = viewModel.logTravel(end, start, destination);
         assertFalse(result);
@@ -33,7 +33,7 @@ public class DestinationViewModelTest {
     @Test
     public void testLogTravel_InvalidDateRange_ReturnsFalse() {
         String start = "01-10-2023";
-        String end = "01-01-2023"; // End date before start date
+        String end = "01-01-2023";
         String destination = "Beach";
 
         boolean result = viewModel.logTravel(end, start, destination);
@@ -47,8 +47,8 @@ public class DestinationViewModelTest {
 
     @Test
     public void testIsValidDestination_InvalidDestination_ReturnsFalse() {
-        assertFalse(viewModel.isValidDestination("")); // Empty
-        assertFalse(viewModel.isValidDestination("!Invalid")); // Invalid characters
+        assertFalse(viewModel.isValidDestination(""));
+        assertFalse(viewModel.isValidDestination("!Invalid"));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class DestinationViewModelTest {
         String end = "01-10-2023";
 
         int duration = viewModel.getDurationFromStrings(start, end);
-        assertEquals(9, duration); // Assuming calculateMissingDays returns correct duration
+        assertEquals(9, duration);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class DestinationViewModelTest {
 
     @Test
     public void testGetStartDateFromInfo_InvalidDuration_ReturnsNull() {
-        String duration = "-1"; // Invalid duration
+        String duration = "-1";
         String endDate = "01-11-2023";
 
         String startDate = viewModel.getStartDateFromInfo(duration, endDate);
@@ -98,7 +98,7 @@ public class DestinationViewModelTest {
     @Test
     public void testGetStartDateFromInfo_InvalidEndDate_ReturnsNull() {
         String duration = "10";
-        String endDate = "invalid-date"; // Invalid end date
+        String endDate = "invalid-date";
 
         String startDate = viewModel.getStartDateFromInfo(duration, endDate);
         assertNull(startDate);
