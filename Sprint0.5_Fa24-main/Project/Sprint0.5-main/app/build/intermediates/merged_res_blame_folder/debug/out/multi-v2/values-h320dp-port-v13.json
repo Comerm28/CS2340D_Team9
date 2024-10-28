@@ -4,7 +4,11 @@
             "outputFile": "com.example.sprintproject.app-mergeDebugResources-49:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
             "map": [
                 {
+<<<<<<< HEAD
                     "source": "/home/ash/.gradle/caches/transforms-3/1b046af1dd3d9f3dd1da46bf083ed824/transformed/material-1.11.0/res/values-h320dp-port-v13/values-h320dp-port-v13.xml",
+=======
+                    "source": "/Users/tvo/.gradle/caches/transforms-3/1b046af1dd3d9f3dd1da46bf083ed824/transformed/material-1.11.0/res/values-h320dp-port-v13/values-h320dp-port-v13.xml",
+>>>>>>> 358d9ab (conflicts)
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

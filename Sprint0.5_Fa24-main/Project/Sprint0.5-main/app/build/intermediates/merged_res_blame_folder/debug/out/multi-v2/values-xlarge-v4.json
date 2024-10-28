@@ -4,7 +4,11 @@
             "outputFile": "com.example.sprintproject.app-mergeDebugResources-49:/values-xlarge-v4/values-xlarge-v4.xml",
             "map": [
                 {
+<<<<<<< HEAD
                     "source": "/home/ash/.gradle/caches/transforms-3/581f50f3920c362c106eda96465707ce/transformed/appcompat-1.6.1/res/values-xlarge-v4/values-xlarge-v4.xml",
+=======
+                    "source": "/Users/tvo/.gradle/caches/transforms-3/581f50f3920c362c106eda96465707ce/transformed/appcompat-1.6.1/res/values-xlarge-v4/values-xlarge-v4.xml",
+>>>>>>> 358d9ab (conflicts)
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",
