@@ -1,31 +1,24 @@
 
 package com.viewmodel;
 
-import static java.lang.Integer.*;
-import static java.security.AccessController.getContext;
-
 import android.annotation.SuppressLint;
-import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
-import com.google.firebase.database.DatabaseError;
-import com.model.Database;
 import com.model.Destination;
-import com.model.User;
 import com.model.UserDestinationData;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.function.Consumer;
 
 public class DestinationViewModel extends ViewModel {
     public boolean logTravel(String end, String start, String destination) {
         Date st = isValidDate(start);
         Date en = isValidDate(end);
         if (st != null && en != null && st.compareTo(en) <= 0 && isValidDestination(destination)) {
-            UserDestinationData userDestinationData = CurrentUserInfo.getInstance().getUserDestinationData();
+            UserDestinationData userDestinationData = CurrentUserInfo.getInstance()
+                    .getUserDestinationData();
             userDestinationData.addDestination(new Destination(destination, st, en));
             CurrentUserInfo.getInstance().updateDestinationData();
             return true;
@@ -47,7 +40,8 @@ public class DestinationViewModel extends ViewModel {
         }
 
         if (date.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter =
+                    new SimpleDateFormat("MM-dd-yyyy");
             formatter.setLenient(false);
             try {
                 return formatter.parse(date);
