@@ -4,11 +4,7 @@
             "outputFile": "com.example.sprintproject.app-mergeDebugResources-49:/values-watch-v21/values-watch-v21.xml",
             "map": [
                 {
-<<<<<<< HEAD
-                    "source": "/home/ash/.gradle/caches/transforms-3/581f50f3920c362c106eda96465707ce/transformed/appcompat-1.6.1/res/values-watch-v21/values-watch-v21.xml",
-=======
                     "source": "/Users/tvo/.gradle/caches/transforms-3/581f50f3920c362c106eda96465707ce/transformed/appcompat-1.6.1/res/values-watch-v21/values-watch-v21.xml",
->>>>>>> 358d9ab (conflicts)
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",

@@ -84,32 +84,64 @@ public class LogisticsFragment extends Fragment {
     }
 
     private void visualizeTripDays() {
-        logisticsViewModel.getAllottedDays(allottedDays -> {
-                    CurrentUserInfo.getInstance().getPlannedDays(plannedDays -> {
+        // Clear the current pie chart data to avoid displaying stale information
+        pieChart.clear();
+        pieChart.invalidate();
 
-                                List<PieEntry> entries = new ArrayList<>();
-                                entries.add(new PieEntry(plannedDays, "Planned Days"));
-                                entries.add(new PieEntry(allottedDays, "Allotted Days"));
+        // Fetch allotted days and planned days from CurrentUserInfo
+        CurrentUserInfo.getInstance().getAllottedVacationDays(allottedDays -> {
+            CurrentUserInfo.getInstance().getPlannedDays(plannedDays -> {
 
-                                PieDataSet dataSet = new PieDataSet(entries, "");
-                                dataSet.setColors(new int[]{
-                                        ContextCompat.getColor(getContext(), R.color.blue),
-                                        ContextCompat.getColor(getContext(), R.color.green)
-                                });
-                                PieData pieData = new PieData(dataSet);
+                List<PieEntry> entries = new ArrayList<>();
 
-                                pieChart.setData(pieData);
-                                pieChart.invalidate();
-                                pieChart.setVisibility(View.VISIBLE);
+                // Check if there's no data
+                if (plannedDays == 0 && allottedDays == 0) {
+                    // No data available, so create a placeholder entry
+                    entries.add(new PieEntry(1, "No Data"));
+                } else {
+                    // Add actual data entries
+                    entries.add(new PieEntry(plannedDays, "Planned Days"));
+                    entries.add(new PieEntry(allottedDays, "Allotted Days"));
+                }
 
-                            }, fail ->
-                                    Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show()
-                    );
-                }, fail ->
-                        Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show()
-        );
+                PieDataSet dataSet = new PieDataSet(entries, "");
+                dataSet.setColors(new int[]{
+                        ContextCompat.getColor(getContext(), R.color.blue),
+                        ContextCompat.getColor(getContext(), R.color.green)
+                });
+                if (entries.size() == 1 && "No Data".equals(entries.get(0).getLabel())) {
+                    dataSet.setColor(ContextCompat.getColor(getContext(), R.color.white));
+                }
+                PieData pieData = new PieData(dataSet);
 
+                pieChart.setData(pieData);
+                pieChart.invalidate();
+                pieChart.setVisibility(View.VISIBLE);
+
+            }, fail -> {
+                // Handle failure for fetching planned days
+                Toast.makeText(getContext(), "Failed to load planned days: " + fail, Toast.LENGTH_SHORT).show();
+                displayEmptyPieChart();
+            });
+        }, fail -> {
+            // Handle failure for fetching allotted days
+            Toast.makeText(getContext(), "Failed to load allotted days: " + fail, Toast.LENGTH_SHORT).show();
+            displayEmptyPieChart();
+        });
     }
+
+    private void displayEmptyPieChart() {
+        List<PieEntry> emptyEntries = new ArrayList<>();
+        emptyEntries.add(new PieEntry(1, "No Data"));
+        PieDataSet dataSet = new PieDataSet(emptyEntries, "");
+        dataSet.setColor(ContextCompat.getColor(getContext(), R.color.white));
+        PieData pieData = new PieData(dataSet);
+
+        pieChart.setData(pieData);
+        pieChart.invalidate();
+        pieChart.setVisibility(View.VISIBLE);
+    }
+
 
     private void inviteUser() {
         String username = inviteUserEditText.getText().toString().trim();
@@ -135,9 +167,10 @@ public class LogisticsFragment extends Fragment {
             String note = input.getText().toString().trim(); // Trim input to avoid empty notes
             if (!TextUtils.isEmpty(note)) {
                 logisticsViewModel.addNoteToCurrentVacation(note, () -> {
-                    saveNotes();
+                    userNotes.add(note);  // Directly add to the list
+                    saveNotes();  // Save updated list
+                    loadNotes();  // Reload from SharedPreferences
                     Toast.makeText(getContext(), "Note added.", Toast.LENGTH_SHORT).show();
-                    userNotes.add(note);
                 }, fail -> Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show());
             } else {
                 Toast.makeText(getContext(), "Note cannot be empty", Toast.LENGTH_SHORT).show();
@@ -147,17 +180,15 @@ public class LogisticsFragment extends Fragment {
         builder.setNegativeButton("Cancel", null);
 
         try {
-            // Show the dialog
             builder.show();
         } catch (Exception e) {
-            // Log the error
             Log.e("LogisticsFragment", "Error showing add note dialog", e);
             Toast.makeText(getContext(), "Failed to open the note dialog.", Toast.LENGTH_SHORT).show();
         }
     }
 
-
     private void showNotesListDialog() {
+        loadNotes();
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("List of Notes");
 
@@ -217,7 +248,8 @@ public class LogisticsFragment extends Fragment {
     private List<String> loadNotes() {
         String savedNotes = sharedPreferences.getString("userNotes", "");
         List<String> notesList = new ArrayList<>(Arrays.asList(savedNotes.split(",")));
-        notesList.removeIf(String::isEmpty);
+        notesList.removeIf(String::isEmpty); // Remove empty entries if any
+        userNotes = notesList; // Update the userNotes reference
         return notesList;
     }
 }
