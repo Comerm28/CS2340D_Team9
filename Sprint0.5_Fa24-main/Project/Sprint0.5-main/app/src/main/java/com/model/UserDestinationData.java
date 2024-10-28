@@ -1,6 +1,5 @@
 package com.model;
 
-import com.viewmodel.DestinationViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
