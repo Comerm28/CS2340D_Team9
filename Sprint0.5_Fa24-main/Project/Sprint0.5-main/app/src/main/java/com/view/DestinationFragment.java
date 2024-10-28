@@ -20,8 +20,6 @@ import com.viewmodel.DestinationViewModel;
 import com.model.Destination;
 import com.viewmodel.CurrentUserInfo;
 
-import org.w3c.dom.Text;
-
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
@@ -31,11 +29,20 @@ import java.util.List;
 
 public class DestinationFragment extends Fragment {
 
-    private LinearLayout vacationTimeCalculatorForm, travelLogsContainer;
-    private EditText startDateInput, endDateInput, durationInput;
-    private TextView calculatedField, travelLocationLabel, startDateLabel, endDateLabel;
-    private Button calculateVacationTimeButton, logTravelButton;
-    private EditText travelLocationInput, estimatedStartDateInput, estimatedEndDateInput;
+    private LinearLayout vacationTimeCalculatorForm;
+    private LinearLayout travelLogsContainer;
+    private EditText startDateInput;
+    private EditText endDateInput;
+    private EditText durationInput;
+    private TextView calculatedField;
+    private TextView travelLocationLabel;
+    private TextView startDateLabel;
+    private TextView endDateLabel;
+    private Button calculateVacationTimeButton;
+    private Button logTravelButton;
+    private EditText travelLocationInput;
+    private EditText estimatedStartDateInput;
+    private EditText estimatedEndDateInput;
     private List<String> travelLogs;
     private DestinationViewModel destinationViewModel;
     private View resultScreen;
@@ -43,13 +50,14 @@ public class DestinationFragment extends Fragment {
     private TextView resultTextView;
     private Button calculateVacationTime;
 
-    CurrentUserInfo currentUser = CurrentUserInfo.getInstance();
+    private CurrentUserInfo currentUser = CurrentUserInfo.getInstance();
 
     private AlertDialog logTravelDialog;
     private boolean isVacationCalculatorVisible = false;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_destination, container, false);
 
         // Initialization of views
@@ -89,15 +97,16 @@ public class DestinationFragment extends Fragment {
 
         // Retrieve the user's destinations from CurrentUserInfo and populate travel logs
         currentUser.getDestinations(destinationList -> {
-                    for (Destination destination : destinationList) {
-                        String logEntry = "Destination: " + destination.getLocationName() + "                             " +
-                                destination.getDurationDays() + " days planned";
-                        travelLogs.add(logEntry);
-                    }
-                    // Update the display with the loaded travel logs
-                    updateTravelLogsDisplay();
-                }, fail ->
-                        Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show()
+            for (Destination destination : destinationList) {
+                String logEntry = "Destination: " + destination.getLocationName()
+                        + "                             "
+                        + destination.getDurationDays() + " days planned";
+                travelLogs.add(logEntry);
+            }
+            // Update the display with the loaded travel logs
+            updateTravelLogsDisplay();
+            }, fail ->
+                Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show()
         );
     }
 
@@ -123,25 +132,29 @@ public class DestinationFragment extends Fragment {
         User user = CurrentUserInfo.getInstance().getUser();
         try {
             if (!startDateFilled && durationFilled && endDateFilled) {
-                Date calculated = Destination.calculateMissingStartDate(Integer.parseInt(duration), Destination.parseDate(endDate));
+                Date calculated = Destination.calculateMissingStartDate(Integer.parseInt(duration),
+                        Destination.parseDate(endDate));
                 user.setStartDate(calculated);
                 user.setEndDate(Destination.parseDate(endDate));
                 user.setAllottedVacationDays(Integer.parseInt(duration));
                 showResultDialog(calculated.toString());
             } else if (startDateFilled && durationFilled && !endDateFilled) {
-                Date calculated = Destination.calculateMissingEndDate(Integer.parseInt(duration), Destination.parseDate(startDate));
+                Date calculated = Destination.calculateMissingEndDate(Integer.parseInt(duration),
+                        Destination.parseDate(startDate));
                 user.setStartDate(Destination.parseDate(startDate));
                 user.setEndDate(calculated);
                 user.setAllottedVacationDays(Integer.parseInt(duration));
                 showResultDialog(calculated.toString());
             } else if (startDateFilled && endDateFilled && !durationFilled) {
-                int calculated = Destination.calculateMissingDays(Destination.parseDate(startDate), Destination.parseDate(endDate));
+                int calculated = Destination.calculateMissingDays(Destination.parseDate(startDate),
+                        Destination.parseDate(endDate));
                 user.setStartDate(Destination.parseDate(startDate));
                 user.setEndDate(Destination.parseDate(endDate));
                 user.setAllottedVacationDays(calculated);
                 showResultDialog(Integer.toString(calculated));
             } else {
-                Toast.makeText(getContext(), "Please fill in two out of three fields.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Please fill in two out of three fields.",
+                        Toast.LENGTH_SHORT).show();
                 return;
             }
         } catch (Exception e) {
@@ -231,7 +244,8 @@ public class DestinationFragment extends Fragment {
                 .create(); // Create the dialog
 
         // Set the click listener to submit the travel log
-        logTravelSubmitButton.setOnClickListener(v -> submitTravelLog()); // Pass the dialog reference
+        logTravelSubmitButton.setOnClickListener(v -> submitTravelLog());
+        // Pass the dialog reference
 
         travelLogLayout.addView(logTravelSubmitButton);
         logTravelDialog.show(); // Show the dialog
@@ -239,10 +253,11 @@ public class DestinationFragment extends Fragment {
 
     private void submitTravelLog() {
         // Check for empty inputs
-        if (TextUtils.isEmpty(travelLocationInput.getText().toString()) ||
-                TextUtils.isEmpty(estimatedStartDateInput.getText().toString()) ||
-                TextUtils.isEmpty(estimatedEndDateInput.getText().toString())) {
-            Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(travelLocationInput.getText().toString())
+                || TextUtils.isEmpty(estimatedStartDateInput.getText().toString())
+                || TextUtils.isEmpty(estimatedEndDateInput.getText().toString())) {
+            Toast.makeText(getContext(), "Please fill in all fields",
+                    Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -254,15 +269,19 @@ public class DestinationFragment extends Fragment {
         if (destinationViewModel.logTravel(endDate, startDate, location)) {
             // Log travel was successful
             int durationDays = destinationViewModel.getDurationFromStrings(startDate, endDate);
-            String duration = durationDays >= 0 ? durationDays + " days planned" : "Invalid duration";
+            String duration = durationDays >= 0 ? durationDays
+                    + " days planned" : "Invalid duration";
 
-            String logEntry = "Destination: " + location + "                              " + duration;
+            String logEntry = "Destination: " + location
+                    + "                              " + duration;
             travelLogs.add(logEntry);
             updateTravelLogsDisplay();
 
             logTravelDialog.dismiss(); // Dismiss the dialog after submitting the log
         } else {
-            Toast.makeText(getContext(), "Invalid input. Please check your dates and destination.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),
+                    "Invalid input. Please check your dates and destination.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -272,7 +291,8 @@ public class DestinationFragment extends Fragment {
         // Check if there are any logs; if not, show the default placeholder
         if (travelLogs.isEmpty()) {
             TextView defaultLogView = new TextView(getContext());
-            defaultLogView.setText("Destination:                                                0 days planned");
+            defaultLogView.setText(
+                    "Destination:                                                0 days planned");
             defaultLogView.setPadding(8, 8, 8, 8);  // Add some padding
             travelLogsContainer.addView(defaultLogView);
         } else if (travelLogs.size() < 5) {
@@ -294,6 +314,7 @@ public class DestinationFragment extends Fragment {
 
     //Travel log
     private int calculateDuration(String startDate, String endDate) {
-        return destinationViewModel.getDurationFromStrings(startDate, endDate);  // ViewModel needs to replace with actual logic
+        return destinationViewModel.getDurationFromStrings(startDate, endDate);
+        // ViewModel needs to replace with actual logic
     }
 }

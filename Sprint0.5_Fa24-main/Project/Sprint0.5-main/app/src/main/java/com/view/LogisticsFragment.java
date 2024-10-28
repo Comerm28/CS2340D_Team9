@@ -36,7 +36,10 @@ import java.util.List;
 public class LogisticsFragment extends Fragment {
 
     private PieChart pieChart;
-    private Button visualizeTripDaysButton, inviteUsersButton, viewNotesButton, listNotesButton;
+    private Button visualizeTripDaysButton;
+    private Button inviteUsersButton;
+    private Button viewNotesButton;
+    private Button listNotesButton;
     private EditText inviteUserEditText;
     private List<String> userNotes;
     private SharedPreferences sharedPreferences;
@@ -46,7 +49,8 @@ public class LogisticsFragment extends Fragment {
     private boolean isPieChartVisible = false;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_logistics, container, false);
 
         logisticsViewModel = new LogisticsViewModel();
@@ -63,7 +67,8 @@ public class LogisticsFragment extends Fragment {
         listNotesButton = view.findViewById(R.id.listNotesButton);
         inviteUserEditText = view.findViewById(R.id.inviteUserEditText);
 
-        sharedPreferences = requireActivity().getSharedPreferences("NotesPrefs", Context.MODE_PRIVATE);
+        sharedPreferences = requireActivity().getSharedPreferences("NotesPrefs",
+                Context.MODE_PRIVATE);
         userNotes = loadNotes();
 
         visualizeTripDaysButton.setOnClickListener(v -> toggleVisualizeTripDays());
@@ -148,10 +153,12 @@ public class LogisticsFragment extends Fragment {
         if (!TextUtils.isEmpty(username)) {
             logisticsViewModel.inviteUser(username, () -> Toast.makeText(getContext(),
                             "User invited successfully.", Toast.LENGTH_SHORT).show(),
-                    fail -> Toast.makeText(getContext(), "User not found or invitation failed.", Toast.LENGTH_SHORT).show()
+                    fail -> Toast.makeText(getContext(),
+                            "User not found or invitation failed.", Toast.LENGTH_SHORT).show()
             );
         } else {
-            Toast.makeText(getContext(), "Enter a username to invite.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Enter a username to invite.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -173,7 +180,8 @@ public class LogisticsFragment extends Fragment {
                     Toast.makeText(getContext(), "Note added.", Toast.LENGTH_SHORT).show();
                 }, fail -> Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show());
             } else {
-                Toast.makeText(getContext(), "Note cannot be empty", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Note cannot be empty",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -183,7 +191,8 @@ public class LogisticsFragment extends Fragment {
             builder.show();
         } catch (Exception e) {
             Log.e("LogisticsFragment", "Error showing add note dialog", e);
-            Toast.makeText(getContext(), "Failed to open the note dialog.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Failed to open the note dialog.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -215,7 +224,8 @@ public class LogisticsFragment extends Fragment {
 
         TextView noteView = new TextView(getContext());
         noteView.setText(note);
-        noteView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+        noteView.setLayoutParams(new LinearLayout.LayoutParams(0,
+                LinearLayout.LayoutParams.WRAP_CONTENT, 1));
         noteView.setPadding(16, 8, 0, 8);
         noteLayout.addView(noteView);
 
