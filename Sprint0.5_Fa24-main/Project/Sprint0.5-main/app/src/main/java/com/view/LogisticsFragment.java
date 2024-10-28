@@ -105,7 +105,7 @@ public class LogisticsFragment extends Fragment {
                 } else {
                     // Add actual data entries
                     entries.add(new PieEntry(plannedDays, "Planned Days"));
-                    entries.add(new PieEntry(allottedDays, "Allotted Days"));
+                    entries.add(new PieEntry(allottedDays - plannedDays, "Allotted Days"));
                 }
 
                 PieDataSet dataSet = new PieDataSet(entries, "");
@@ -114,7 +114,8 @@ public class LogisticsFragment extends Fragment {
                         ContextCompat.getColor(getContext(), R.color.green)
                 });
                 if (entries.size() == 1 && "No Data".equals(entries.get(0).getLabel())) {
-                    dataSet.setColor(ContextCompat.getColor(getContext(), R.color.white)); // Placeholder color for no data
+                    // Placeholder color for no data
+                    dataSet.setColor(ContextCompat.getColor(getContext(), R.color.white));
                 }
                 PieData pieData = new PieData(dataSet);
 
@@ -124,12 +125,14 @@ public class LogisticsFragment extends Fragment {
 
             }, fail -> {
                 // Handle failure for fetching planned days
-                Toast.makeText(getContext(), "Failed to load planned days: " + fail, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Failed to load planned days: " + fail,
+                        Toast.LENGTH_SHORT).show();
                 displayEmptyPieChart();
             });
         }, fail -> {
             // Handle failure for fetching allotted days
-            Toast.makeText(getContext(), "Failed to load allotted days: " + fail, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Failed to load allotted days: " + fail,
+                    Toast.LENGTH_SHORT).show();
             displayEmptyPieChart();
         });
     }
@@ -138,7 +141,8 @@ public class LogisticsFragment extends Fragment {
         List<PieEntry> emptyEntries = new ArrayList<>();
         emptyEntries.add(new PieEntry(1, "No Data"));
         PieDataSet dataSet = new PieDataSet(emptyEntries, "");
-        dataSet.setColor(ContextCompat.getColor(getContext(), R.color.white)); // Placeholder color for no data
+        // Placeholder color for no data
+        dataSet.setColor(ContextCompat.getColor(getContext(), R.color.white));
         PieData pieData = new PieData(dataSet);
 
         pieChart.setData(pieData);
