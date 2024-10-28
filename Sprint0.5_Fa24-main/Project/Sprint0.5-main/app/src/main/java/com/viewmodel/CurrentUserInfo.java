@@ -1,27 +1,19 @@
 package com.viewmodel;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DatabaseError;
-
 
 import com.model.Database;
 import com.model.Destination;
 import com.model.User;
 import com.model.UserDestinationData;
 
-import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -37,7 +29,6 @@ public class CurrentUserInfo {
         dbRef = FirebaseDatabase.getInstance().getReference();
     }
 
-    // Method to get the singleton instance
     public static synchronized CurrentUserInfo getInstance() {
         if (instance == null) {
             instance = new CurrentUserInfo();
@@ -45,36 +36,36 @@ public class CurrentUserInfo {
         return instance;
     }
 
-    // Method to set the current user
     public void setUser(User user) {
         this.user = user;
-        dbRef.child("destinations").child(user.getUsername()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // Check if the user exists
-                if (dataSnapshot.exists()) {
-                    // Get the User object from the snapshot
-                    userDestinationData = dataSnapshot.getValue(UserDestinationData.class);
+        dbRef.child("destinations").child(user.getUsername())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            userDestinationData = dataSnapshot.getValue(UserDestinationData.class);
 
-                    if (userDestinationData == null) {
-                        userDestinationData = new UserDestinationData(user.getUsername());
-                        dbRef.child("destinations").child(user.getUsername()).setValue(userDestinationData);
+                            if (userDestinationData == null) {
+                                userDestinationData = new UserDestinationData(user.getUsername());
+                                dbRef.child("destinations").child(user.getUsername())
+                                        .setValue(userDestinationData);
+                            }
+
+                            userDestinationData.setUsername(user.getUsername());
+
+                        } else {
+                            userDestinationData = new UserDestinationData(user.getUsername());
+                            dbRef.child("destinations")
+                                    .child(user.getUsername()).setValue(userDestinationData);
+                            userDestinationData.setUsername(user.getUsername());
+                        }
                     }
 
-                    userDestinationData.setUsername(user.getUsername());
-
-                } else {
-                    userDestinationData = new UserDestinationData(user.getUsername());
-                    dbRef.child("destinations").child(user.getUsername()).setValue(userDestinationData);
-                    userDestinationData.setUsername(user.getUsername());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle possible errors
-            }
-        });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Handle possible errors perchance
+                    }
+                });
 
         dbRef.child("users").child(user.getUsername()).setValue(user);
     }
@@ -85,9 +76,10 @@ public class CurrentUserInfo {
 
     public void getDestinations(Consumer<List<Destination>> onLoad, Consumer<String> onFail) {
         if (userDestinationData.isCollaborating()) {
-            Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername(),
-                    destinationData -> onLoad.accept(destinationData.getDestinations()),
-                    onFail);
+            Database.getInstance()
+                    .getUserDestinationData(userDestinationData.getCollaboratorUsername(),
+                        destinationData -> onLoad.accept(destinationData.getDestinations()),
+                        onFail);
         } else {
             onLoad.accept(userDestinationData.getDestinations());
         }
@@ -99,9 +91,10 @@ public class CurrentUserInfo {
 
     public void getAllottedVacationDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
         if (userDestinationData.isCollaborating()) {
-            Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername(),
-                    destinationData -> onLoad.accept(user.getAllottedVacationDays()),
-                    onFail);
+            Database.getInstance()
+                    .getUserDestinationData(userDestinationData.getCollaboratorUsername(),
+                        destinationData -> onLoad.accept(user.getAllottedVacationDays()),
+                        onFail);
         } else {
             onLoad.accept(user.getAllottedVacationDays());
         }
@@ -109,9 +102,10 @@ public class CurrentUserInfo {
 
     public void getNotes(Consumer<List<String>> onLoad, Consumer<String> onFail) {
         if (userDestinationData.isCollaborating()) {
-            Database.getInstance().getUserDestinationData(userDestinationData.getCollaboratorUsername(),
-                    destinationData -> onLoad.accept(destinationData.getNotes()),
-                    onFail);
+            Database.getInstance()
+                    .getUserDestinationData(userDestinationData.getCollaboratorUsername(),
+                        destinationData -> onLoad.accept(destinationData.getNotes()),
+                        onFail);
         } else {
             onLoad.accept(userDestinationData.getNotes());
         }

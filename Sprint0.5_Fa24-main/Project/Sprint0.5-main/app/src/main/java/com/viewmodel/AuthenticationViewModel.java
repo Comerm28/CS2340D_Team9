@@ -1,31 +1,26 @@
 package com.viewmodel;
 
-import android.util.Log;
-
 import androidx.lifecycle.ViewModel;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.model.Database;
-import com.model.User;
-import com.model.UserDestinationData;
 
 import java.util.function.Consumer;
 
 public class AuthenticationViewModel extends ViewModel {
-    public void signUp(String username, String password, Runnable onSuccess, Consumer<String> onFail) {
+    public void signUp(String username, String password,
+                       Runnable onSuccess, Consumer<String> onFail) {
         // validate login info format
         if (!isValidLogin(username, password)) {
             onFail.accept("Login info improperly formatted. "
                     + "Cannot have whitespace or invalid characters.");
             return;
         }
-
-        Database.getInstance().signUp(username, password, onSuccess, onFail);
+        Database.getInstance().signUp(username,
+                password, onSuccess, onFail);
     }
 
-    public void logIn(String username, String password, Runnable onSuccess, Consumer<String> onFail) {
+    public void logIn(String username, String password,
+                      Runnable onSuccess, Consumer<String> onFail) {
         // validate login info format
         if (!isValidLogin(username, password)) {
             onFail.accept("Login info improperly formatted. "

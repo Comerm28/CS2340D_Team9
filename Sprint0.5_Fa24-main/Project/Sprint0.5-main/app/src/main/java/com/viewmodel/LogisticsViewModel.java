@@ -3,11 +3,8 @@ package com.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 
-import com.google.firebase.database.DatabaseError;
 import com.model.Database;
-import com.model.Destination;
 import com.model.User;
-import com.model.UserDestinationData;
 
 import java.util.function.Consumer;
 
@@ -28,7 +25,8 @@ public class LogisticsViewModel extends ViewModel {
         Database db = Database.getInstance();
         db.getUserDestinationData(username, destinationData -> {
             destinationData.setCollaborating(true);
-            destinationData.setCollaboratorUsername(CurrentUserInfo.getInstance().getUser().getUsername());
+            destinationData.setCollaboratorUsername(CurrentUserInfo.getInstance()
+                    .getUser().getUsername());
             db.updateDestinationData(new User(username), destinationData);
             onSuccess.run();
         }, onFail);
@@ -39,11 +37,12 @@ public class LogisticsViewModel extends ViewModel {
         db.getUserDestinationData(currentInfo.getUser().getUsername(),
                 destinationData -> {
                     if (destinationData.isCollaborating()) {
-                        db.getUserDestinationData(destinationData.getCollaboratorUsername(), destinationData2 -> {
-                            destinationData.addNote(note);
-                            db.updateDestinationData(new User(destinationData.getCollaboratorUsername()), destinationData);
-                            onSuccess.run();
-                        }, onFail);
+                        db.getUserDestinationData(destinationData.getCollaboratorUsername(),
+                                   destinationData2 -> {
+                                destinationData.addNote(note);
+                                db.updateDestinationData(new User(destinationData
+                                        .getCollaboratorUsername()), destinationData);
+                                onSuccess.run(); }, onFail);
                     } else {
                         destinationData.addNote(note);
                         db.updateDestinationData(currentInfo.getUser(), destinationData);
