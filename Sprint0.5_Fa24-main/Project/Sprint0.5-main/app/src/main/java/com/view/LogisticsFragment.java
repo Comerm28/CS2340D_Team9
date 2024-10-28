@@ -1,7 +1,5 @@
 package com.view;
 
-import androidx.core.content.ContextCompat;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.sprintproject.R;
@@ -115,7 +114,7 @@ public class LogisticsFragment extends Fragment {
                         ContextCompat.getColor(getContext(), R.color.green)
                 });
                 if (entries.size() == 1 && "No Data".equals(entries.get(0).getLabel())) {
-                    dataSet.setColor(ContextCompat.getColor(getContext(), R.color.white));
+                    dataSet.setColor(ContextCompat.getColor(getContext(), R.color.white)); // Placeholder color for no data
                 }
                 PieData pieData = new PieData(dataSet);
 
@@ -139,13 +138,14 @@ public class LogisticsFragment extends Fragment {
         List<PieEntry> emptyEntries = new ArrayList<>();
         emptyEntries.add(new PieEntry(1, "No Data"));
         PieDataSet dataSet = new PieDataSet(emptyEntries, "");
-        dataSet.setColor(ContextCompat.getColor(getContext(), R.color.white));
+        dataSet.setColor(ContextCompat.getColor(getContext(), R.color.white)); // Placeholder color for no data
         PieData pieData = new PieData(dataSet);
 
         pieChart.setData(pieData);
         pieChart.invalidate();
         pieChart.setVisibility(View.VISIBLE);
     }
+
 
 
     private void inviteUser() {
