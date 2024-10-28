@@ -34,7 +34,7 @@ public class DestinationViewModel extends ViewModel {
         return false;
     }
 
-    private boolean isValidDestination(String destination) {
+    public boolean isValidDestination(String destination) {
         if (destination == null || destination.trim().isEmpty()) {
             return false;
         }
