@@ -1,7 +1,5 @@
 package com.view;
 
-import androidx.core.content.ContextCompat;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.sprintproject.R;
@@ -91,29 +90,21 @@ public class LogisticsFragment extends Fragment {
     private void visualizeTripDays() {
         logisticsViewModel.getAllottedDays(allottedDays -> {
             CurrentUserInfo.getInstance().getPlannedDays(plannedDays -> {
-
                 List<PieEntry> entries = new ArrayList<>();
                 entries.add(new PieEntry(plannedDays, "Planned Days"));
-                entries.add(new PieEntry(allottedDays, "Allotted Days"));
+                entries.add(new PieEntry(allottedDays - plannedDays, "Allotted Days"));
 
                 PieDataSet dataSet = new PieDataSet(entries, "");
-                dataSet.setColors(new int[]{
-                        ContextCompat.getColor(getContext(), R.color.blue),
-                        ContextCompat.getColor(getContext(), R.color.green)
-                });
+                dataSet.setColors(ContextCompat.getColor(getContext(), R.color.blue),
+                    ContextCompat.getColor(getContext(), R.color.green));
                 PieData pieData = new PieData(dataSet);
 
                 pieChart.setData(pieData);
                 pieChart.invalidate();
                 pieChart.setVisibility(View.VISIBLE);
-
-                }, fail ->
-                    Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show()
+            }, fail -> Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show()
             );
-            }, fail ->
-                Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show()
-        );
-
+        }, fail -> Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show());
     }
 
     private void inviteUser() {

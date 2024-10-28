@@ -8,6 +8,9 @@ public class User {
     private Date startDate;
     private Date endDate;
 
+    public User() {
+    }
+
     public User(String username) {
         this.username = username;
     }
