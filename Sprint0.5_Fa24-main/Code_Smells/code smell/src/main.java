@@ -15,7 +15,7 @@ public class main {
         Order order = new Order(items, "John Doe", "johndoe@example.com");
 
         System.out.println("Total Price: " + order.calculateTotalPrice());
-
+ 
         order.sendConfirmationEmail();
 
         order.printOrder();
