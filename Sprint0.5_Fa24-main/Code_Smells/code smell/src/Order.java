@@ -33,9 +33,9 @@ public class Order {
                 total += tax;
             }
         }
-    	if (hasGiftCard()) {
-        	total -= 10.0; // subtract $10 for gift card
-    	}
+    	// if (hasGiftCard()) {
+        // 	total -= 10.0; // subtract $10 for gift card
+    	// }
     	if (total > 100.0) {
         	total *= 0.9; // apply 10% discount for orders over $100
     	}
@@ -85,16 +85,16 @@ public class Order {
         this.customerEmail = customerEmail;
     }
 
-    public boolean hasGiftCard() {
-        boolean has_gift_card = false;
-        for (Item item : items) {
-            if (item instanceof GiftCardItem) {
-                has_gift_card = true;
-                break;
-            }
-        }
-        return has_gift_card;
-    }
+    // public boolean hasGiftCard() {
+    //     boolean has_gift_card = false;
+    //     for (Item item : items) {
+    //         if (item instanceof GiftCardItem) {
+    //             has_gift_card = true;
+    //             break;
+    //         }
+    //     }
+    //     return has_gift_card;
+    // }
 
    public void printOrder() {
         System.out.println("Order Details:");
