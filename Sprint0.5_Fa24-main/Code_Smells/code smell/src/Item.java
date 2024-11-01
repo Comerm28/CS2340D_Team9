@@ -1,4 +1,4 @@
-class Item {
+public abstract class Item {
     private String name;
     private double price;
     private int quantity;
@@ -32,4 +32,6 @@ class Item {
     public double getDiscountAmount() {
         return discountAmount;
     }
+
+    public abstract double calculateDiscountedPrice();
 }
