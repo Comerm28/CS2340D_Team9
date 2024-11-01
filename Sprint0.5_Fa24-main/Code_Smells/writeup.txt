@@ -1,0 +1,6 @@
+The item class is a object-oriented abuser as many different types of items will need to inherit from it, but it should not be ever instantiated. 
+Each individual item should define its own method to get its necessary price for the order class, so that must be added as a necessary override to 
+allow for correct functionality of the system.
+
+The Order class has a sendConfirmationEmail() method, which should be in the EmailSender class to address the coupling issue. By moving this method to 
+EmailSender with a paremeter of type Order, we separate responsibilities more effectively, making the code cleaner and reducing dependencies between classes.
