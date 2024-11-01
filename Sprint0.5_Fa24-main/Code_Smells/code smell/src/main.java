@@ -16,7 +16,8 @@ public class main {
 
         System.out.println("Total Price: " + order.calculateTotalPrice());
  
-        order.sendConfirmationEmail();
+        //Refactored for coupling issue
+        EmailSender.sendConfirmationEmail(order);
 
         order.printOrder();
     }
