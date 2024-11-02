@@ -14,6 +14,7 @@ import com.model.Destination;
 import com.model.User;
 import com.model.UserDestinationData;
 
+import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -131,5 +132,12 @@ public class CurrentUserInfo {
             }
             onLoad.accept(sum);
         }, onFail);
+    }
+
+    public Date getUserActualDateAndTime()
+    {
+        //todo get user date and time and store it in date object prob, might do something else but
+        // that makes sense for now
+        return new Date();
     }
 }
