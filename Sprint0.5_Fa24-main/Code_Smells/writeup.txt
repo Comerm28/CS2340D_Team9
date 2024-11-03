@@ -1,3 +1,4 @@
+Participating Members: Mitchell Comer, Neil Dave, Lucas Liebermann, Yu Lu, Tyler Vo
 5 Code Smells:
 1) Dispensibles
   We noticed that the GiftCardClass was a Lazy and Data Class since it was functionally no different from the Item Class. 
