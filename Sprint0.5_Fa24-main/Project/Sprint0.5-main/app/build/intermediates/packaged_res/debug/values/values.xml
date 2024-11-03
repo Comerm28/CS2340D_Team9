@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="blue">#2196F3</color>
     <color name="green">#4CAF50</color>
+    <color name="purple_500">#9C27B0</color>
     <color name="white">#FFFFFFFF</color>
     <string name="accomodation">Accomodation</string>
     <string name="app_name">SprintProject</string>
