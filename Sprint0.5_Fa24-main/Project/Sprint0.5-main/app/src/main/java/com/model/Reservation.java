@@ -5,6 +5,26 @@ public class Reservation {
         Fancy,
         Casual
     }
+    private int time;
+    private String location;
+    private String website;
+    private int reviewStars;
 
-    public Reservation() {}
+    public Reservation(int time, String location, String website) {
+        this.time = time;
+        this.location = location;
+        this.website = website;
+    }
+
+    public String getLocation(){
+        return location;
+    }
+
+    public int getTime(){
+        return time;
+    }
+
+    public String getWebsite(){
+        return website;
+    }
 }

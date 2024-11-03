@@ -4,23 +4,93 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import com.example.sprintproject.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.model.Reservation;
+import com.viewmodel.DiningViewModel;
+
+import java.util.List;
 
 public class DiningFragment extends Fragment {
 
-    @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_dining, container, false);
+    private LinearLayout reservationsContainer;
+    private FloatingActionButton addReservationFab;
+    private DiningViewModel diningViewModel; // Instance of ViewModel
 
-        // Set up the header text
-        TextView headerTextView = view.findViewById(R.id.headerText);
-        headerTextView.setText("Dining");
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_dining, container, false);
+        reservationsContainer = view.findViewById(R.id.reservationsContainer);
+        addReservationFab = view.findViewById(R.id.fabAddReservation);
+        diningViewModel = new ViewModelProvider(this).get(DiningViewModel.class); // Initialize ViewModel
+
+        addReservationFab.setOnClickListener(v -> showAddReservationDialog());
+        loadReservations(); // Load existing reservations if any
 
         return view;
     }
-}
 
+    private void showAddReservationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_reservation, null);
+        builder.setView(dialogView);
+
+        final EditText locationInput = dialogView.findViewById(R.id.locationInput);
+        final EditText timeInput = dialogView.findViewById(R.id.timeInput);
+        final EditText websiteInput = dialogView.findViewById(R.id.websiteInput);
+
+        Button addButton = dialogView.findViewById(R.id.addReservationButton);
+        Button cancelButton = dialogView.findViewById(R.id.cancelButton);
+
+        final AlertDialog dialog = builder.create();
+
+        addButton.setOnClickListener(v -> {
+            String location = locationInput.getText().toString();
+            String time = timeInput.getText().toString();
+            String website = websiteInput.getText().toString();
+            if (!location.isEmpty() && !time.isEmpty() && !website.isEmpty()) {
+                if (diningViewModel.addDiningReservation(location, website, time)) {
+                    Reservation newReservation = new Reservation(Integer.parseInt(time), location, website);
+                    displayReservation(newReservation);
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(getContext(), "Invalid or duplicate reservation", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(getContext(), "All fields must be filled", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        cancelButton.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+    }
+
+    private void loadReservations() {
+        reservationsContainer.removeAllViews();
+        List<Reservation> reservations = diningViewModel.getReservations(); // Assuming this gets from db
+        for (Reservation reservation : reservations) {
+            displayReservation(reservation);
+        }
+    }
+
+    private void displayReservation(Reservation reservation) {
+        View reservationView = LayoutInflater.from(getContext()).inflate(R.layout.reservation_item, reservationsContainer, false);
+        TextView restaurantName = reservationView.findViewById(R.id.restaurantName);
+        TextView restaurantDetails = reservationView.findViewById(R.id.restaurantDetails);
+        TextView reservationDetails = reservationView.findViewById(R.id.reservationDetails);
+
+        restaurantName.setText(String.format("%s — %s", reservation.getLocation(), reservation.getTime()));
+        restaurantDetails.setText(String.format("%s ★★★★☆", reservation.getWebsite()));
+        reservationDetails.setText(String.format("Location: %s, Time: %s", reservation.getLocation(), reservation.getTime()));
+
+        reservationsContainer.addView(reservationView);
+    }
+}

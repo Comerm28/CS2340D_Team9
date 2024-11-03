@@ -2144,6 +2144,7 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color purple_500
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -3071,6 +3072,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable fab_add
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_arrow_back_black_24
@@ -3235,6 +3237,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addReservationButton
 id adjust_height
 id adjust_width
 id alertTitle
@@ -3282,6 +3285,7 @@ id calculateVacationTime
 id calculateVacationTimeButton
 id calculatedField
 id callMeasure
+id cancelButton
 id cancel_button
 id carryVelocity
 id center
@@ -3370,6 +3374,7 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id fabAddReservation
 id fade
 id fill
 id fill_horizontal
@@ -3435,6 +3440,7 @@ id listMode
 id listNotesButton
 id list_item
 id locale
+id locationInput
 id logTravelButton
 id loginButton
 id loginTitle
@@ -3566,7 +3572,11 @@ id ratio
 id rectangles
 id registerButton
 id report_drawn
+id reservationDetails
+id reservationsContainer
 id resetButton
+id restaurantDetails
+id restaurantName
 id resultDisplayLayout
 id resultScreen
 id resultTextView
@@ -3676,6 +3686,7 @@ id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
 id time
+id timeInput
 id title
 id titleDividerNoCustom
 id title_template
@@ -3711,6 +3722,7 @@ id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
 id visualizeTripDaysButton
+id websiteInput
 id welcomeTextView
 id west
 id wide
@@ -3861,6 +3873,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_add_reservation
 layout dialog_notes
 layout fragment_accommodation
 layout fragment_community
@@ -3925,6 +3938,7 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout reservation_item
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
