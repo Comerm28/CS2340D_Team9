@@ -1,9 +1,9 @@
 public abstract class Item {
-    private String name;
-    private double price;
-    private int quantity;
-    private DiscountType discountType;
-    private double discountAmount;
+    protected String name;
+    protected double price;
+    protected int quantity;
+    protected DiscountType discountType;
+    protected double discountAmount;
 
     public Item(String name, double price, int quantity, DiscountType discountType, double discountAmount) {
         this.name = name;
@@ -34,4 +34,6 @@ public abstract class Item {
     }
 
     public abstract double calculateDiscountedPrice();
+
+    public abstract double getNetCost();
 }
