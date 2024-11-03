@@ -1,9 +1,0 @@
-5 Code Smells:
-1) Dispensibles
-  We noticed that the GiftCardClass was a Lazy and Data Class since it was functionally no different from the Item Class. 
-  Logically, it also isn't any different from a regular item since there is no difference from buying a regular item and buying a gift card.
-  To fix this code smell, we deleted the class and changed the main file to create a Item object instead of a Gift Card object.
-
-2) Couplers
-  The Order class has a sendConfirmationEmail() method, which should be in the EmailSender class to address the coupling issue. 
-  By moving this method to EmailSender with a paremeter of type Order, we separate responsibilities more effectively, making the code cleaner and reducing dependencies between classes
