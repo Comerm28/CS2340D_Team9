@@ -1,17 +1,42 @@
 Participating Members: Mitchell Comer, Neil Dave, Lucas Liebermann, Yu Lu, Tyler Vo
-5 Code Smells:
-1) Dispensibles
+
+Code Smells:
+1) Dispensables
   We noticed that the GiftCardClass was a Lazy and Data Class since it was functionally no different from the Item Class. 
-  Logically, it also isn't any different from a regular item since there is no difference from buying a regular item and buying a gift card.
-  To fix this code smell, we deleted the class and changed the main file to create a Item object instead of a Gift Card object.
+  Logically, it also isn't any different from a regular item since there is no difference from buying a regular item and
+  buying a gift card. To fix this code smell, we deleted the class and changed the main file to create a Item object
+  instead of a Gift Card object. Whatever cost that gets added to the total from the GiftCard gets cancelled out by the
+  discount of the GiftCard, so the gift card functionality doesn't do anything. Rather than making a check for hasGiftCard
+  to apply a discount to the order, the gift card item is instantiated as a NormalItem with discountAmount equal to its
+  price, reflecting how the gift card's contribution to the total is cancelled by its discount.
 
 2) Couplers
   The Order class has a sendConfirmationEmail() method, which should be in the EmailSender class to address the coupling issue. 
-  By moving this method to EmailSender with a paremeter of type Order, we separate responsibilities more effectively, making the code cleaner and reducing dependencies between classes
+  By moving this method to EmailSender with a parameter of type Order, we separate responsibilities more effectively, making the
+  code cleaner and reducing dependencies between classes.
 
-3) The item class is a object-oriented abuser as many different types of items will need to inherit from it, but it should not be ever instantiated. 
-Each individual item should define its own method to get its necessary price for the order class, so that must be added as a necessary override to 
-allow for correct functionality of the system.
+3) Object-Oriented Abuser
+  The Item class is a object-oriented abuser as many different types of items will need to inherit from it, but it should
+  not be ever instantiated. Each individual item should define its own method to get its necessary price for the Order class,
+  so that must be added as a necessary override to allow for correct functionality of the system. Thus, Item is made into
+  an abstract class.
 
-4) The Order class has a sendConfirmationEmail() method, which should be in the EmailSender class to address the coupling issue. By moving this method to 
-EmailSender with a paremeter of type Order, we separate responsibilities more effectively, making the code cleaner and reducing dependencies between classes.
+4) Bloater
+  The Order class' calculateTotalPrice is too lengthy of a method and has too many responsibilities (iterating over items,
+  applying discounts, accounting for tax, etc). Instead, an abstract getNetCost method is added to the Item abstract class.
+  The getNetCost method then is implemented for each subclass for Item, multiplying the discounted price by the quantity
+  and then accounting for tax if necessary. Now calculateTotalPrice simply needs to iterate over each Item and add the
+  netCost and do a check for the discount if the total exceeds $100, and this code is less coupled and more readable.
+
+5) Object-Oriented Abuser
+  TaxableItem does not provide too many changes from Item, so this is inappropriate use of inheritance. It is more appropriate
+  to create a Taxable interface with a calculateTax method, which TaxableItem then uses in its getNetCost method. This way,
+  other types of items can also have tax functionality by simply implementing this interface, rather than having to create
+  a separate new class and have duplicate code.
+
+6) Change Preventers
+  After bringing the price calculation logic out of Order and adding getNetCost methods for each Item subclass, there was a lot
+  of code reuse since the getNetCost calculations would always first get the item's price and then try to apply its discount.
+  Instead, the Item class now has a getDiscountedPrice method which makes a call to the applyDiscount method. Now, if a new
+  discount type is added, one simply needs to modify the applyDiscount method in Item for the rest of the program's functionality
+  to work, making future changes easier.

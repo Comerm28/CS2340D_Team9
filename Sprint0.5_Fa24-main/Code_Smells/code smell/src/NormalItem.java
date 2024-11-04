@@ -4,23 +4,7 @@ public class NormalItem extends Item {
     }
 
     @Override
-    public double calculateDiscountedPrice() {
-        return super.getPrice();
-    }
-
-    @Override
     public double getNetCost() {
-        double cost = price;
-        switch (discountType) {
-            case PERCENTAGE:
-                cost -= discountAmount * price;
-                break;
-            case AMOUNT:
-                cost -= discountAmount;
-                break;
-        }
-
-        return cost * quantity;
+        return getDiscountedPrice() * quantity;
     }
-
 }
