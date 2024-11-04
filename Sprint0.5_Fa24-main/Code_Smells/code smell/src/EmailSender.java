@@ -17,5 +17,4 @@ public class EmailSender {
        message += "Total: " + order.calculateTotalPrice();
        EmailSender.sendEmail(order.getCustomerEmail(), "Order Confirmation", message);
    }
-
 }
