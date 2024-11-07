@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.sprintproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.model.Reservation;
+import com.viewmodel.CurrentUserInfo;
 import com.viewmodel.DiningViewModel;
 
 import java.util.List;
@@ -56,10 +57,12 @@ public class DiningFragment extends Fragment {
             String location = locationInput.getText().toString();
             String time = timeInput.getText().toString();
             String website = websiteInput.getText().toString();
+            //String date = dateInput.getText().toString();
+            String date = "05/05/2024";
             if (!location.isEmpty() && !time.isEmpty() && !website.isEmpty()) {
-                if (diningViewModel.addDiningReservation(location, website, time)) {
-                    Reservation newReservation = new Reservation(Integer.parseInt(time), location, website);
-                    displayReservation(newReservation);
+                if (diningViewModel.addDiningReservation(location, website, time, date)) {
+                    CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
+                    loadReservations();
                     dialog.dismiss();
                 } else {
                     Toast.makeText(getContext(), "Invalid or duplicate reservation", Toast.LENGTH_SHORT).show();
