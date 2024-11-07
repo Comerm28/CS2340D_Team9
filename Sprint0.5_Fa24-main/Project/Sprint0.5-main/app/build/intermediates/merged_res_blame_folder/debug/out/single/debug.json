@@ -1,130 +1,126 @@
 [
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_activity_login.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/activity_login.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/drawable_ic_launcher_background.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/drawable/ic_launcher_background.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_fragment_community.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/fragment_community.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_activity_login.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/activity_login.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_fragment_destination.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/fragment_destination.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/xml_data_extraction_rules.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/xml/data_extraction_rules.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_fragment_community.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/fragment_community.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_activity_start_screen.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/activity_start_screen.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_activity_start_screen.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/activity_start_screen.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_dialog_notes.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/dialog_notes.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-xhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_activity_main_app_screens.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/activity_main_app_screens.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/xml/data_extraction_rules.xml"
     },
     {
         "merged": "com.example.sprintproject.app-merged_res-51:/layout_fragment_dining.xml.flat",
         "source": "com.example.sprintproject.app-main-53:/layout/fragment_dining.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_fragment_logistics.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/fragment_logistics.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_fragment_accommodation.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/fragment_accommodation.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "com.example.sprintproject.app-merged_res-51:/xml_backup_rules.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/xml/backup_rules.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_fragment_transportation.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/fragment_transportation.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_fragment_transportation.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/fragment_transportation.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_fragment_logistics.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/fragment_logistics.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_activity_splash_screen.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/activity_splash_screen.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_reservation_item.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/reservation_item.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_activity_splash_screen.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/activity_splash_screen.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_dialog_notes.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/dialog_notes.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "com.example.sprintproject.app-merged_res-51:/drawable_fab_add.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/drawable/fab_add.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_dialog_add_reservation.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/dialog_add_reservation.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_reservation_item.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/reservation_item.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_activity_create_account.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/activity_create_account.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_fragment_destination.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/fragment_destination.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_dialog_add_reservation.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/dialog_add_reservation.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/drawable_fab_add.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/drawable/fab_add.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_fragment_accommodation.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/fragment_accommodation.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_fragment_dining.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/fragment_dining.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/xml_backup_rules.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/xml/backup_rules.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_activity_main_app_screens.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/activity_main_app_screens.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_activity_create_account.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/activity_create_account.xml"
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-hdpi/ic_launcher.webp"
     }
 ]
