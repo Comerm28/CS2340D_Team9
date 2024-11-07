@@ -4,14 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDiningData {
+    private String username;
     private List<Reservation> reservations;
     private List<OnReservationChangeListener> listeners;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public interface OnReservationChangeListener {
         void onReservationAdded(Reservation reservation);
     }
 
-    public UserDiningData() {
+    public UserDiningData(String username) {
+        username = username;
         reservations = new ArrayList<>();
         listeners = new ArrayList<>();
     }

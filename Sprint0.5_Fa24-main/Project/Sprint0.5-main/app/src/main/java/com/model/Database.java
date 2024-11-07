@@ -78,6 +78,10 @@ public class Database {
         dbRef.child("destinations").child(user.getUsername()).setValue(userDestinationData);
     }
 
+    public void updateDiningData(User user, UserDiningData userDiningData) {
+        dbRef.child("dining").child(user.getUsername()).setValue(userDiningData);
+    }
+
     public void checkUser(String username, Consumer<String> dataLoaded,
                           Consumer<String> onFail) {
         dbRef.child("users").child(username)

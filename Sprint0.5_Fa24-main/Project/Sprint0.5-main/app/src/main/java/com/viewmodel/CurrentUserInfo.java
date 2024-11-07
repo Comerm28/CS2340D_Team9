@@ -13,7 +13,9 @@ import com.model.Database;
 import com.model.Destination;
 import com.model.User;
 import com.model.UserDestinationData;
+import com.model.UserDiningData;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
@@ -23,6 +25,7 @@ public class CurrentUserInfo {
 
     private User user;
     private UserDestinationData userDestinationData;
+    private UserDiningData userDiningData;
 
     private DatabaseReference dbRef;
 
@@ -40,7 +43,7 @@ public class CurrentUserInfo {
     public void setUser(User user) {
         this.user = user;
         dbRef.child("destinations").child(user.getUsername())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
@@ -59,6 +62,34 @@ public class CurrentUserInfo {
                             dbRef.child("destinations")
                                     .child(user.getUsername()).setValue(userDestinationData);
                             userDestinationData.setUsername(user.getUsername());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Handle possible errors perchance
+                    }
+                });
+        dbRef.child("dining").child(user.getUsername())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            userDiningData = dataSnapshot.getValue(UserDiningData.class);
+
+                            if (userDiningData == null) {
+                                userDiningData = new UserDiningData(user.getUsername());
+                                dbRef.child("dining").child(user.getUsername())
+                                        .setValue(userDiningData);
+                            }
+
+                            userDiningData.setUsername(user.getUsername());
+
+                        } else {
+                            userDiningData = new UserDiningData(user.getUsername());
+                            dbRef.child("dining")
+                                    .child(user.getUsername()).setValue(userDiningData);
+                            userDiningData.setUsername(user.getUsername());
                         }
                     }
 
@@ -89,6 +120,7 @@ public class CurrentUserInfo {
     public UserDestinationData getUserDestinationData() {
         return userDestinationData;
     }
+    public UserDiningData getUserDiningData() { return userDiningData; }
 
     public void getAllottedVacationDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
         if (userDestinationData.isCollaborating()) {
@@ -136,8 +168,15 @@ public class CurrentUserInfo {
 
     public Date getUserActualDateAndTime()
     {
-        //todo get user date and time and store it in date object prob, might do something else but
-        // that makes sense for now
-        return new Date();
+        Instant now = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            now = Instant.now();
+        }
+        Date date = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            date = Date.from(now);
+        }
+
+        return date;
     }
 }
