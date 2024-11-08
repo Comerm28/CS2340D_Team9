@@ -3214,6 +3214,7 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
+id accommodationsRecyclerView
 id actionDown
 id actionDownUp
 id actionUp
@@ -3273,6 +3274,7 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
+id btnAddAccommodation
 id buttonPanel
 id button_accommodation
 id button_community
@@ -3327,6 +3329,8 @@ id custom
 id customPanel
 id cut
 id dark
+id dateInput
+id dateView
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
@@ -3371,9 +3375,14 @@ id endDateInput
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id etCheckIn
+id etCheckOut
+id etLocation
+id etNumberOfRooms
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id fabAddAccommodation
 id fabAddReservation
 id fade
 id fill
@@ -3441,6 +3450,7 @@ id listNotesButton
 id list_item
 id locale
 id locationInput
+id locationView
 id logTravelButton
 id loginButton
 id loginTitle
@@ -3572,6 +3582,7 @@ id ratio
 id rectangles
 id registerButton
 id report_drawn
+id reservationDate
 id reservationDetails
 id reservationsContainer
 id resetButton
@@ -3585,6 +3596,7 @@ id right
 id rightToLeft
 id right_icon
 id right_side
+id roomInfoView
 id rounded
 id row_index_key
 id rtl
@@ -3628,6 +3640,7 @@ id snackbar_text
 id snap
 id snapMargins
 id south
+id spRoomType
 id spacer
 id special_effects_controller_view_tag
 id splash_image
@@ -3703,6 +3716,7 @@ id transition_scene_layoutid_cache
 id transition_transform
 id travelLogsContainer
 id triangle
+id tvHeader
 id unchecked
 id uniform
 id unlabeled
@@ -3850,6 +3864,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout accommodation_item
 layout activity_create_account
 layout activity_login
 layout activity_main_app_screens
@@ -3873,6 +3888,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_add_accommodation
 layout dialog_add_reservation
 layout dialog_notes
 layout fragment_accommodation

@@ -1,5 +1,6 @@
 package com.view;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import com.model.Reservation;
 import com.viewmodel.CurrentUserInfo;
 import com.viewmodel.DiningViewModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class DiningFragment extends Fragment {
@@ -47,6 +50,9 @@ public class DiningFragment extends Fragment {
         final EditText locationInput = dialogView.findViewById(R.id.locationInput);
         final EditText timeInput = dialogView.findViewById(R.id.timeInput);
         final EditText websiteInput = dialogView.findViewById(R.id.websiteInput);
+        final EditText dateInput = dialogView.findViewById(R.id.dateInput); // Added date input
+
+        setupDatePicker(dateInput); // Set up the date picker dialog
 
         Button addButton = dialogView.findViewById(R.id.addReservationButton);
         Button cancelButton = dialogView.findViewById(R.id.cancelButton);
@@ -57,9 +63,9 @@ public class DiningFragment extends Fragment {
             String location = locationInput.getText().toString();
             String time = timeInput.getText().toString();
             String website = websiteInput.getText().toString();
-            //String date = dateInput.getText().toString();
-            String date = "05/05/2024";
-            if (!location.isEmpty() && !time.isEmpty() && !website.isEmpty()) {
+            String date = dateInput.getText().toString();  // Use the selected date
+
+            if (!location.isEmpty() && !time.isEmpty() && !website.isEmpty() && !date.isEmpty()) {
                 if (diningViewModel.addDiningReservation(location, website, time, date)) {
                     CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
                     loadReservations();
@@ -76,6 +82,24 @@ public class DiningFragment extends Fragment {
         dialog.show();
     }
 
+    private void setupDatePicker(EditText dateInput) {
+        dateInput.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                    (view, year1, monthOfYear, dayOfMonth) -> {
+                        Calendar selectedDate = Calendar.getInstance();
+                        selectedDate.set(year1, monthOfYear, dayOfMonth);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                        dateInput.setText(dateFormat.format(selectedDate.getTime()));
+                    }, year, month, day);
+            datePickerDialog.show();
+        });
+    }
+
+
     private void loadReservations() {
         reservationsContainer.removeAllViews();
         List<Reservation> reservations = diningViewModel.getReservations(); // Assuming this gets from db
@@ -89,11 +113,19 @@ public class DiningFragment extends Fragment {
         TextView restaurantName = reservationView.findViewById(R.id.restaurantName);
         TextView restaurantDetails = reservationView.findViewById(R.id.restaurantDetails);
         TextView reservationDetails = reservationView.findViewById(R.id.reservationDetails);
+        TextView reservationDate = reservationView.findViewById(R.id.reservationDate); // New TextView for date
+
+        // Format the date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // Choose your desired format
+        String formattedDate = reservation.getDate() != null ? dateFormat.format(reservation.getDate()) : "No Date"; // Format the Date object to String
 
         restaurantName.setText(String.format("%s — %s", reservation.getLocation(), reservation.getTime()));
         restaurantDetails.setText(String.format("%s ★★★★☆", reservation.getWebsite()));
         reservationDetails.setText(String.format("Location: %s, Time: %s", reservation.getLocation(), reservation.getTime()));
+        reservationDate.setText(formattedDate); // Set the formatted date string
 
         reservationsContainer.addView(reservationView);
     }
+
+
 }

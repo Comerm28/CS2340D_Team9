@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <EditText
+        android:id="@+id/etLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Location"/>
+
+    <EditText
+        android:id="@+id/etCheckIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Check-in"
+        android:focusable="false"/>
+
+    <EditText
+        android:id="@+id/etCheckOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Check-out"
+        android:focusable="false"/>
+
+    <EditText
+        android:id="@+id/etNumberOfRooms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Number of rooms"/>
+
+    <Spinner
+        android:id="@+id/spRoomType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnAddAccommodation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Accommodation"/>
+
+</LinearLayout>
