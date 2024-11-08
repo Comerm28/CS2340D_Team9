@@ -5,8 +5,11 @@
             "map": [
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/1b046af1dd3d9f3dd1da46bf083ed824/transformed/material-1.11.0/res/values-is/values-is.xml",
 =======
+=======
+>>>>>>> main
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\7aa6a8fb77b480a9439255b36c89ada0\\transformed\\navigation-ui-2.5.3\\res\\values-is\\values-is.xml",
                     "from": {
                         "startLines": "2,3",
@@ -59,6 +62,9 @@
                 },
                 {
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1b046af1dd3d9f3dd1da46bf083ed824\\transformed\\material-1.11.0\\res\\values-is\\values-is.xml",
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73",
@@ -78,6 +84,7 @@
                     }
                 },
                 {
+<<<<<<< HEAD
 <<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/d8398e728a7b272380f5ed52f6c733f0/transformed/browser-1.4.0/res/values-is/values-is.xml",
                     "from": {
@@ -117,6 +124,9 @@
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-is\\values-is.xml",
 >>>>>>> main
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-is\\values-is.xml",
+>>>>>>> main
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -134,7 +144,11 @@
                 },
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/7aa6a8fb77b480a9439255b36c89ada0/transformed/navigation-ui-2.5.3/res/values-is/values-is.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1676dd73e9fb03f382385333fdd033a0\\transformed\\credentials-1.2.0-rc01\\res\\values-is\\values-is.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1676dd73e9fb03f382385333fdd033a0\\transformed\\credentials-1.2.0-rc01\\res\\values-is\\values-is.xml",
 >>>>>>> main
@@ -185,6 +199,7 @@
                         "startOffsets": "3909,4015,4169,4294,4403,4544,4669,4778,5012,5166,5272,5429,5555,5697,5851,5915,5978",
                         "endColumns": "105,153,124,108,140,124,108,104,153,105,156,125,141,153,63,62,78",
                         "endOffsets": "4010,4164,4289,4398,4539,4664,4773,4878,5161,5267,5424,5550,5692,5846,5910,5973,6052"
+<<<<<<< HEAD
                     }
                 },
                 {
@@ -236,6 +251,8 @@
                         "startOffsets": "3909,4015,4169,4294,4403,4544,4669,4778,5012,5166,5272,5429,5555,5697,5851,5915,5978",
                         "endColumns": "105,153,124,108,140,124,108,104,153,105,156,125,141,153,63,62,78",
                         "endOffsets": "4010,4164,4289,4398,4539,4664,4773,4878,5161,5267,5424,5550,5692,5846,5910,5973,6052"
+=======
+>>>>>>> main
                     }
                 }
             ]

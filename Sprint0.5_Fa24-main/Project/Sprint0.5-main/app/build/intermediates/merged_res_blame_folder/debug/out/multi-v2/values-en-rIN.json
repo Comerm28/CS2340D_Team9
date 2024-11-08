@@ -5,7 +5,11 @@
             "map": [
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/581f50f3920c362c106eda96465707ce/transformed/appcompat-1.6.1/res/values-en-rIN/values-en-rIN.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-en-rIN\\values-en-rIN.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-en-rIN\\values-en-rIN.xml",
 >>>>>>> main
@@ -26,7 +30,11 @@
                 },
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/7aa6a8fb77b480a9439255b36c89ada0/transformed/navigation-ui-2.5.3/res/values-en-rIN/values-en-rIN.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1676dd73e9fb03f382385333fdd033a0\\transformed\\credentials-1.2.0-rc01\\res\\values-en-rIN\\values-en-rIN.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1676dd73e9fb03f382385333fdd033a0\\transformed\\credentials-1.2.0-rc01\\res\\values-en-rIN\\values-en-rIN.xml",
 >>>>>>> main
@@ -47,7 +55,11 @@
                 },
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/d8398e728a7b272380f5ed52f6c733f0/transformed/browser-1.4.0/res/values-en-rIN/values-en-rIN.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\d8398e728a7b272380f5ed52f6c733f0\\transformed\\browser-1.4.0\\res\\values-en-rIN\\values-en-rIN.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\d8398e728a7b272380f5ed52f6c733f0\\transformed\\browser-1.4.0\\res\\values-en-rIN\\values-en-rIN.xml",
 >>>>>>> main
@@ -68,6 +80,7 @@
                 },
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/1676dd73e9fb03f382385333fdd033a0/transformed/credentials-1.2.0-rc01/res/values-en-rIN/values-en-rIN.xml",
                     "from": {
                         "startLines": "2,3",
@@ -86,6 +99,9 @@
                 },
                 {
                     "source": "/Users/tvo/.gradle/caches/transforms-3/777c623e9b70c15cdd36e0c4405d1e10/transformed/core-1.9.0/res/values-en-rIN/values-en-rIN.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\777c623e9b70c15cdd36e0c4405d1e10\\transformed\\core-1.9.0\\res\\values-en-rIN\\values-en-rIN.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\777c623e9b70c15cdd36e0c4405d1e10\\transformed\\core-1.9.0\\res\\values-en-rIN\\values-en-rIN.xml",
 >>>>>>> main

@@ -5,6 +5,7 @@
             "map": [
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/777c623e9b70c15cdd36e0c4405d1e10/transformed/core-1.9.0/res/values-lv/values-lv.xml",
                     "from": {
                         "startLines": "2",
@@ -99,6 +100,9 @@
                 {
 <<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/cd8f3646359d65671470a91dfa55539a/transformed/play-services-base-18.1.0/res/values-lv/values.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\cd8f3646359d65671470a91dfa55539a\\transformed\\play-services-base-18.1.0\\res\\values-lv\\values.xml",
+>>>>>>> main
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -115,8 +119,46 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/1b046af1dd3d9f3dd1da46bf083ed824/transformed/material-1.11.0/res/values-lv/values-lv.xml",
 =======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\777c623e9b70c15cdd36e0c4405d1e10\\transformed\\core-1.9.0\\res\\values-lv\\values-lv.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "129",
+                        "startColumns": "4",
+                        "startOffsets": "12128",
+                        "endColumns": "100",
+                        "endOffsets": "12224"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1b046af1dd3d9f3dd1da46bf083ed824\\transformed\\material-1.11.0\\res\\values-lv\\values-lv.xml",
+>>>>>>> main
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\d8398e728a7b272380f5ed52f6c733f0\\transformed\\browser-1.4.0\\res\\values-lv\\values-lv.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,158,257,373",
+                        "endColumns": "102,98,115,101",
+                        "endOffsets": "153,252,368,470"
+                    },
+                    "to": {
+                        "startLines": "62,65,66,67",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "6560,6822,6921,7037",
+                        "endColumns": "102,98,115,101",
+                        "endOffsets": "6658,6916,7032,7134"
+                    }
+                },
+                {
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\777c623e9b70c15cdd36e0c4405d1e10\\transformed\\core-1.9.0\\res\\values-lv\\values-lv.xml",
                     "from": {
                         "startLines": "2",
@@ -155,7 +197,11 @@
                 },
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/581f50f3920c362c106eda96465707ce/transformed/appcompat-1.6.1/res/values-lv/values-lv.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-lv\\values-lv.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-lv\\values-lv.xml",
 >>>>>>> main
@@ -226,6 +272,9 @@
                         "endColumns": "165",
                         "endOffsets": "5422"
                     }
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
                 }
             ]

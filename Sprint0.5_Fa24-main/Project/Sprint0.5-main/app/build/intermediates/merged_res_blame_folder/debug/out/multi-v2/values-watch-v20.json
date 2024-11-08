@@ -5,8 +5,11 @@
             "map": [
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/581f50f3920c362c106eda96465707ce/transformed/appcompat-1.6.1/res/values-watch-v20/values-watch-v20.xml",
 =======
+=======
+>>>>>>> main
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\6324b4d8676938bf17f0b8f5e5109812\\transformed\\play-services-auth-20.7.0\\res\\values-watch-v20\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
@@ -25,6 +28,9 @@
                 },
                 {
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
                     "from": {
                         "startLines": "2,5,8",
@@ -43,6 +49,7 @@
                         "endOffsets": "869,1040,1213"
                     }
 <<<<<<< HEAD
+<<<<<<< HEAD
                 },
                 {
                     "source": "/Users/tvo/.gradle/caches/transforms-3/6324b4d8676938bf17f0b8f5e5109812/transformed/play-services-auth-20.7.0/res/values-watch-v20/values.xml",
@@ -60,6 +67,8 @@
                         "endColumns": "78,79,78,78,90,80,90,79",
                         "endOffsets": "129,209,288,367,458,539,630,710"
                     }
+=======
+>>>>>>> main
 =======
 >>>>>>> main
                 }

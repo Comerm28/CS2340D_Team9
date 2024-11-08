@@ -5,7 +5,11 @@
             "map": [
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/581f50f3920c362c106eda96465707ce/transformed/appcompat-1.6.1/res/values-en-rCA/values-en-rCA.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-en-rCA\\values-en-rCA.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-en-rCA\\values-en-rCA.xml",
 >>>>>>> main
@@ -25,6 +29,7 @@
                     }
                 },
                 {
+<<<<<<< HEAD
 <<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/d8398e728a7b272380f5ed52f6c733f0/transformed/browser-1.4.0/res/values-en-rCA/values-en-rCA.xml",
                     "from": {
@@ -61,6 +66,9 @@
                 },
                 {
                     "source": "/Users/tvo/.gradle/caches/transforms-3/1676dd73e9fb03f382385333fdd033a0/transformed/credentials-1.2.0-rc01/res/values-en-rCA/values-en-rCA.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1676dd73e9fb03f382385333fdd033a0\\transformed\\credentials-1.2.0-rc01\\res\\values-en-rCA\\values-en-rCA.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1676dd73e9fb03f382385333fdd033a0\\transformed\\credentials-1.2.0-rc01\\res\\values-en-rCA\\values-en-rCA.xml",
 >>>>>>> main

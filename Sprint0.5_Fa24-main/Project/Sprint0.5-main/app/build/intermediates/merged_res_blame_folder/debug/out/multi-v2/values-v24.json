@@ -5,7 +5,11 @@
             "map": [
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/581f50f3920c362c106eda96465707ce/transformed/appcompat-1.6.1/res/values-v24/values-v24.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
 >>>>>>> main
@@ -19,7 +23,11 @@
                 },
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/1b046af1dd3d9f3dd1da46bf083ed824/transformed/material-1.11.0/res/values-v24/values-v24.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1b046af1dd3d9f3dd1da46bf083ed824\\transformed\\material-1.11.0\\res\\values-v24\\values-v24.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1b046af1dd3d9f3dd1da46bf083ed824\\transformed\\material-1.11.0\\res\\values-v24\\values-v24.xml",
 >>>>>>> main

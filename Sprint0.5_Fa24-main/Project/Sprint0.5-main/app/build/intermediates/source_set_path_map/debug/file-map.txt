@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 com.example.sprintproject.app-lifecycle-livedata-core-2.6.1-0 /Users/tvo/.gradle/caches/transforms-3/122b4f4a0e3eed2e5f41141041eece8c/transformed/lifecycle-livedata-core-2.6.1/res
 com.example.sprintproject.app-credentials-1.2.0-rc01-1 /Users/tvo/.gradle/caches/transforms-3/1676dd73e9fb03f382385333fdd033a0/transformed/credentials-1.2.0-rc01/res
 com.example.sprintproject.app-material-1.11.0-2 /Users/tvo/.gradle/caches/transforms-3/1b046af1dd3d9f3dd1da46bf083ed824/transformed/material-1.11.0/res
@@ -54,6 +55,8 @@ com.example.sprintproject.app-merged_res-51 /Users/tvo/Desktop/CS/2340/CS2340-D-
 com.example.sprintproject.app-debug-52 /Users/tvo/Desktop/CS/2340/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/src/debug/res
 com.example.sprintproject.app-main-53 /Users/tvo/Desktop/CS/2340/CS2340-D-_Team-9-/Sprint0.5_Fa24-main/Project/Sprint0.5-main/app/src/main/res
 =======
+=======
+>>>>>>> main
 com.example.sprintproject.app-lifecycle-livedata-core-2.6.1-0 C:\Users\ndave\.gradle\caches\transforms-3\122b4f4a0e3eed2e5f41141041eece8c\transformed\lifecycle-livedata-core-2.6.1\res
 com.example.sprintproject.app-credentials-1.2.0-rc01-1 C:\Users\ndave\.gradle\caches\transforms-3\1676dd73e9fb03f382385333fdd033a0\transformed\credentials-1.2.0-rc01\res
 com.example.sprintproject.app-material-1.11.0-2 C:\Users\ndave\.gradle\caches\transforms-3\1b046af1dd3d9f3dd1da46bf083ed824\transformed\material-1.11.0\res
@@ -108,4 +111,7 @@ com.example.sprintproject.app-packageDebugResources-50 C:\Users\ndave\CS2340D_Te
 com.example.sprintproject.app-merged_res-51 C:\Users\ndave\CS2340D_Team9\Sprint0.5_Fa24-main\Project\Sprint0.5-main\app\build\intermediates\merged_res\debug
 com.example.sprintproject.app-debug-52 C:\Users\ndave\CS2340D_Team9\Sprint0.5_Fa24-main\Project\Sprint0.5-main\app\src\debug\res
 com.example.sprintproject.app-main-53 C:\Users\ndave\CS2340D_Team9\Sprint0.5_Fa24-main\Project\Sprint0.5-main\app\src\main\res
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main

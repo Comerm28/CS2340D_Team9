@@ -5,7 +5,11 @@
             "map": [
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/b9d6df1de2f10457974c4cfb98fa05bd/transformed/play-services-basement-18.3.0/res/values-cs/values.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\cd8f3646359d65671470a91dfa55539a\\transformed\\play-services-base-18.1.0\\res\\values-cs\\values.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\cd8f3646359d65671470a91dfa55539a\\transformed\\play-services-base-18.1.0\\res\\values-cs\\values.xml",
 >>>>>>> main
@@ -26,8 +30,11 @@
                 },
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/7aa6a8fb77b480a9439255b36c89ada0/transformed/navigation-ui-2.5.3/res/values-cs/values-cs.xml",
 =======
+=======
+>>>>>>> main
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\d8398e728a7b272380f5ed52f6c733f0\\transformed\\browser-1.4.0\\res\\values-cs\\values-cs.xml",
                     "from": {
                         "startLines": "2,3,4,5",
@@ -80,6 +87,9 @@
                 },
                 {
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\7aa6a8fb77b480a9439255b36c89ada0\\transformed\\navigation-ui-2.5.3\\res\\values-cs\\values-cs.xml",
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
                     "from": {
                         "startLines": "2,3",
@@ -97,6 +107,7 @@
                     }
                 },
                 {
+<<<<<<< HEAD
 <<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/cd8f3646359d65671470a91dfa55539a/transformed/play-services-base-18.1.0/res/values-cs/values.xml",
                     "from": {
@@ -170,6 +181,9 @@
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1676dd73e9fb03f382385333fdd033a0\\transformed\\credentials-1.2.0-rc01\\res\\values-cs\\values-cs.xml",
 >>>>>>> main
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1676dd73e9fb03f382385333fdd033a0\\transformed\\credentials-1.2.0-rc01\\res\\values-cs\\values-cs.xml",
+>>>>>>> main
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -186,6 +200,7 @@
                     }
                 },
                 {
+<<<<<<< HEAD
 <<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/1b046af1dd3d9f3dd1da46bf083ed824/transformed/material-1.11.0/res/values-cs/values-cs.xml",
                     "from": {
@@ -207,6 +222,17 @@
                         "endOffsets": "333"
                     },
                     "to": {
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\b9d6df1de2f10457974c4cfb98fa05bd\\transformed\\play-services-basement-18.3.0\\res\\values-cs\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "138",
+                        "endOffsets": "333"
+                    },
+                    "to": {
+>>>>>>> main
                         "startLines": "53",
                         "startColumns": "4",
                         "startOffsets": "5064",
@@ -225,6 +251,9 @@
                         "endOffsets": "363,441,519,596,699,791,883,1009,1090,1155,1254,1330,1391,1480,1544,1611,1665,1733,1793,1847,1964,2024,2086,2140,2212,2334,2418,2510,2647,2725,2807,2934,3022,3102,3156,3207,3273,3345,3422,3506,3587,3659,3736,3810,3881,3986,4074,4145,4238,4333,4407,4481,4577,4629,4712,4779,4865,4953,5015,5079,5142,5210,5320,5426,5525,5639,5697,5752,5831"
                     },
                     "to": {
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
                         "startLines": "2,37,38,39,40,41,42,43,44,64,65,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,128",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

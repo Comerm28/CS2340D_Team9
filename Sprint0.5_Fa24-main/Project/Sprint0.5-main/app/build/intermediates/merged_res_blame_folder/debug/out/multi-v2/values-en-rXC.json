@@ -5,7 +5,11 @@
             "map": [
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/777c623e9b70c15cdd36e0c4405d1e10/transformed/core-1.9.0/res/values-en-rXC/values-en-rXC.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1676dd73e9fb03f382385333fdd033a0\\transformed\\credentials-1.2.0-rc01\\res\\values-en-rXC\\values-en-rXC.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1676dd73e9fb03f382385333fdd033a0\\transformed\\credentials-1.2.0-rc01\\res\\values-en-rXC\\values-en-rXC.xml",
 >>>>>>> main
@@ -26,7 +30,11 @@
                 },
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/d8398e728a7b272380f5ed52f6c733f0/transformed/browser-1.4.0/res/values-en-rXC/values-en-rXC.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\d8398e728a7b272380f5ed52f6c733f0\\transformed\\browser-1.4.0\\res\\values-en-rXC\\values-en-rXC.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\d8398e728a7b272380f5ed52f6c733f0\\transformed\\browser-1.4.0\\res\\values-en-rXC\\values-en-rXC.xml",
 >>>>>>> main
@@ -47,7 +55,11 @@
                 },
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "source": "/Users/tvo/.gradle/caches/transforms-3/1676dd73e9fb03f382385333fdd033a0/transformed/credentials-1.2.0-rc01/res/values-en-rXC/values-en-rXC.xml",
+=======
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\777c623e9b70c15cdd36e0c4405d1e10\\transformed\\core-1.9.0\\res\\values-en-rXC\\values-en-rXC.xml",
+>>>>>>> main
 =======
                     "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\777c623e9b70c15cdd36e0c4405d1e10\\transformed\\core-1.9.0\\res\\values-en-rXC\\values-en-rXC.xml",
 >>>>>>> main
@@ -81,6 +93,7 @@
                         "startOffsets": "105,312,515,725,912,1113,1329,1509,1684,1878,2072,2267,2464,2663,2858,3056,3253,3447,3641,3826,4031,4234,4435,4641,4846,5053,5327,6771",
                         "endColumns": "206,202,209,186,200,215,179,174,193,193,194,196,198,194,197,196,193,193,184,204,202,200,205,204,206,273,200,185",
                         "endOffsets": "307,510,720,907,1108,1324,1504,1679,1873,2067,2262,2459,2658,2853,3051,3248,3442,3636,3821,4026,4229,4430,4636,4841,5048,5322,5523,6952"
+<<<<<<< HEAD
                     }
                 },
                 {
@@ -98,6 +111,8 @@
                         "startOffsets": "105,312,515,725,912,1113,1329,1509,1684,1878,2072,2267,2464,2663,2858,3056,3253,3447,3641,3826,4031,4234,4435,4641,4846,5053,5327,6771",
                         "endColumns": "206,202,209,186,200,215,179,174,193,193,194,196,198,194,197,196,193,193,184,204,202,200,205,204,206,273,200,185",
                         "endOffsets": "307,510,720,907,1108,1324,1504,1679,1873,2067,2262,2459,2658,2853,3051,3248,3442,3636,3821,4026,4229,4430,4636,4841,5048,5322,5523,6952"
+=======
+>>>>>>> main
                     }
                 }
             ]
