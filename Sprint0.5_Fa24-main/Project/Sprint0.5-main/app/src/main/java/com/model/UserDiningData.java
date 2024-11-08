@@ -5,7 +5,7 @@ import java.util.List;
 
 public class UserDiningData {
     private String username;
-    private List<Reservation> reservations;
+    private List<DiningReservation> reservations;
 
     public UserDiningData() {
         reservations = new ArrayList<>();
@@ -28,11 +28,11 @@ public class UserDiningData {
         reservations = new ArrayList<>();
     }
 
-    public void addReservation(Reservation reservation) {
+    public void addReservation(DiningReservation reservation) {
         reservations.add(reservation);
     }
 
-    public List<Reservation> getReservations() {
+    public List<DiningReservation> getReservations() {
         return reservations;
     }
 }

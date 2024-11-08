@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.sprintproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.model.DiningReservation;
 import com.model.Reservation;
 import com.viewmodel.CurrentUserInfo;
 import com.viewmodel.DiningViewModel;
@@ -47,6 +48,7 @@ public class DiningFragment extends Fragment {
         final EditText locationInput = dialogView.findViewById(R.id.locationInput);
         final EditText timeInput = dialogView.findViewById(R.id.timeInput);
         final EditText websiteInput = dialogView.findViewById(R.id.websiteInput);
+        final EditText dateInput = dialogView.findViewById(R.id.dateInput);
 
         Button addButton = dialogView.findViewById(R.id.addReservationButton);
         Button cancelButton = dialogView.findViewById(R.id.cancelButton);
@@ -57,11 +59,9 @@ public class DiningFragment extends Fragment {
             String location = locationInput.getText().toString();
             String time = timeInput.getText().toString();
             String website = websiteInput.getText().toString();
-            //String date = dateInput.getText().toString();
-            String date = "05/05/2024";
-            if (!location.isEmpty() && !time.isEmpty() && !website.isEmpty()) {
+            String date = dateInput.getText().toString();
+            if (!location.isEmpty() && !time.isEmpty() && !website.isEmpty() && !date.isEmpty()) {
                 if (diningViewModel.addDiningReservation(location, website, time, date)) {
-                    CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
                     loadReservations();
                     dialog.dismiss();
                 } else {
@@ -78,21 +78,28 @@ public class DiningFragment extends Fragment {
 
     private void loadReservations() {
         reservationsContainer.removeAllViews();
-        List<Reservation> reservations = diningViewModel.getReservations(); // Assuming this gets from db
-        for (Reservation reservation : reservations) {
+        List<DiningReservation> reservations = diningViewModel.getReservations(); // Assuming this gets from db
+        for (DiningReservation reservation : reservations) {
             displayReservation(reservation);
         }
     }
 
-    private void displayReservation(Reservation reservation) {
+    private void displayReservation(DiningReservation reservation) {
         View reservationView = LayoutInflater.from(getContext()).inflate(R.layout.reservation_item, reservationsContainer, false);
         TextView restaurantName = reservationView.findViewById(R.id.restaurantName);
         TextView restaurantDetails = reservationView.findViewById(R.id.restaurantDetails);
         TextView reservationDetails = reservationView.findViewById(R.id.reservationDetails);
 
-        restaurantName.setText(String.format("%s — %s", reservation.getLocation(), reservation.getTime()));
-        restaurantDetails.setText(String.format("%s ★★★★☆", reservation.getWebsite()));
-        reservationDetails.setText(String.format("Location: %s, Time: %s", reservation.getLocation(), reservation.getTime()));
+        restaurantName.setText(String.format("%s", reservation.getLocation()));
+        String stars = "";
+        for (int i = 0; i < reservation.getReviewStars(); i++) {
+            stars += "★";
+        }
+        for (int i = 0; i < 5 - reservation.getReviewStars(); i++) {
+            stars += "☆";
+        }
+        restaurantDetails.setText(String.format("%s %s", reservation.getWebsite(), stars));
+        reservationDetails.setText(String.format("Date: %s, Time: %s", reservation.parseDate(), reservation.parseTime()));
 
         reservationsContainer.addView(reservationView);
     }

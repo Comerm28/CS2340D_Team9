@@ -23,6 +23,7 @@ id createAccountButton
 id createAccountTitle
 id createPasswordEditText
 id createUsernameEditText
+id dateInput
 id destinationFragmentLayout
 id durationInput
 id endDateInput
