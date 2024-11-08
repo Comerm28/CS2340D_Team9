@@ -66,12 +66,46 @@
     {
         "merged": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-merged_res-51:\\layout_activity_main_app_screens.xml.flat",
         "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\layout\\activity_main_app_screens.xml"
+<<<<<<< HEAD
+    },
+    {
+<<<<<<< HEAD
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_activity_splash_screen.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/activity_splash_screen.xml"
+=======
+>>>>>>> main
     },
     {
         "merged": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-merged_res-51:\\xml_backup_rules.xml.flat",
         "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\xml\\backup_rules.xml"
     },
     {
+<<<<<<< HEAD
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-anydpi-v26/ic_launcher_round.xml"
+=======
+        "merged": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-merged_res-51:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-merged_res-51:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-merged_res-51:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\xml\\data_extraction_rules.xml"
+>>>>>>> main
+    },
+    {
+        "merged": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-merged_res-51:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-merged_res-51:\\layout_activity_splash_screen.xml.flat",
+        "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\layout\\activity_splash_screen.xml"
+    },
+    {
+=======
         "merged": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-merged_res-51:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
@@ -88,6 +122,7 @@
         "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\layout\\activity_splash_screen.xml"
     },
     {
+>>>>>>> main
         "merged": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-merged_res-51:\\mipmap-mdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\mipmap-mdpi\\ic_launcher.webp"
     },
@@ -124,7 +159,33 @@
         "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
+<<<<<<< HEAD
+<<<<<<< HEAD
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_accommodation_item.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/accommodation_item.xml"
+    },
+    {
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_activity_main_app_screens.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/activity_main_app_screens.xml"
+    },
+    {
+        "merged": "com.example.sprintproject.app-merged_res-51:/layout_dialog_add_accommodation.xml.flat",
+        "source": "com.example.sprintproject.app-main-53:/layout/dialog_add_accommodation.xml"
+    },
+    {
+        "merged": "com.example.sprintproject.app-merged_res-51:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.sprintproject.app-main-53:/mipmap-hdpi/ic_launcher.webp"
+=======
         "merged": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-merged_res-51:\\layout_fragment_logistics.xml.flat",
         "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\layout\\fragment_logistics.xml"
+>>>>>>> main
+=======
+        "merged": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-merged_res-51:\\layout_fragment_logistics.xml.flat",
+        "source": "C:\\Users\\ndave\\.gradle\\daemon\\8.2\\com.example.sprintproject.app-main-53:\\layout\\fragment_logistics.xml"
+>>>>>>> main
     }
 ]

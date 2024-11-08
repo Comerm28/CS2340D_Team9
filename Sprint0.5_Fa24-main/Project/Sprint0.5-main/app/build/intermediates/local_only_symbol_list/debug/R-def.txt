@@ -8,7 +8,9 @@ color white
 drawable fab_add
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+id accommodationsRecyclerView
 id addReservationButton
+id btnAddAccommodation
 id button_accommodation
 id button_community
 id button_destination
@@ -24,9 +26,21 @@ id createAccountTitle
 id createPasswordEditText
 id createUsernameEditText
 id dateInput
+<<<<<<< HEAD
+<<<<<<< HEAD
+id dateView
+=======
+>>>>>>> main
+=======
+>>>>>>> main
 id destinationFragmentLayout
 id durationInput
 id endDateInput
+id etCheckIn
+id etCheckOut
+id etLocation
+id etNumberOfRooms
+id fabAddAccommodation
 id fabAddReservation
 id fragment_container
 id headerText
@@ -34,6 +48,7 @@ id inviteUserEditText
 id inviteUsersButton
 id listNotesButton
 id locationInput
+id locationView
 id logTravelButton
 id loginButton
 id loginTitle
@@ -43,6 +58,7 @@ id passwordEditText
 id pieChart
 id quitButton
 id registerButton
+id reservationDate
 id reservationDetails
 id reservationsContainer
 id resetButton
@@ -51,13 +67,16 @@ id restaurantName
 id resultDisplayLayout
 id resultScreen
 id resultTextView
+id roomInfoView
 id scrollView
+id spRoomType
 id splash_image
 id splash_text
 id startButton
 id startDateInput
 id timeInput
 id travelLogsContainer
+id tvHeader
 id usernameEditText
 id vacationTimeCalculatorForm
 id validCharacters
@@ -65,11 +84,13 @@ id viewNotesButton
 id visualizeTripDaysButton
 id websiteInput
 id welcomeTextView
+layout accommodation_item
 layout activity_create_account
 layout activity_login
 layout activity_main_app_screens
 layout activity_splash_screen
 layout activity_start_screen
+layout dialog_add_accommodation
 layout dialog_add_reservation
 layout dialog_notes
 layout fragment_accommodation

@@ -6,19 +6,40 @@ import com.model.Lodging;
 import com.model.Reservation;
 
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.text.SimpleDateFormat;
 
 public class AccomodationsViewModel extends ViewModel {
     private CurrentUserInfo currentUserInfo;
+    private List<Lodging> lodgings;
 
     public AccomodationsViewModel() {
         currentUserInfo = CurrentUserInfo.getInstance();
+        lodgings = new ArrayList<>();
     }
 
-    public boolean addAccomodation(String check_in, String check_out, String location,
+    //temporary to make view show accomodations
+    public List<Lodging> getLodgings() {
+        return lodgings;
+    }
+
+    public boolean addAccommodation(String check_in, String check_out, String location,
                                    int num_rooms, int room_type_code)
     {
         if(isValidAccomodation(check_in, check_out, location, room_type_code)) {
-            return false;
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            try {
+                Date checkInDate = sdf.parse(check_in);
+                Date checkOutDate = sdf.parse(check_out);
+                Lodging.RoomType roomType = Lodging.RoomType.values()[room_type_code];  // Correct indexing usage
+
+                Lodging newLodging = new Lodging(location, checkInDate, checkOutDate, num_rooms, roomType);
+                lodgings.add(newLodging);
+                return true;
+            } catch (Exception e) {
+                return false; // Return false if date parsing fails or room type code is out of bounds
+            }
         }
         //todo make object and update database
 
