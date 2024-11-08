@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.sprintproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.model.DiningReservation;
 import com.model.Reservation;
 import com.viewmodel.CurrentUserInfo;
 import com.viewmodel.DiningViewModel;
@@ -67,7 +68,6 @@ public class DiningFragment extends Fragment {
 
             if (!location.isEmpty() && !time.isEmpty() && !website.isEmpty() && !date.isEmpty()) {
                 if (diningViewModel.addDiningReservation(location, website, time, date)) {
-                    CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
                     loadReservations();
                     dialog.dismiss();
                 } else {
@@ -102,13 +102,13 @@ public class DiningFragment extends Fragment {
 
     private void loadReservations() {
         reservationsContainer.removeAllViews();
-        List<Reservation> reservations = diningViewModel.getReservations(); // Assuming this gets from db
-        for (Reservation reservation : reservations) {
+        List<DiningReservation> reservations = diningViewModel.getReservations(); // Assuming this gets from db
+        for (DiningReservation reservation : reservations) {
             displayReservation(reservation);
         }
     }
 
-    private void displayReservation(Reservation reservation) {
+    private void displayReservation(DiningReservation reservation) {
         View reservationView = LayoutInflater.from(getContext()).inflate(R.layout.reservation_item, reservationsContainer, false);
         TextView restaurantName = reservationView.findViewById(R.id.restaurantName);
         TextView restaurantDetails = reservationView.findViewById(R.id.restaurantDetails);
@@ -119,9 +119,16 @@ public class DiningFragment extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // Choose your desired format
         String formattedDate = reservation.getDate() != null ? dateFormat.format(reservation.getDate()) : "No Date"; // Format the Date object to String
 
-        restaurantName.setText(String.format("%s — %s", reservation.getLocation(), reservation.getTime()));
-        restaurantDetails.setText(String.format("%s ★★★★☆", reservation.getWebsite()));
-        reservationDetails.setText(String.format("Location: %s, Time: %s", reservation.getLocation(), reservation.getTime()));
+        restaurantName.setText(String.format("%s", reservation.getLocation()));
+        String stars = "";
+        for (int i = 0; i < reservation.getReviewStars(); i++) {
+            stars += "★";
+        }
+        for (int i = 0; i < 5 - reservation.getReviewStars(); i++) {
+            stars += "☆";
+        }
+        restaurantDetails.setText(String.format("%s %s", reservation.getWebsite(), stars));
+        reservationDetails.setText(String.format("Date: %s, Time: %s", reservation.parseDate(), reservation.parseTime()));
         reservationDate.setText(formattedDate); // Set the formatted date string
 
         reservationsContainer.addView(reservationView);
