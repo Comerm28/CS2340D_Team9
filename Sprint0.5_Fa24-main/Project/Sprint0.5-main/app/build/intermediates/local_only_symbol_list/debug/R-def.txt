@@ -8,7 +8,7 @@ color white
 drawable fab_add
 drawable ic_launcher_background
 drawable ic_launcher_foreground
-id accommodationsRecyclerView
+id accommodationsContainer
 id addReservationButton
 id btnAddAccommodation
 id button_accommodation

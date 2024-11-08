@@ -14,12 +14,18 @@
         android:layout_alignParentTop="true"
         android:textStyle="bold"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/accommodationsRecyclerView"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tvHeader"
-        android:padding="16dp" />
+        android:layout_below="@id/tvHeader">
+
+        <LinearLayout
+            android:id="@+id/accommodationsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"/>
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddAccommodation"
@@ -28,7 +34,6 @@
         android:layout_margin="16dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        app:srcCompat="@android:drawable/ic_input_add"
+        app:srcCompat="@drawable/fab_add"
         app:fabSize="normal"/>
-
 </RelativeLayout>

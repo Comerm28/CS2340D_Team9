@@ -13,6 +13,11 @@ public abstract class Reservation {
         this.reviewStars = (int)(Math.random() * 5) + 1;
     }
 
+    public Reservation(String location) {
+        this.location = location;
+        this.reviewStars = (int)(Math.random() * 5) + 1;
+    }
+
     public String getLocation(){
         return location;
     }
