@@ -3330,13 +3330,7 @@ id customPanel
 id cut
 id dark
 id dateInput
-<<<<<<< HEAD
-<<<<<<< HEAD
 id dateView
-=======
->>>>>>> main
-=======
->>>>>>> main
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
@@ -3588,7 +3582,6 @@ id ratio
 id rectangles
 id registerButton
 id report_drawn
-id reservationDate
 id reservationDetails
 id reservationsContainer
 id resetButton
@@ -3598,6 +3591,7 @@ id resultDisplayLayout
 id resultScreen
 id resultTextView
 id reverseSawtooth
+id reviewStars
 id right
 id rightToLeft
 id right_icon

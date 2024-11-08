@@ -26,13 +26,7 @@ id createAccountTitle
 id createPasswordEditText
 id createUsernameEditText
 id dateInput
-<<<<<<< HEAD
-<<<<<<< HEAD
 id dateView
-=======
->>>>>>> main
-=======
->>>>>>> main
 id destinationFragmentLayout
 id durationInput
 id endDateInput
@@ -58,7 +52,6 @@ id passwordEditText
 id pieChart
 id quitButton
 id registerButton
-id reservationDate
 id reservationDetails
 id reservationsContainer
 id resetButton
@@ -67,6 +60,7 @@ id restaurantName
 id resultDisplayLayout
 id resultScreen
 id resultTextView
+id reviewStars
 id roomInfoView
 id scrollView
 id spRoomType

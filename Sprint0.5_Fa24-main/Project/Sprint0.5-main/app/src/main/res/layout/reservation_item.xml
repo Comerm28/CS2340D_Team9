@@ -32,9 +32,8 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"/>
 
-        <!-- New TextView for the Reservation Date -->
         <TextView
-            android:id="@+id/reservationDate"
+            android:id="@+id/reviewStars"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"

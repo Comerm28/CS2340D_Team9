@@ -23,12 +23,20 @@ public class DiningReservation extends Reservation {
     }
 
     public String parseDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        return dateFormat.format(dateAndTime);
+        if (dateAndTime != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+            return dateFormat.format(dateAndTime);
+        } else {
+            return "No Date";
+        }
     }
 
     public String parseTime() {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
-        return timeFormat.format(dateAndTime);
+        if (dateAndTime != null) {
+            SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
+            return timeFormat.format(dateAndTime);
+        } else {
+            return "No Time";
+        }
     }
 }

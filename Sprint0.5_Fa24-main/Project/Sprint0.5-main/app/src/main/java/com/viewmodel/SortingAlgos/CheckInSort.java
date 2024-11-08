@@ -1,14 +1,13 @@
 package com.viewmodel.SortingAlgos;
 
-import com.model.Lodging;
-
 import java.util.Collections;
 import java.util.List;
+import com.model.AccommodationReservation;
 
-public class CheckInSort implements ViewSort<Lodging>{
+public class CheckInSort implements ViewSort<AccommodationReservation>{
 
     @Override
-    public List<Lodging> sort(List<Lodging> notSorted) {
+    public List<AccommodationReservation> sort(List<AccommodationReservation> notSorted) {
         //todo
         return Collections.emptyList();
     }

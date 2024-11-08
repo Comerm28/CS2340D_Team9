@@ -36,6 +36,4 @@ public abstract class Reservation {
     public void setReviewStars(int reviewStars) {
         this.reviewStars = reviewStars;
     }
-
-
 }

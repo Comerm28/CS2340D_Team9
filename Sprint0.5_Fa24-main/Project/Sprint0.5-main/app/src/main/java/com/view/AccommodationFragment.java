@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.sprintproject.R;
-import com.model.Lodging;
+import com.model.AccommodationReservation;
 import com.viewmodel.AccomodationsViewModel;
 
 import java.text.SimpleDateFormat;
@@ -40,11 +40,12 @@ public class AccommodationFragment extends Fragment {
 
         accommodationsRecyclerView = view.findViewById(R.id.accommodationsRecyclerView);
         accommodationsViewModel = new ViewModelProvider(this).get(AccomodationsViewModel.class);
-        accommodationsAdapter = new AccommodationsAdapter(accommodationsViewModel.getLodgings());
+
+        accommodationsAdapter = new AccommodationsAdapter(accommodationsViewModel.getAccommodations());
         accommodationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         accommodationsRecyclerView.setAdapter(accommodationsAdapter);
 
-        FloatingActionButton addAccommodationFab = view.findViewById(R.id.fabAddAccommodation);
+        addAccommodationFab = view.findViewById(R.id.fabAddAccommodation);
         addAccommodationFab.setOnClickListener(v -> showAddAccommodationDialog());
 
         return view;
@@ -60,32 +61,28 @@ public class AccommodationFragment extends Fragment {
         EditText checkOutInput = dialogView.findViewById(R.id.etCheckOut);
         EditText numberOfRoomsInput = dialogView.findViewById(R.id.etNumberOfRooms);
         Spinner roomTypeSpinner = dialogView.findViewById(R.id.spRoomType);
-        Button addButton = dialogView.findViewById(R.id.btnAddAccommodation);
 
         setupDatePicker(checkInInput);
         setupDatePicker(checkOutInput);
 
-        ArrayAdapter<Lodging.RoomType> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, Lodging.RoomType.values());
+        ArrayAdapter<AccommodationReservation.RoomType> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, AccommodationReservation.RoomType.values());
         roomTypeSpinner.setAdapter(spinnerAdapter);
 
         AlertDialog dialog = builder.create();
 
+        Button addButton = dialogView.findViewById(R.id.btnAddAccommodation);
         addButton.setOnClickListener(v -> {
-            try {
-                String location = locationInput.getText().toString();
-                String checkInDate = checkInInput.getText().toString();
-                String checkOutDate = checkOutInput.getText().toString();
-                int numRooms = Integer.parseInt(numberOfRoomsInput.getText().toString());
-                Lodging.RoomType selectedRoomType = (Lodging.RoomType) roomTypeSpinner.getSelectedItem();
+            String location = locationInput.getText().toString();
+            String checkInDate = checkInInput.getText().toString();
+            String checkOutDate = checkOutInput.getText().toString();
+            int numRooms = Integer.parseInt(numberOfRoomsInput.getText().toString());
+            AccommodationReservation.RoomType selectedRoomType = (AccommodationReservation.RoomType) roomTypeSpinner.getSelectedItem();
 
-                if (accommodationsViewModel.addAccommodation(checkInDate, checkOutDate, location, numRooms, selectedRoomType.ordinal())) {
-                    accommodationsAdapter.notifyDataSetChanged();
-                    dialog.dismiss();  // Correctly dismiss the dialog
-                } else {
-                    Toast.makeText(getContext(), "Failed to add accommodation. Check your inputs.", Toast.LENGTH_SHORT).show();
-                }
-            } catch (Exception e) {
-                Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            if (accommodationsViewModel.addAccommodation(checkInDate, checkOutDate, location, numRooms, selectedRoomType)) {
+                accommodationsAdapter.notifyDataSetChanged();
+                dialog.dismiss();
+            } else {
+                Toast.makeText(getContext(), "Failed to add accommodation. Check your inputs.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -102,10 +99,10 @@ public class AccommodationFragment extends Fragment {
     }
 
     private class AccommodationsAdapter extends RecyclerView.Adapter<AccommodationsAdapter.ViewHolder> {
-        private final List<Lodging> lodgings;
+        private final List<AccommodationReservation> accommodations;
 
-        AccommodationsAdapter(List<Lodging> lodgings) {
-            this.lodgings = lodgings;
+        AccommodationsAdapter(List<AccommodationReservation> accommodations) {
+            this.accommodations = accommodations;
         }
 
         @NonNull
@@ -117,18 +114,18 @@ public class AccommodationFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            Lodging lodging = lodgings.get(position);
-            holder.locationView.setText(lodging.getLocation());
+            AccommodationReservation accommodation = accommodations.get(position);
+            holder.locationView.setText(accommodation.getLocation());
             holder.dateView.setText(String.format("Check-in: %s - Check-out: %s",
-                    new SimpleDateFormat("MM/dd/yyyy").format(lodging.getCheckInDate()),
-                    new SimpleDateFormat("MM/dd/yyyy").format(lodging.getCheckOutDate())));
+                    new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckInDate()),
+                    new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckOutDate())));
             holder.roomInfoView.setText(String.format("Rooms: %d, Type: %s",
-                    lodging.getNumberOfRooms(), lodging.getRoomType()));
+                    accommodation.getNumRooms(), accommodation.getRoomType().displayString));
         }
 
         @Override
         public int getItemCount() {
-            return lodgings.size();
+            return accommodations.size();
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {

@@ -24,7 +24,7 @@ public class UserDiningData {
     }
 
     public UserDiningData(String username) {
-        username = username;
+        this.username = username;
         reservations = new ArrayList<>();
     }
 
