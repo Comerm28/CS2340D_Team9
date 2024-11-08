@@ -82,6 +82,10 @@ public class Database {
         dbRef.child("dining").child(user.getUsername()).setValue(userDiningData);
     }
 
+    public void updateUserAccommodationData(User user, UserAccommodationData data) {
+        dbRef.child("dining").child(user.getUsername()).setValue(data);
+    }
+
     public void checkUser(String username, Consumer<String> dataLoaded,
                           Consumer<String> onFail) {
         dbRef.child("users").child(username)
@@ -110,6 +114,26 @@ public class Database {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             dataLoaded.accept(dataSnapshot.getValue(UserDestinationData.class));
+                        } else {
+                            onFail.accept("User not present.");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        onFail.accept(databaseError.getMessage());
+                    }
+                });
+    }
+
+    public void getUserAccommodationData(String username, Consumer<UserAccommodationData> dataLoaded,
+                                       Consumer<String> onFail) {
+        dbRef.child("accommodations").child(username)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            dataLoaded.accept(dataSnapshot.getValue(UserAccommodationData.class));
                         } else {
                             onFail.accept("User not present.");
                         }
