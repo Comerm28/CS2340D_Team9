@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.sprintproject.R;
-import com.model.Lodging;
+import com.model.AccommodationReservation;
 import com.viewmodel.AccomodationsViewModel;
 
 import java.text.SimpleDateFormat;
@@ -65,7 +65,7 @@ public class AccommodationFragment extends Fragment {
         setupDatePicker(checkInInput);
         setupDatePicker(checkOutInput);
 
-        ArrayAdapter<Lodging.RoomType> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, Lodging.RoomType.values());
+        ArrayAdapter<AccommodationReservation.RoomType> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, AccommodationReservation.RoomType.values());
         roomTypeSpinner.setAdapter(spinnerAdapter);
 
         AlertDialog dialog = builder.create();
@@ -76,9 +76,11 @@ public class AccommodationFragment extends Fragment {
                 String checkInDate = checkInInput.getText().toString();
                 String checkOutDate = checkOutInput.getText().toString();
                 int numRooms = Integer.parseInt(numberOfRoomsInput.getText().toString());
-                Lodging.RoomType selectedRoomType = (Lodging.RoomType) roomTypeSpinner.getSelectedItem();
+                AccommodationReservation.RoomType selectedRoomType = (AccommodationReservation.RoomType) roomTypeSpinner.getSelectedItem();
 
-                if (accommodationsViewModel.addAccommodation(checkInDate, checkOutDate, location, numRooms, selectedRoomType.ordinal())) {
+                String tempWebsite = "temp.com";
+
+                if (accommodationsViewModel.addAccommodation(checkInDate, checkOutDate, location, tempWebsite, numRooms, selectedRoomType)) {
                     accommodationsAdapter.notifyDataSetChanged();
                     dialog.dismiss();  // Correctly dismiss the dialog
                 } else {
@@ -102,9 +104,9 @@ public class AccommodationFragment extends Fragment {
     }
 
     private class AccommodationsAdapter extends RecyclerView.Adapter<AccommodationsAdapter.ViewHolder> {
-        private final List<Lodging> lodgings;
+        private final List<AccommodationReservation> lodgings;
 
-        AccommodationsAdapter(List<Lodging> lodgings) {
+        AccommodationsAdapter(List<AccommodationReservation> lodgings) {
             this.lodgings = lodgings;
         }
 
@@ -117,13 +119,13 @@ public class AccommodationFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            Lodging lodging = lodgings.get(position);
+            AccommodationReservation lodging = lodgings.get(position);
             holder.locationView.setText(lodging.getLocation());
             holder.dateView.setText(String.format("Check-in: %s - Check-out: %s",
                     new SimpleDateFormat("MM/dd/yyyy").format(lodging.getCheckInDate()),
                     new SimpleDateFormat("MM/dd/yyyy").format(lodging.getCheckOutDate())));
             holder.roomInfoView.setText(String.format("Rooms: %d, Type: %s",
-                    lodging.getNumberOfRooms(), lodging.getRoomType()));
+                    lodging.getNumRooms(), lodging.getRoomType()));
         }
 
         @Override

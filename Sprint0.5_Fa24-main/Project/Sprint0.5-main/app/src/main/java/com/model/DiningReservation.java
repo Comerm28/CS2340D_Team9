@@ -1,13 +1,14 @@
 package com.model;
 
+import android.util.Log;
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class DiningReservation extends Reservation {
     private Date dateAndTime;
-    public DiningReservation() {
 
-    }
+    public DiningReservation() {}
 
     public DiningReservation(String location, String website, Date dateAndTime) {
         super(location, website);
