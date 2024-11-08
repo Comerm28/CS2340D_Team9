@@ -3327,6 +3327,7 @@ id custom
 id customPanel
 id cut
 id dark
+id dateInput
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
