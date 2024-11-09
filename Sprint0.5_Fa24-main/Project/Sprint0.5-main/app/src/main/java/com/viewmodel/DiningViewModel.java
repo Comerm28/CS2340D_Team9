@@ -26,11 +26,12 @@ public class DiningViewModel extends ViewModel {
     
     public boolean addDiningReservation(String location, String website, String time, String date)
     {
-        Date dateAndTime = parseDateTime(date, time);
+        date = date.replace('/', '-');
         if(!validReservation(location, website, time, date))
         {
             return false;
         }
+        Date dateAndTime = parseDateTime(date, time);
         UserDiningData userDiningData = currentUserInfo.getUserDiningData();
         userDiningData.addReservation(new DiningReservation(location, website, dateAndTime));
         Database.getInstance().updateDiningData(currentUserInfo.getUser(), userDiningData);

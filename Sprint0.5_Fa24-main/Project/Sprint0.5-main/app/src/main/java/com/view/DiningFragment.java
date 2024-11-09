@@ -2,6 +2,7 @@ package com.view;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,7 +118,7 @@ public class DiningFragment extends Fragment {
 
         // Format the date
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // Choose your desired format
-        String formattedDate = reservation.getDate() != null ? dateFormat.format(reservation.getDate()) : "No Date"; // Format the Date object to String
+        String formattedDate = reservation.getDateAndTime() != null ? dateFormat.format(reservation.getDateAndTime()) : "No Date"; // Format the Date object to String
 
         restaurantName.setText(String.format("%s", reservation.getLocation()));
         String stars = "";

@@ -4,15 +4,7 @@
             "outputFile": "com.example.sprintproject.app-mergeDebugResources-49:/values-w600dp-land-v13/values-w600dp-land-v13.xml",
             "map": [
                 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    "source": "/Users/tvo/.gradle/caches/transforms-3/1b046af1dd3d9f3dd1da46bf083ed824/transformed/material-1.11.0/res/values-w600dp-land-v13/values-w600dp-land-v13.xml",
-=======
-                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1b046af1dd3d9f3dd1da46bf083ed824\\transformed\\material-1.11.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
->>>>>>> main
-=======
-                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1b046af1dd3d9f3dd1da46bf083ed824\\transformed\\material-1.11.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
->>>>>>> main
+                    "source": "/home/ash/.gradle/caches/transforms-3/1b046af1dd3d9f3dd1da46bf083ed824/transformed/material-1.11.0/res/values-w600dp-land-v13/values-w600dp-land-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

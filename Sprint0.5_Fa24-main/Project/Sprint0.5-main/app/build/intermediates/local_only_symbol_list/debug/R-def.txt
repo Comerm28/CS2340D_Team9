@@ -26,13 +26,7 @@ id createAccountTitle
 id createPasswordEditText
 id createUsernameEditText
 id dateInput
-<<<<<<< HEAD
-<<<<<<< HEAD
 id dateView
-=======
->>>>>>> main
-=======
->>>>>>> main
 id destinationFragmentLayout
 id durationInput
 id endDateInput
