@@ -1,9 +1,8 @@
 package com.viewmodel.SortingAlgos;
 
-import com.model.AccommodationReservation;
-
 import java.util.Collections;
 import java.util.List;
+import com.model.AccommodationReservation;
 
 public class CheckInSort implements ViewSort<AccommodationReservation>{
 

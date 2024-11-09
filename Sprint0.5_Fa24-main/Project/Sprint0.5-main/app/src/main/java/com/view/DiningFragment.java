@@ -1,8 +1,9 @@
 package com.view;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,50 +12,49 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.sprintproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.model.DiningReservation;
-import com.model.Reservation;
-import com.viewmodel.CurrentUserInfo;
 import com.viewmodel.DiningViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class DiningFragment extends Fragment {
 
     private LinearLayout reservationsContainer;
     private FloatingActionButton addReservationFab;
-    private DiningViewModel diningViewModel; // Instance of ViewModel
+    private DiningViewModel diningViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dining, container, false);
         reservationsContainer = view.findViewById(R.id.reservationsContainer);
         addReservationFab = view.findViewById(R.id.fabAddReservation);
-        diningViewModel = new ViewModelProvider(this).get(DiningViewModel.class); // Initialize ViewModel
+        diningViewModel = new ViewModelProvider(this).get(DiningViewModel.class);
 
         addReservationFab.setOnClickListener(v -> showAddReservationDialog());
-        loadReservations(); // Load existing reservations if any
+        loadReservations();
 
         return view;
     }
 
     private void showAddReservationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_reservation, null);
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_reservation, null);
         builder.setView(dialogView);
 
         final EditText locationInput = dialogView.findViewById(R.id.locationInput);
         final EditText timeInput = dialogView.findViewById(R.id.timeInput);
         final EditText websiteInput = dialogView.findViewById(R.id.websiteInput);
-        final EditText dateInput = dialogView.findViewById(R.id.dateInput); // Added date input
+        final EditText dateInput = dialogView.findViewById(R.id.dateInput);
 
-        setupDatePicker(dateInput); // Set up the date picker dialog
+        setupDatePicker(dateInput);
+        setupTimePicker(timeInput);
 
         Button addButton = dialogView.findViewById(R.id.addReservationButton);
         Button cancelButton = dialogView.findViewById(R.id.cancelButton);
@@ -65,7 +65,7 @@ public class DiningFragment extends Fragment {
             String location = locationInput.getText().toString();
             String time = timeInput.getText().toString();
             String website = websiteInput.getText().toString();
-            String date = dateInput.getText().toString();  // Use the selected date
+            String date = dateInput.getText().toString();
 
             if (!location.isEmpty() && !time.isEmpty() && !website.isEmpty() && !date.isEmpty()) {
                 if (diningViewModel.addDiningReservation(location, website, time, date)) {
@@ -86,24 +86,28 @@ public class DiningFragment extends Fragment {
     private void setupDatePicker(EditText dateInput) {
         dateInput.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
-                    (view, year1, monthOfYear, dayOfMonth) -> {
-                        Calendar selectedDate = Calendar.getInstance();
-                        selectedDate.set(year1, monthOfYear, dayOfMonth);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-                        dateInput.setText(dateFormat.format(selectedDate.getTime()));
-                    }, year, month, day);
-            datePickerDialog.show();
+            new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) -> {
+                String formattedDate = String.format(Locale.getDefault(), "%02d-%02d-%04d", month + 1, dayOfMonth, year);
+                dateInput.setText(formattedDate);
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
         });
     }
 
+    private void setupTimePicker(EditText timeInput) {
+        timeInput.setOnClickListener(v -> {
+            Calendar currentTime = Calendar.getInstance();
+            int hour = currentTime.get(Calendar.HOUR_OF_DAY);
+            int minute = currentTime.get(Calendar.MINUTE);
+            new TimePickerDialog(getContext(), (view, hourOfDay, minuteOfHour) -> {
+                String formattedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minuteOfHour);
+                timeInput.setText(formattedTime);
+            }, hour, minute, true).show();
+        });
+    }
 
     private void loadReservations() {
         reservationsContainer.removeAllViews();
-        List<DiningReservation> reservations = diningViewModel.getReservations(); // Assuming this gets from db
+        List<DiningReservation> reservations = diningViewModel.getReservations();
         for (DiningReservation reservation : reservations) {
             displayReservation(reservation);
         }
@@ -114,26 +118,24 @@ public class DiningFragment extends Fragment {
         TextView restaurantName = reservationView.findViewById(R.id.restaurantName);
         TextView restaurantDetails = reservationView.findViewById(R.id.restaurantDetails);
         TextView reservationDetails = reservationView.findViewById(R.id.reservationDetails);
-        TextView reservationDate = reservationView.findViewById(R.id.reservationDate); // New TextView for date
+        TextView reviewStarsText = reservationView.findViewById(R.id.reviewStars);  // Reusing this TextView for stars
 
-        // Format the date
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // Choose your desired format
-        String formattedDate = reservation.getDateAndTime() != null ? dateFormat.format(reservation.getDateAndTime()) : "No Date"; // Format the Date object to String
+        restaurantName.setText(reservation.getLocation());
+        restaurantDetails.setText(reservation.getWebsite());
+        reservationDetails.setText(String.format("Time: %s, Date: %s", reservation.parseTime(), reservation.parseDate()));
 
-        restaurantName.setText(String.format("%s", reservation.getLocation()));
-        String stars = "";
+        // Format the review stars
+        StringBuilder stars = new StringBuilder();
         for (int i = 0; i < reservation.getReviewStars(); i++) {
-            stars += "★";
+            stars.append("★");
         }
-        for (int i = 0; i < 5 - reservation.getReviewStars(); i++) {
-            stars += "☆";
+        for (int i = reservation.getReviewStars(); i < 5; i++) {
+            stars.append("☆");
         }
-        restaurantDetails.setText(String.format("%s %s", reservation.getWebsite(), stars));
-        reservationDetails.setText(String.format("Date: %s, Time: %s", reservation.parseDate(), reservation.parseTime()));
-        reservationDate.setText(formattedDate); // Set the formatted date string
+
+        reviewStarsText.setText(stars.toString());  // Display stars in the reused TextView
 
         reservationsContainer.addView(reservationView);
     }
-
 
 }

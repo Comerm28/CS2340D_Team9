@@ -13,9 +13,9 @@ public class AccommodationReservation extends Reservation {
 
     }
 
-    public AccommodationReservation(String location, String website, Date checkInDate,
+    public AccommodationReservation(String location, Date checkInDate,
                                     Date checkOutDate, int numRooms, RoomType roomType) {
-        super(location, website);
+        super(location);
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.numRooms = numRooms;

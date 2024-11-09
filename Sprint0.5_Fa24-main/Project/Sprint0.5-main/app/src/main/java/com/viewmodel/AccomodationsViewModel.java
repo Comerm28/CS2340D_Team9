@@ -3,7 +3,6 @@ package com.viewmodel;
 import androidx.lifecycle.ViewModel;
 
 import com.model.AccommodationReservation;
-import com.model.Reservation;
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -20,12 +19,12 @@ public class AccomodationsViewModel extends ViewModel {
     }
 
     //temporary to make view show accomodations
-    public List<AccommodationReservation> getLodgings() {
+    public List<AccommodationReservation> getAccommodations() {
         return lodgings;
     }
 
-    public boolean addAccommodation(String check_in, String check_out, String location, String website,
-                                    int num_rooms, AccommodationReservation.RoomType roomType)
+    public boolean addAccommodation(String check_in, String check_out, String location,
+                                   int num_rooms, AccommodationReservation.RoomType roomType)
     {
         if(isValidAccomodation(check_in, check_out, location)) {
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -33,9 +32,8 @@ public class AccomodationsViewModel extends ViewModel {
                 Date checkInDate = sdf.parse(check_in);
                 Date checkOutDate = sdf.parse(check_out);
 
-                AccommodationReservation newAccommodationReservation = new AccommodationReservation(location, website, checkInDate, checkOutDate, num_rooms, roomType);
+                AccommodationReservation newAccommodationReservation = new AccommodationReservation(location, checkInDate, checkOutDate, num_rooms, roomType);
                 lodgings.add(newAccommodationReservation);
-
                 return true;
             } catch (Exception e) {
                 return false; // Return false if date parsing fails or room type code is out of bounds
@@ -52,7 +50,7 @@ public class AccomodationsViewModel extends ViewModel {
         return true;
     }
 
-    public boolean isPastAccomodation(AccommodationReservation lodging)
+    public boolean isPastAccomodation(AccommodationReservation  lodging)
     {
         //todo new date needs to be actual reservation date
         return currentUserInfo.getUserActualDateAndTime().compareTo(new Date()) > 0;
