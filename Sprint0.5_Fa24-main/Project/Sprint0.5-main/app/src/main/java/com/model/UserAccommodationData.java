@@ -3,6 +3,7 @@ package com.model;
 import java.util.Date;
 
 public class UserAccommodationData {
+    private String username;
     private Date checkInTime;
     private Date checkOutTime;
     private String location;
@@ -10,6 +11,10 @@ public class UserAccommodationData {
     private RoomType roomType;
 
     public UserAccommodationData() {}
+
+    public UserAccommodationData(String username){
+        username = username;
+    }
 
     public Date getCheckInTime() {
         return checkInTime;

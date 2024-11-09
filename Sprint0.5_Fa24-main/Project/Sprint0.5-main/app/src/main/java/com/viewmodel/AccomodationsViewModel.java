@@ -1,9 +1,16 @@
 package com.viewmodel;
 
+import android.annotation.SuppressLint;
+
 import androidx.lifecycle.ViewModel;
 
 import com.model.AccommodationReservation;
+import com.model.Database;
+import com.model.Destination;
+import com.model.User;
+import com.model.UserAccommodationData;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +22,7 @@ public class AccomodationsViewModel extends ViewModel {
 
     public AccomodationsViewModel() {
         currentUserInfo = CurrentUserInfo.getInstance();
+        //todo get useraccomodation data from currentuserinfo and update it and update database
         lodgings = new ArrayList<>();
     }
 
@@ -39,7 +47,9 @@ public class AccomodationsViewModel extends ViewModel {
                 return false; // Return false if date parsing fails or room type code is out of bounds
             }
         }
-        //todo make object and update database
+        Database db = Database.getInstance();
+        db.updateUserAccommodationData(currentUserInfo.getUser(), new UserAccommodationData(currentUserInfo.getUser().getUsername()));
+
 
         return true;
     }
@@ -50,9 +60,26 @@ public class AccomodationsViewModel extends ViewModel {
         return true;
     }
 
-    public boolean isPastAccomodation(AccommodationReservation  lodging)
+    public boolean isPastAccomodation(AccommodationReservation lodging)
     {
-        //todo new date needs to be actual reservation date
-        return currentUserInfo.getUserActualDateAndTime().compareTo(new Date()) > 0;
+        return currentUserInfo.getUserActualDateAndTime().compareTo(lodging.getCheckInDate()) > 0;
+    }
+
+    private Date isValidDate(String date) {
+        if (date == null || date.trim().isEmpty()) {
+            return null;
+        }
+
+        if (date.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter =
+                    new SimpleDateFormat("MM-dd-yyyy");
+            formatter.setLenient(false);
+            try {
+                return formatter.parse(date);
+            } catch (ParseException e) {
+                return null;
+            }
+        }
+        return null;
     }
 }

@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseError;
 import com.model.Database;
 import com.model.Destination;
 import com.model.User;
+import com.model.UserAccommodationData;
 import com.model.UserDestinationData;
 import com.model.UserDiningData;
 
@@ -26,6 +27,7 @@ public class CurrentUserInfo {
     private User user;
     private UserDestinationData userDestinationData;
     private UserDiningData userDiningData;
+    private UserAccommodationData userAccommodationData;
 
     private DatabaseReference dbRef;
 
@@ -98,6 +100,34 @@ public class CurrentUserInfo {
                         // Handle possible errors perchance
                     }
                 });
+        dbRef.child("accommodations").child(user.getUsername())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            userAccommodationData = dataSnapshot.getValue(userAccommodationData.class);
+
+                            if (userAccommodationData == null) {
+                                userAccommodationData = new userAccommodationData(user.getUsername());
+                                dbRef.child("accommodations").child(user.getUsername())
+                                        .setValue(userAccommodationData);
+                            }
+
+                            userAccommodationData.setUsername(user.getUsername());
+
+                        } else {
+                            userAccommodationData = new userAccommodationData(user.getUsername());
+                            dbRef.child("accommodations")
+                                    .child(user.getUsername()).setValue(userAccommodationData);
+                            userAccommodationData.setUsername(user.getUsername());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Handle possible errors perchance
+                    }
+                });
 
         dbRef.child("users").child(user.getUsername()).setValue(user);
     }
@@ -121,6 +151,7 @@ public class CurrentUserInfo {
         return userDestinationData;
     }
     public UserDiningData getUserDiningData() { return userDiningData; }
+    public UserAccommodationData getUserAccommodationData() { return userAccommodationData; }
 
     public void getAllottedVacationDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
         if (userDestinationData.isCollaborating()) {
