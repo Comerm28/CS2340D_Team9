@@ -105,10 +105,10 @@ public class CurrentUserInfo {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            userAccommodationData = dataSnapshot.getValue(userAccommodationData.class);
+                            userAccommodationData = dataSnapshot.getValue(UserAccommodationData.class);
 
                             if (userAccommodationData == null) {
-                                userAccommodationData = new userAccommodationData(user.getUsername());
+                                userAccommodationData = new UserAccommodationData(user.getUsername());
                                 dbRef.child("accommodations").child(user.getUsername())
                                         .setValue(userAccommodationData);
                             }
@@ -116,7 +116,7 @@ public class CurrentUserInfo {
                             userAccommodationData.setUsername(user.getUsername());
 
                         } else {
-                            userAccommodationData = new userAccommodationData(user.getUsername());
+                            userAccommodationData = new UserAccommodationData(user.getUsername());
                             dbRef.child("accommodations")
                                     .child(user.getUsername()).setValue(userAccommodationData);
                             userAccommodationData.setUsername(user.getUsername());
