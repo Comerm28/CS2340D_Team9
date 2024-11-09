@@ -16,6 +16,12 @@ public class UserAccommodationData {
         username = username;
     }
 
+    public String getUsername(){return username;}
+
+    public void setUsername(String newName){
+        this.username = newName;
+    }
+
     public Date getCheckInTime() {
         return checkInTime;
     }
