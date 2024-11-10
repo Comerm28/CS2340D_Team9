@@ -31,10 +31,15 @@ public class AccommodationFragment extends Fragment {
     private AccomodationsViewModel accommodationsViewModel;
     private FloatingActionButton addAccommodationFab;
     private LinearLayout accommodationsContainer;
-    private Button sortCheckInButton, sortCheckOutButton;
+    private Button sortCheckInButton;
+    private Button sortCheckOutButton;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(
+        @NonNull LayoutInflater inflater,
+        ViewGroup container,
+        Bundle savedInstanceState
+    ) {
         View view = inflater.inflate(R.layout.fragment_accommodation, container, false);
 
         accommodationsContainer = view.findViewById(R.id.accommodationsContainer);
@@ -67,7 +72,9 @@ public class AccommodationFragment extends Fragment {
     }
 
     private void displayAccommodation(AccommodationReservation accommodation) {
-        View accommodationView = LayoutInflater.from(getContext()).inflate(R.layout.accommodation_item, accommodationsContainer, false);
+        View accommodationView = LayoutInflater.from(getContext()).inflate(
+            R.layout.accommodation_item, accommodationsContainer, false
+        );
         TextView locationView = accommodationView.findViewById(R.id.locationView);
         TextView dateView = accommodationView.findViewById(R.id.dateView);
         TextView roomInfoView = accommodationView.findViewById(R.id.roomInfoView);
@@ -77,11 +84,13 @@ public class AccommodationFragment extends Fragment {
                 new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckInDate()),
                 new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckOutDate())));
         roomInfoView.setText(String.format("Rooms: %d, Type: %s",
-                accommodation.getNumRooms(), accommodation.getRoomType().displayString));
+                accommodation.getNumRooms(), accommodation.getRoomType().getDisplayString()));
 
         // Check if the accommodation is past and update the appearance
         if (accommodationsViewModel.isPastAccommodation(accommodation)) {
-            dateView.setTextColor(getContext().getResources().getColor(R.color.expired_color)); // Change color to indicate expired
+            dateView.setTextColor(getContext().getResources().getColor(
+                R.color.expired_color
+            )); // Change color to indicate expired
             dateView.setText(dateView.getText() + " (Expired)");
         }
 
@@ -91,7 +100,9 @@ public class AccommodationFragment extends Fragment {
 
     private void showAddAccommodationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_accommodation, null);
+        View dialogView = LayoutInflater.from(getContext()).inflate(
+            R.layout.dialog_add_accommodation, null
+        );
         builder.setView(dialogView);
 
         EditText locationInput = dialogView.findViewById(R.id.etLocation);
@@ -103,7 +114,11 @@ public class AccommodationFragment extends Fragment {
         setupDatePicker(checkInInput);
         setupDatePicker(checkOutInput);
 
-        ArrayAdapter<AccommodationReservation.RoomType> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, AccommodationReservation.RoomType.values());
+        ArrayAdapter<AccommodationReservation.RoomType> spinnerAdapter = new ArrayAdapter<>(
+            getContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            AccommodationReservation.RoomType.values()
+        );
         roomTypeSpinner.setAdapter(spinnerAdapter);
 
         AlertDialog dialog = builder.create();
@@ -114,13 +129,20 @@ public class AccommodationFragment extends Fragment {
             String checkInDate = checkInInput.getText().toString();
             String checkOutDate = checkOutInput.getText().toString();
             int numRooms = Integer.parseInt(numberOfRoomsInput.getText().toString());
-            AccommodationReservation.RoomType selectedRoomType = (AccommodationReservation.RoomType) roomTypeSpinner.getSelectedItem();
+            AccommodationReservation.RoomType selectedRoomType =
+                    (AccommodationReservation.RoomType) roomTypeSpinner.getSelectedItem();
 
-            if (accommodationsViewModel.addAccommodation(checkInDate, checkOutDate, location, numRooms, selectedRoomType)) {
+            if (accommodationsViewModel.addAccommodation(
+                    checkInDate, checkOutDate, location, numRooms, selectedRoomType)
+                ) {
                 loadAccommodations();
                 dialog.dismiss();
             } else {
-                Toast.makeText(getContext(), "Failed to add accommodation. Check your inputs.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                    getContext(),
+                    "Failed to add accommodation. Check your inputs.",
+                    Toast.LENGTH_SHORT
+                ).show();
             }
         });
 
@@ -131,8 +153,13 @@ public class AccommodationFragment extends Fragment {
         editText.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) ->
-                    editText.setText(new SimpleDateFormat("MM/dd/yyyy").format(new Calendar.Builder().setDate(year, month, dayOfMonth).build().getTime())),
-                    calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+                editText.setText(new SimpleDateFormat("MM/dd/yyyy").format(
+                    new Calendar.Builder().setDate(year, month, dayOfMonth
+                ).build().getTime())),
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).show();
         });
     }
 }

@@ -29,7 +29,6 @@ import com.viewmodel.CurrentUserInfo;
 import com.viewmodel.LogisticsViewModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LogisticsFragment extends Fragment {
@@ -68,7 +67,6 @@ public class LogisticsFragment extends Fragment {
 
         sharedPreferences = requireActivity().getSharedPreferences("NotesPrefs",
                 Context.MODE_PRIVATE);
-        userNotes = loadNotes();
 
         visualizeTripDaysButton.setOnClickListener(v -> toggleVisualizeTripDays());
         inviteUsersButton.setOnClickListener(v -> inviteUser());
@@ -180,7 +178,6 @@ public class LogisticsFragment extends Fragment {
                 logisticsViewModel.addNoteToCurrentVacation(note, () -> {
                     userNotes.add(note);  // Directly add to the list
                     saveNotes();  // Save updated list
-                    loadNotes();  // Reload from SharedPreferences
                     Toast.makeText(getContext(), "Note added.", Toast.LENGTH_SHORT).show();
                 }, fail -> Toast.makeText(getContext(), fail, Toast.LENGTH_SHORT).show());
             } else {
@@ -201,25 +198,30 @@ public class LogisticsFragment extends Fragment {
     }
 
     private void showNotesListDialog() {
-        loadNotes();
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("List of Notes");
+        logisticsViewModel.loadNotes(notes -> {
+            userNotes = notes;
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("List of Notes");
 
-        LinearLayout notesLayout = new LinearLayout(getContext());
-        notesLayout.setOrientation(LinearLayout.VERTICAL);
+            LinearLayout notesLayout = new LinearLayout(getContext());
+            notesLayout.setOrientation(LinearLayout.VERTICAL);
 
-        for (int i = 0; i < userNotes.size(); i++) {
-            String note = userNotes.get(i);
-            LinearLayout noteLayout = createNoteLayout(note, i);
-            notesLayout.addView(noteLayout);
-        }
+            for (int i = 0; i < notes.size(); i++) {
+                String note = notes.get(i);
+                LinearLayout noteLayout = createNoteLayout(note, i);
+                notesLayout.addView(noteLayout);
+            }
 
-        builder.setView(notesLayout);
-        builder.setNegativeButton("Close", null);
+            builder.setView(notesLayout);
+            builder.setNegativeButton("Close", null);
 
-        // Create and show the dialog
-        notesDialog = builder.create();
-        notesDialog.show();
+            // Create and show the dialog
+            notesDialog = builder.create();
+            notesDialog.show();
+        }, fail -> {
+            Toast.makeText(getContext(), "Failed to load notes.",
+                    Toast.LENGTH_SHORT).show();
+        });
     }
 
     private LinearLayout createNoteLayout(String note, int index) {
@@ -236,6 +238,8 @@ public class LogisticsFragment extends Fragment {
         Button deleteButton = new Button(getContext());
         deleteButton.setText("Delete");
         deleteButton.setOnClickListener(v -> {
+            String removeNote = userNotes.get(index);
+            logisticsViewModel.removeNoteFromCurrentVacation(removeNote, () -> { }, fail -> { });
             userNotes.remove(index);
             saveNotes();
             Toast.makeText(getContext(), "Note deleted.", Toast.LENGTH_SHORT).show();
@@ -259,11 +263,4 @@ public class LogisticsFragment extends Fragment {
         editor.apply();
     }
 
-    private List<String> loadNotes() {
-        String savedNotes = sharedPreferences.getString("userNotes", "");
-        List<String> notesList = new ArrayList<>(Arrays.asList(savedNotes.split(",")));
-        notesList.removeIf(String::isEmpty); // Remove empty entries if any
-        userNotes = notesList; // Update the userNotes reference
-        return notesList;
-    }
 }

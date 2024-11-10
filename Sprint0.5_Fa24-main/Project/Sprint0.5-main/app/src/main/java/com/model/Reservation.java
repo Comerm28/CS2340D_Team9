@@ -5,20 +5,20 @@ public abstract class Reservation {
     protected String website;
     protected int reviewStars;
 
-    public Reservation() {}
+    public Reservation() { }
 
     public Reservation(String location, String website) {
         this.location = location;
         this.website = website;
-        this.reviewStars = (int)(Math.random() * 5) + 1;
+        this.reviewStars = (int) (Math.random() * 5) + 1;
     }
 
     public Reservation(String location) {
         this.location = location;
-        this.reviewStars = (int)(Math.random() * 5) + 1;
+        this.reviewStars = (int) (Math.random() * 5) + 1;
     }
 
-    public String getLocation(){
+    public String getLocation() {
         return location;
     }
 
@@ -26,7 +26,7 @@ public abstract class Reservation {
         this.location = location;
     }
 
-    public String getWebsite(){
+    public String getWebsite() {
         return website;
     }
 

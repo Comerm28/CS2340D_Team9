@@ -79,31 +79,27 @@ public class Database {
     }
 
     public void updateDestinationData(User user, UserDestinationData userDestinationData) {
-        if(user.isCollaborating())
-        {
-            dbRef.child("destinations").child(user.getCollaboratorUsername()).setValue(userDestinationData);
-        }
-        else{
+        if (user.isCollaborating()) {
+            dbRef.child("destinations").child(
+                user.getCollaboratorUsername()
+            ).setValue(userDestinationData);
+        } else {
             dbRef.child("destinations").child(user.getUsername()).setValue(userDestinationData);
         }
     }
 
     public void updateDiningData(User user, UserDiningData userDiningData) {
-        if(user.isCollaborating())
-        {
+        if (user.isCollaborating()) {
             dbRef.child("dining").child(user.getCollaboratorUsername()).setValue(userDiningData);
-        }
-        else{
+        } else {
             dbRef.child("dining").child(user.getUsername()).setValue(userDiningData);
         }
     }
 
     public void updateUserAccommodationData(User user, UserAccommodationData data) {
-        if(user.isCollaborating())
-        {
+        if (user.isCollaborating()) {
             dbRef.child("accommodations").child(user.getCollaboratorUsername()).setValue(data);
-        }
-        else{
+        } else {
             dbRef.child("accommodations").child(user.getUsername()).setValue(data);
         }
     }
@@ -148,7 +144,8 @@ public class Database {
                 });
     }
 
-    public void getUserAccommodationData(String username, Consumer<UserAccommodationData> dataLoaded,
+    public void getUserAccommodationData(
+            String username, Consumer<UserAccommodationData> dataLoaded,
                                        Consumer<String> onFail) {
         dbRef.child("accommodations").child(username)
                 .addListenerForSingleValueEvent(new ValueEventListener() {

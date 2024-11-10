@@ -1,7 +1,5 @@
 package com.viewmodel;
 
-import android.annotation.SuppressLint;
-
 import androidx.lifecycle.ViewModel;
 
 import com.model.Database;
@@ -9,10 +7,8 @@ import com.model.DiningReservation;
 import com.model.Reservation;
 import com.model.UserDiningData;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import com.viewmodel.SortingAlgos.DateSort;
@@ -29,11 +25,9 @@ public class DiningViewModel extends ViewModel {
         reservations = new ArrayList<>();
     }
     
-    public boolean addDiningReservation(String location, String website, String time, String date)
-    {
+    public boolean addDiningReservation(String location, String website, String time, String date) {
         date = date.replace('/', '-');
-        if(!validReservation(location, website, time, date))
-        {
+        if (!validReservation(location, website, time, date)) {
             return false;
         }
         Date dateAndTime = parseDateTime(date, time);
@@ -49,15 +43,14 @@ public class DiningViewModel extends ViewModel {
     }
 
     private boolean validReservation(String location, String website, String time, String date) {
-        if(!website.matches(".*\\..*") || !time.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$") || !date.matches("^\\d{2}-\\d{2}-\\d{4}$"))
-        {
+        if (!website.matches(".*\\..*")
+                || !time.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$")
+                || !date.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
             return false;
         }
         UserDiningData userDiningData = currentUserInfo.getUserDiningData();
-        for(Reservation r : userDiningData.getReservations())
-        {
-            if(r.getLocation().equals(location))
-            {
+        for (Reservation r : userDiningData.getReservations()) {
+            if (r.getLocation().equals(location)) {
                 return false;
             }
         }
@@ -76,14 +69,16 @@ public class DiningViewModel extends ViewModel {
 
     public void sortReservationsByDate() {
         UserDiningData userDiningData = currentUserInfo.getUserDiningData();
-        List<DiningReservation> sortedReservations = dateSort.sort(new ArrayList<>(userDiningData.getReservations()));
+        List<DiningReservation> sortedReservations =
+                dateSort.sort(new ArrayList<>(userDiningData.getReservations()));
         userDiningData.getReservations().clear();
         userDiningData.getReservations().addAll(sortedReservations);
     }
 
     public void sortReservationsByTime() {
         UserDiningData userDiningData = currentUserInfo.getUserDiningData();
-        List<DiningReservation> sortedReservations = timeSort.sort(new ArrayList<>(userDiningData.getReservations()));
+        List<DiningReservation> sortedReservations =
+                timeSort.sort(new ArrayList<>(userDiningData.getReservations()));
         userDiningData.getReservations().clear();
         userDiningData.getReservations().addAll(sortedReservations);
     }
@@ -93,21 +88,21 @@ public class DiningViewModel extends ViewModel {
     }
 
 
-//    private Date isValidDate(String date) {
-//        if (date == null || date.trim().isEmpty()) {
-//            return null;
-//        }
-//
-//        if (date.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
-//            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter =
-//                    new SimpleDateFormat("MM-dd-yyyy");
-//            formatter.setLenient(false);
-//            try {
-//                return formatter.parse(date);
-//            } catch (ParseException e) {
-//                return null;
-//            }
-//        }
-//        return null;
-//    }
+    //    private Date isValidDate(String date) {
+    //        if (date == null || date.trim().isEmpty()) {
+    //            return null;
+    //        }
+    //
+    //        if (date.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
+    //            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter =
+    //                    new SimpleDateFormat("MM-dd-yyyy");
+    //            formatter.setLenient(false);
+    //            try {
+    //                return formatter.parse(date);
+    //            } catch (ParseException e) {
+    //                return null;
+    //            }
+    //        }
+    //        return null;
+    //    }
 }
