@@ -18,22 +18,20 @@ import java.text.SimpleDateFormat;
 
 public class AccomodationsViewModel extends ViewModel {
     private CurrentUserInfo currentUserInfo;
-    private List<AccommodationReservation> lodgings;
 
     public AccomodationsViewModel() {
         currentUserInfo = CurrentUserInfo.getInstance();
-        //todo get useraccomodation data from currentuserinfo and update it and update database
-        lodgings = new ArrayList<>();
     }
 
-    //temporary to make view show accomodations
     public List<AccommodationReservation> getAccommodations() {
-        return lodgings;
+        return currentUserInfo.getUserAccommodationData().getReservations();
     }
 
     public boolean addAccommodation(String check_in, String check_out, String location,
                                    int num_rooms, AccommodationReservation.RoomType roomType)
     {
+        UserAccommodationData userAccommodationData = currentUserInfo.getUserAccommodationData();
+
         if(isValidAccomodation(check_in, check_out, location)) {
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             try {
@@ -41,45 +39,46 @@ public class AccomodationsViewModel extends ViewModel {
                 Date checkOutDate = sdf.parse(check_out);
 
                 AccommodationReservation newAccommodationReservation = new AccommodationReservation(location, checkInDate, checkOutDate, num_rooms, roomType);
-                lodgings.add(newAccommodationReservation);
-                return true;
+                userAccommodationData.addReservation(newAccommodationReservation);
             } catch (Exception e) {
                 return false; // Return false if date parsing fails or room type code is out of bounds
             }
         }
         Database db = Database.getInstance();
-        db.updateUserAccommodationData(currentUserInfo.getUser(), new UserAccommodationData(currentUserInfo.getUser().getUsername()));
-
+        db.updateUserAccommodationData(currentUserInfo.getUser(), userAccommodationData);
 
         return true;
     }
 
     private boolean isValidAccomodation(String check_in, String check_out, String location)
     {
-        //todo implement checking on duplicates, make sure room type exists, make sure dates are valid
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        Date st, en;
+        try {
+            st = sdf.parse(check_in);
+            en = sdf.parse(check_out);
+        } catch (Exception e) {
+            return false;
+        }
+
+        if(st.compareTo(en) > 0)
+        {
+            return false;
+        }
+
+        for(AccommodationReservation a : currentUserInfo.getUserAccommodationData().getReservations())
+        {
+            if(location.equals(a.getLocation()))
+            {
+                return false;
+            }
+        }
+
         return true;
     }
 
     public boolean isPastAccomodation(AccommodationReservation lodging)
     {
         return currentUserInfo.getUserActualDateAndTime().compareTo(lodging.getCheckInDate()) > 0;
-    }
-
-    private Date isValidDate(String date) {
-        if (date == null || date.trim().isEmpty()) {
-            return null;
-        }
-
-        if (date.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter =
-                    new SimpleDateFormat("MM-dd-yyyy");
-            formatter.setLenient(false);
-            try {
-                return formatter.parse(date);
-            } catch (ParseException e) {
-                return null;
-            }
-        }
-        return null;
     }
 }

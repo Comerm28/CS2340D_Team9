@@ -83,7 +83,7 @@ public class Database {
     }
 
     public void updateUserAccommodationData(User user, UserAccommodationData data) {
-        dbRef.child("dining").child(user.getUsername()).setValue(data);
+        dbRef.child("accommodations").child(user.getUsername()).setValue(data);
     }
 
     public void checkUser(String username, Consumer<String> dataLoaded,
