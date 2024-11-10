@@ -5,4 +5,5 @@
     <color name="blue">#2196F3</color>
     <color name="green">#4CAF50</color>
     <color name="purple_500">#9C27B0</color>
+    <color name="expired_color">#D32F2F</color>
 </resources>

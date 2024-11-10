@@ -1477,6 +1477,7 @@ int color dim_foreground_material_dark 0x7f050066
 int color dim_foreground_material_light 0x7f050067
 int color error_color_material_dark 0x7f050068
 int color error_color_material_light 0x7f050069
+int color expired_color 0x7f050314
 int color foreground_material_dark 0x7f05006a
 int color foreground_material_light 0x7f05006b
 int color green 0x7f05006c
@@ -3638,6 +3639,8 @@ int id snackbar_action 0x7f0801d5
 int id snackbar_text 0x7f0801d6
 int id snap 0x7f0801d7
 int id snapMargins 0x7f0801d8
+int id sortByCheckInButton 0x7f080248
+int id sortByCheckOutButton 0x7f080249
 int id sortByDateButton 0x7f0801d9
 int id sortByTimeButton 0x7f0801da
 int id south 0x7f0801db

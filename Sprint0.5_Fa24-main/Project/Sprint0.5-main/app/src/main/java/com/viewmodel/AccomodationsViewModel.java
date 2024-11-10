@@ -9,6 +9,9 @@ import com.model.Database;
 import com.model.Destination;
 import com.model.User;
 import com.model.UserAccommodationData;
+import com.viewmodel.SortingAlgos.CheckInSort;
+import com.viewmodel.SortingAlgos.CheckOutSort;
+import com.viewmodel.SortingAlgos.ViewSort;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -18,6 +21,8 @@ import java.text.SimpleDateFormat;
 
 public class AccomodationsViewModel extends ViewModel {
     private CurrentUserInfo currentUserInfo;
+    private ViewSort<AccommodationReservation> checkInSort = new CheckInSort();
+    private ViewSort<AccommodationReservation> checkOutSort = new CheckOutSort();
 
     public AccomodationsViewModel() {
         currentUserInfo = CurrentUserInfo.getInstance();
@@ -77,8 +82,23 @@ public class AccomodationsViewModel extends ViewModel {
         return true;
     }
 
-    public boolean isPastAccomodation(AccommodationReservation lodging)
+    public boolean isPastAccommodation(AccommodationReservation lodging)
     {
-        return currentUserInfo.getUserActualDateAndTime().compareTo(lodging.getCheckInDate()) > 0;
+        return lodging.getCheckOutDate().before(new Date());
     }
+
+    public void sortAccommodationsByCheckIn() {
+        UserAccommodationData userAccommodationData = currentUserInfo.getUserAccommodationData();
+        List<AccommodationReservation> sortedAccommodations = new CheckInSort().sort(new ArrayList<>(userAccommodationData.getReservations()));
+        userAccommodationData.getReservations().clear();
+        userAccommodationData.getReservations().addAll(sortedAccommodations);
+    }
+
+    public void sortAccommodationsByCheckOut() {
+        UserAccommodationData userAccommodationData = currentUserInfo.getUserAccommodationData();
+        List<AccommodationReservation> sortedAccommodations = new CheckOutSort().sort(new ArrayList<>(userAccommodationData.getReservations()));
+        userAccommodationData.getReservations().clear();
+        userAccommodationData.getReservations().addAll(sortedAccommodations);
+    }
+
 }
