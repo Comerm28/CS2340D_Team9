@@ -63,6 +63,8 @@ id resultTextView
 id reviewStars
 id roomInfoView
 id scrollView
+id sortByDateButton
+id sortByTimeButton
 id spRoomType
 id splash_image
 id splash_text

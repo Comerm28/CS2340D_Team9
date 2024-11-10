@@ -12,7 +12,7 @@ public class UserAccommodationData {
     }
 
     public UserAccommodationData(String username){
-        username = username;
+        this.username = username;
         reservations = new ArrayList<>();
     }
 

@@ -15,10 +15,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import com.viewmodel.SortingAlgos.DateSort;
+import com.viewmodel.SortingAlgos.TimeSort;
+import com.viewmodel.SortingAlgos.ViewSort;
 
 public class DiningViewModel extends ViewModel {
     private CurrentUserInfo currentUserInfo;
     private List<DiningReservation> reservations; // Placeholder for reservations
+    private ViewSort<DiningReservation> dateSort = new DateSort();
+    private ViewSort<DiningReservation> timeSort = new TimeSort();
     public DiningViewModel() {
         currentUserInfo = CurrentUserInfo.getInstance();
         reservations = new ArrayList<>();
@@ -67,6 +72,20 @@ public class DiningViewModel extends ViewModel {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public void sortReservationsByDate() {
+        UserDiningData userDiningData = currentUserInfo.getUserDiningData();
+        List<DiningReservation> sortedReservations = dateSort.sort(new ArrayList<>(userDiningData.getReservations()));
+        userDiningData.getReservations().clear();
+        userDiningData.getReservations().addAll(sortedReservations);
+    }
+
+    public void sortReservationsByTime() {
+        UserDiningData userDiningData = currentUserInfo.getUserDiningData();
+        List<DiningReservation> sortedReservations = timeSort.sort(new ArrayList<>(userDiningData.getReservations()));
+        userDiningData.getReservations().clear();
+        userDiningData.getReservations().addAll(sortedReservations);
     }
 
 //    public boolean isPastReservation(DiningReservation reservation)

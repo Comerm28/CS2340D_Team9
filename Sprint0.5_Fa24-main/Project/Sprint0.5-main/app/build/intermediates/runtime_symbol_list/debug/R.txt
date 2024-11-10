@@ -3213,7 +3213,7 @@ int id accessibility_custom_action_6 0x7f08002c
 int id accessibility_custom_action_7 0x7f08002d
 int id accessibility_custom_action_8 0x7f08002e
 int id accessibility_custom_action_9 0x7f08002f
-int id accommodationsContainer 0x7f080246
+int id accommodationsContainer 0x7f080030
 int id actionDown 0x7f080031
 int id actionDownUp 0x7f080032
 int id actionUp 0x7f080033
@@ -3638,6 +3638,8 @@ int id snackbar_action 0x7f0801d5
 int id snackbar_text 0x7f0801d6
 int id snap 0x7f0801d7
 int id snapMargins 0x7f0801d8
+int id sortByDateButton 0x7f080246
+int id sortByTimeButton 0x7f080247
 int id south 0x7f0801d9
 int id spRoomType 0x7f0801da
 int id spacer 0x7f0801db
