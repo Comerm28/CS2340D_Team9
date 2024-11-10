@@ -74,26 +74,48 @@ public class Database {
                         replace("email address", "username")));
     }
 
+    public void updateUserData(User user) {
+        dbRef.child("users").child(user.getUsername()).setValue(user);
+    }
+
     public void updateDestinationData(User user, UserDestinationData userDestinationData) {
-        dbRef.child("destinations").child(user.getUsername()).setValue(userDestinationData);
+        if(user.isCollaborating())
+        {
+            dbRef.child("destinations").child(user.getCollaboratorUsername()).setValue(userDestinationData);
+        }
+        else{
+            dbRef.child("destinations").child(user.getUsername()).setValue(userDestinationData);
+        }
     }
 
     public void updateDiningData(User user, UserDiningData userDiningData) {
-        dbRef.child("dining").child(user.getUsername()).setValue(userDiningData);
+        if(user.isCollaborating())
+        {
+            dbRef.child("dining").child(user.getCollaboratorUsername()).setValue(userDiningData);
+        }
+        else{
+            dbRef.child("dining").child(user.getUsername()).setValue(userDiningData);
+        }
     }
 
     public void updateUserAccommodationData(User user, UserAccommodationData data) {
-        dbRef.child("accommodations").child(user.getUsername()).setValue(data);
+        if(user.isCollaborating())
+        {
+            dbRef.child("accommodations").child(user.getCollaboratorUsername()).setValue(data);
+        }
+        else{
+            dbRef.child("accommodations").child(user.getUsername()).setValue(data);
+        }
     }
 
-    public void checkUser(String username, Consumer<String> dataLoaded,
+    public void checkUser(String username, Consumer<User> dataLoaded,
                           Consumer<String> onFail) {
         dbRef.child("users").child(username)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            dataLoaded.accept(dataSnapshot.getValue(String.class));
+                            dataLoaded.accept(dataSnapshot.getValue(User.class));
                         } else {
                             onFail.accept("User not present");
                         }
