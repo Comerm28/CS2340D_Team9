@@ -108,12 +108,12 @@
         "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/accommodation_item.xml"
     },
     {
-        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_fragment_accommodation.xml.flat",
-        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/fragment_accommodation.xml"
-    },
-    {
         "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/layout_fragment_accommodation.xml.flat",
+        "source": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-main-53:/layout/fragment_accommodation.xml"
     },
     {
         "merged": "/Users/tvo/.gradle/daemon/8.2/com.example.sprintproject.app-merged_res-51:/drawable_fab_add.xml.flat",

@@ -3639,6 +3639,8 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
+id sortByDateButton
+id sortByTimeButton
 id south
 id spRoomType
 id spacer

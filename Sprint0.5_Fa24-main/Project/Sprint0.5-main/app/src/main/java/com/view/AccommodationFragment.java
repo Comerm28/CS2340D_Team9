@@ -25,12 +25,11 @@ import com.viewmodel.AccomodationsViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 
 public class AccommodationFragment extends Fragment {
-    private LinearLayout accommodationsContainer;
     private AccomodationsViewModel accommodationsViewModel;
     private FloatingActionButton addAccommodationFab;
+    private LinearLayout accommodationsContainer;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,9 +47,8 @@ public class AccommodationFragment extends Fragment {
     }
 
     private void loadAccommodations() {
-        List<AccommodationReservation> accommodations = accommodationsViewModel.getAccommodations();
         accommodationsContainer.removeAllViews();
-        for (AccommodationReservation accommodation : accommodations) {
+        for (AccommodationReservation accommodation : accommodationsViewModel.getAccommodations()) {
             View accommodationView = LayoutInflater.from(getContext()).inflate(R.layout.accommodation_item, accommodationsContainer, false);
             ((TextView) accommodationView.findViewById(R.id.locationView)).setText(accommodation.getLocation());
             ((TextView) accommodationView.findViewById(R.id.dateView)).setText(String.format("Check-in: %s - Check-out: %s",

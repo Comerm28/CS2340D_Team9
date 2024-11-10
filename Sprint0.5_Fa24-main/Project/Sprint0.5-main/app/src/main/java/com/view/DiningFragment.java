@@ -29,15 +29,27 @@ public class DiningFragment extends Fragment {
     private LinearLayout reservationsContainer;
     private FloatingActionButton addReservationFab;
     private DiningViewModel diningViewModel;
+    private Button sortDateButton; // Button to sort reservations by date
+    private Button sortTimeButton; // Button to sort reservations by time
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dining, container, false);
         reservationsContainer = view.findViewById(R.id.reservationsContainer);
         addReservationFab = view.findViewById(R.id.fabAddReservation);
+        sortDateButton = view.findViewById(R.id.sortByDateButton); // Assumed button ID in your layout
+        sortTimeButton = view.findViewById(R.id.sortByTimeButton); // Assumed button ID in your layout
         diningViewModel = new ViewModelProvider(this).get(DiningViewModel.class);
 
         addReservationFab.setOnClickListener(v -> showAddReservationDialog());
+        sortDateButton.setOnClickListener(v -> {
+            diningViewModel.sortReservationsByDate();
+            loadReservations();  // Reload the UI immediately after sorting
+        });
+        sortTimeButton.setOnClickListener(v -> {
+            diningViewModel.sortReservationsByTime();
+            loadReservations();  // Reload the UI immediately after sorting
+        });
         loadReservations();
 
         return view;
@@ -137,5 +149,4 @@ public class DiningFragment extends Fragment {
 
         reservationsContainer.addView(reservationView);
     }
-
 }
