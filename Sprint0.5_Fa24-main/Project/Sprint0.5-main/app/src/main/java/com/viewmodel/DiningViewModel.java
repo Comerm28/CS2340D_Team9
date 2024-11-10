@@ -88,27 +88,10 @@ public class DiningViewModel extends ViewModel {
         userDiningData.getReservations().addAll(sortedReservations);
     }
 
-//    public boolean isPastReservation(DiningReservation reservation)
-//    {
-//        int time = reservation.getTime();
-//        int hours, minutes;
-//        if (time < 1000) {
-//            hours = time / 100;
-//            minutes = time % 100;
-//        } else {
-//            hours = time / 100;
-//            minutes = time % 100;
-//        }
-//
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTime(reservation.getDate());
-//        calendar.set(Calendar.HOUR_OF_DAY, hours);
-//        calendar.set(Calendar.MINUTE, minutes);
-//        calendar.set(Calendar.SECOND, 0);
-//        calendar.set(Calendar.MILLISECOND, 0);
-//
-//        return currentUserInfo.getUserActualDateAndTime().compareTo(calendar.getTime()) > 0;
-//    }
+    public boolean isPastReservation(DiningReservation reservation) {
+        return reservation.getDateAndTime().before(new Date());
+    }
+
 
 //    private Date isValidDate(String date) {
 //        if (date == null || date.trim().isEmpty()) {

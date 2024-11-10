@@ -130,7 +130,7 @@ public class DiningFragment extends Fragment {
         TextView restaurantName = reservationView.findViewById(R.id.restaurantName);
         TextView restaurantDetails = reservationView.findViewById(R.id.restaurantDetails);
         TextView reservationDetails = reservationView.findViewById(R.id.reservationDetails);
-        TextView reviewStarsText = reservationView.findViewById(R.id.reviewStars);  // Reusing this TextView for stars
+        TextView reviewStarsText = reservationView.findViewById(R.id.reviewStars); // Reusing this TextView for stars
 
         restaurantName.setText(reservation.getLocation());
         restaurantDetails.setText(reservation.getWebsite());
@@ -144,9 +144,15 @@ public class DiningFragment extends Fragment {
         for (int i = reservation.getReviewStars(); i < 5; i++) {
             stars.append("☆");
         }
+        reviewStarsText.setText(stars.toString()); // Display stars in the reused TextView
 
-        reviewStarsText.setText(stars.toString());  // Display stars in the reused TextView
+        // Check if the reservation is past and update the appearance
+        if (diningViewModel.isPastReservation(reservation)) {
+            reservationDetails.setTextColor(getContext().getResources().getColor(R.color.expired_color)); // Change color to indicate expired
+            reservationDetails.setText(reservationDetails.getText() + " (Expired)");
+        }
 
         reservationsContainer.addView(reservationView);
     }
+
 }

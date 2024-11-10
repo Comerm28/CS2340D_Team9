@@ -25,11 +25,13 @@ import com.viewmodel.AccomodationsViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 public class AccommodationFragment extends Fragment {
     private AccomodationsViewModel accommodationsViewModel;
     private FloatingActionButton addAccommodationFab;
     private LinearLayout accommodationsContainer;
+    private Button sortCheckInButton, sortCheckOutButton;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,28 +39,55 @@ public class AccommodationFragment extends Fragment {
 
         accommodationsContainer = view.findViewById(R.id.accommodationsContainer);
         accommodationsViewModel = new ViewModelProvider(this).get(AccomodationsViewModel.class);
-
-        loadAccommodations();
-
         addAccommodationFab = view.findViewById(R.id.fabAddAccommodation);
+        sortCheckInButton = view.findViewById(R.id.sortByCheckInButton);
+        sortCheckOutButton = view.findViewById(R.id.sortByCheckOutButton);
+
         addAccommodationFab.setOnClickListener(v -> showAddAccommodationDialog());
+        sortCheckInButton.setOnClickListener(v -> {
+            accommodationsViewModel.sortAccommodationsByCheckIn();
+            loadAccommodations();  // Reload the UI immediately after sorting
+        });
+        sortCheckOutButton.setOnClickListener(v -> {
+            accommodationsViewModel.sortAccommodationsByCheckOut();
+            loadAccommodations();  // Reload the UI immediately after sorting
+        });
+
+        loadAccommodations();  // Initial load
 
         return view;
     }
 
     private void loadAccommodations() {
         accommodationsContainer.removeAllViews();
-        for (AccommodationReservation accommodation : accommodationsViewModel.getAccommodations()) {
-            View accommodationView = LayoutInflater.from(getContext()).inflate(R.layout.accommodation_item, accommodationsContainer, false);
-            ((TextView) accommodationView.findViewById(R.id.locationView)).setText(accommodation.getLocation());
-            ((TextView) accommodationView.findViewById(R.id.dateView)).setText(String.format("Check-in: %s - Check-out: %s",
-                    new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckInDate()),
-                    new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckOutDate())));
-            ((TextView) accommodationView.findViewById(R.id.roomInfoView)).setText(String.format("Rooms: %d, Type: %s",
-                    accommodation.getNumRooms(), accommodation.getRoomType().displayString));
-            accommodationsContainer.addView(accommodationView);
+        List<AccommodationReservation> accommodations = accommodationsViewModel.getAccommodations();
+        for (AccommodationReservation accommodation : accommodations) {
+            displayAccommodation(accommodation);
         }
     }
+
+    private void displayAccommodation(AccommodationReservation accommodation) {
+        View accommodationView = LayoutInflater.from(getContext()).inflate(R.layout.accommodation_item, accommodationsContainer, false);
+        TextView locationView = accommodationView.findViewById(R.id.locationView);
+        TextView dateView = accommodationView.findViewById(R.id.dateView);
+        TextView roomInfoView = accommodationView.findViewById(R.id.roomInfoView);
+
+        locationView.setText(accommodation.getLocation());
+        dateView.setText(String.format("Check-in: %s - Check-out: %s",
+                new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckInDate()),
+                new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckOutDate())));
+        roomInfoView.setText(String.format("Rooms: %d, Type: %s",
+                accommodation.getNumRooms(), accommodation.getRoomType().displayString));
+
+        // Check if the accommodation is past and update the appearance
+        if (accommodationsViewModel.isPastAccommodation(accommodation)) {
+            dateView.setTextColor(getContext().getResources().getColor(R.color.expired_color)); // Change color to indicate expired
+            dateView.setText(dateView.getText() + " (Expired)");
+        }
+
+        accommodationsContainer.addView(accommodationView);
+    }
+
 
     private void showAddAccommodationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

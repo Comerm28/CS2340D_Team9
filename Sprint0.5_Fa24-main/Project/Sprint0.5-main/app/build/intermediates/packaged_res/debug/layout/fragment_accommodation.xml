@@ -36,4 +36,25 @@
         android:layout_alignParentEnd="true"
         app:srcCompat="@drawable/fab_add"
         app:fabSize="normal"/>
+
+    <!-- Buttons for sorting by check-in and check-out dates -->
+    <Button
+        android:id="@+id/sortByCheckInButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sort by Check-In"
+        android:layout_above="@id/fabAddAccommodation"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/sortByCheckOutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sort by Check-Out"
+        android:layout_above="@id/sortByCheckInButton"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"/>
 </RelativeLayout>
