@@ -4,7 +4,11 @@
             "outputFile": "com.example.sprintproject.app-mergeDebugResources-49:/values-watch-v21/values-watch-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-watch-v21\\values-watch-v21.xml",
+<<<<<<< Updated upstream
+                    "source": "/Users/tvo/.gradle/caches/transforms-3/581f50f3920c362c106eda96465707ce/transformed/appcompat-1.6.1/res/values-watch-v21/values-watch-v21.xml",
+=======
+                    "source": "C:\\Users\\ylinl\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-watch-v21\\values-watch-v21.xml",
+>>>>>>> Stashed changes
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",
