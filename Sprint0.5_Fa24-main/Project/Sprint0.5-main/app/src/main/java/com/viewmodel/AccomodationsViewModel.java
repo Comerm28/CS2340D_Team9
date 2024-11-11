@@ -33,41 +33,47 @@ public class AccomodationsViewModel extends ViewModel {
     }
 
     public boolean addAccommodation(String check_in, String check_out, String location,
-                                   int num_rooms, AccommodationReservation.RoomType roomType)
+                                   String num_rooms, AccommodationReservation.RoomType roomType)
     {
         UserAccommodationData userAccommodationData = currentUserInfo.getUserAccommodationData();
-
-        if(isValidAccomodation(check_in, check_out, location)) {
+        boolean worked = false;
+        if(isValidAccomodation(check_in, check_out, location, num_rooms)) {
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             try {
                 Date checkInDate = sdf.parse(check_in);
                 Date checkOutDate = sdf.parse(check_out);
-
-                AccommodationReservation newAccommodationReservation = new AccommodationReservation(location, checkInDate, checkOutDate, num_rooms, roomType);
+                int rooms = Integer.parseInt(num_rooms);
+                AccommodationReservation newAccommodationReservation = new AccommodationReservation(location, checkInDate, checkOutDate, rooms, roomType);
                 userAccommodationData.addReservation(newAccommodationReservation);
+                worked = true;
             } catch (Exception e) {
                 return false; // Return false if date parsing fails or room type code is out of bounds
             }
         }
         Database db = Database.getInstance();
         db.updateUserAccommodationData(currentUserInfo.getUser(), userAccommodationData);
-
-        return true;
+        return worked;
     }
 
-    private boolean isValidAccomodation(String check_in, String check_out, String location)
+    private boolean isValidAccomodation(String check_in, String check_out, String location, String numRooms)
     {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         Date st, en;
+        int rooms;
         try {
             st = sdf.parse(check_in);
             en = sdf.parse(check_out);
+            rooms = Integer.parseInt(numRooms);
         } catch (Exception e) {
             return false;
         }
 
         if(st.compareTo(en) > 0)
         {
+            return false;
+        }
+
+        if (rooms <= 0) {
             return false;
         }
 

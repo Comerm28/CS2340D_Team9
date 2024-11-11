@@ -68,11 +68,21 @@ public class AccommodationFragment extends Fragment {
 
     private void displayAccommodation(AccommodationReservation accommodation) {
         View accommodationView = LayoutInflater.from(getContext()).inflate(R.layout.accommodation_item, accommodationsContainer, false);
+        TextView reviewStarsText = accommodationView.findViewById(R.id.reviewStars); // Reusing this TextView for stars
         TextView locationView = accommodationView.findViewById(R.id.locationView);
         TextView dateView = accommodationView.findViewById(R.id.dateView);
         TextView roomInfoView = accommodationView.findViewById(R.id.roomInfoView);
 
+        // Format the review stars
+        StringBuilder stars = new StringBuilder();
+        for (int i = 0; i < accommodation.getReviewStars(); i++) {
+            stars.append("★");
+        }
+        for (int i = accommodation.getReviewStars(); i < 5; i++) {
+            stars.append("☆");
+        }
         locationView.setText(accommodation.getLocation());
+        reviewStarsText.setText(stars.toString());
         dateView.setText(String.format("Check-in: %s - Check-out: %s",
                 new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckInDate()),
                 new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckOutDate())));
@@ -113,7 +123,7 @@ public class AccommodationFragment extends Fragment {
             String location = locationInput.getText().toString();
             String checkInDate = checkInInput.getText().toString();
             String checkOutDate = checkOutInput.getText().toString();
-            int numRooms = Integer.parseInt(numberOfRoomsInput.getText().toString());
+            String numRooms = numberOfRoomsInput.getText().toString();
             AccommodationReservation.RoomType selectedRoomType = (AccommodationReservation.RoomType) roomTypeSpinner.getSelectedItem();
 
             if (accommodationsViewModel.addAccommodation(checkInDate, checkOutDate, location, numRooms, selectedRoomType)) {
