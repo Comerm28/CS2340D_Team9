@@ -157,6 +157,7 @@ public class DestinationFragment extends Fragment {
                         Toast.LENGTH_SHORT).show();
                 return;
             }
+            destinationViewModel.updateAllotedDaysSmartly(user);
         } catch (Exception e) {
             Toast.makeText(getContext(), "Invalid date format.", Toast.LENGTH_SHORT).show();
         }

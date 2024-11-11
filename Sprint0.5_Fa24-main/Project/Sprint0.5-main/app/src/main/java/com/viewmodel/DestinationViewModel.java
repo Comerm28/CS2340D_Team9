@@ -5,7 +5,9 @@ import android.annotation.SuppressLint;
 
 import androidx.lifecycle.ViewModel;
 
+import com.model.Database;
 import com.model.Destination;
+import com.model.User;
 import com.model.UserDestinationData;
 
 import java.text.ParseException;
@@ -90,5 +92,19 @@ public class DestinationViewModel extends ViewModel {
         }
 
         return Destination.calculateMissingStartDate(dur, start).toString();
+    }
+
+    public void updateAllotedDaysSmartly(User user) {
+        if (user.isCollaborating()) {
+            Database db = Database.getInstance();
+            db.checkUser(user.getCollaboratorUsername(), collab -> {
+                collab.setAllottedVacationDays(user.getAllottedVacationDays());
+                db.updateUserData(collab);
+            }, errorMessage -> {
+                System.out.println("Failed to load collaborator: " + errorMessage);
+            });
+        } else {
+            Database.getInstance().updateUserData(user);
+        }
     }
 }
