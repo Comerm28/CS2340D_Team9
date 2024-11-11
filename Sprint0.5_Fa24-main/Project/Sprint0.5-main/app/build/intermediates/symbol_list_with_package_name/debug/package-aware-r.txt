@@ -1478,6 +1478,7 @@ color dim_foreground_material_dark
 color dim_foreground_material_light
 color error_color_material_dark
 color error_color_material_light
+color expired_color
 color foreground_material_dark
 color foreground_material_light
 color green
@@ -3639,6 +3640,10 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
+id sortByCheckInButton
+id sortByCheckOutButton
+id sortByDateButton
+id sortByTimeButton
 id south
 id spRoomType
 id spacer

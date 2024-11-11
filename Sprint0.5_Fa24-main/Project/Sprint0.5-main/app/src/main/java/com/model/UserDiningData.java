@@ -6,6 +6,7 @@ import java.util.List;
 public class UserDiningData {
     private String username;
     private List<DiningReservation> reservations;
+    private List<OnReservationChangeListener> listeners = new ArrayList<>();
 
     public UserDiningData() {
         reservations = new ArrayList<>();
@@ -19,20 +20,22 @@ public class UserDiningData {
         this.username = username;
     }
 
-    public interface OnReservationChangeListener {
-        void onReservationAdded(Reservation reservation);
-    }
-
     public UserDiningData(String username) {
         this.username = username;
         reservations = new ArrayList<>();
+    }
+
+    public List<DiningReservation> getReservations() {
+        return reservations;
     }
 
     public void addReservation(DiningReservation reservation) {
         reservations.add(reservation);
     }
 
-    public List<DiningReservation> getReservations() {
-        return reservations;
+
+    public interface OnReservationChangeListener {
+        void onReservationAdded(Reservation reservation);
     }
+
 }

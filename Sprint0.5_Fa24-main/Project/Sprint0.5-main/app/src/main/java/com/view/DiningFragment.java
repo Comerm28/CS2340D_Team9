@@ -19,7 +19,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.model.DiningReservation;
 import com.viewmodel.DiningViewModel;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -29,15 +28,31 @@ public class DiningFragment extends Fragment {
     private LinearLayout reservationsContainer;
     private FloatingActionButton addReservationFab;
     private DiningViewModel diningViewModel;
+    private Button sortDateButton; // Button to sort reservations by date
+    private Button sortTimeButton; // Button to sort reservations by time
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dining, container, false);
+    public View onCreateView(
+            LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view =
+                inflater.inflate(R.layout.fragment_dining, container, false);
         reservationsContainer = view.findViewById(R.id.reservationsContainer);
         addReservationFab = view.findViewById(R.id.fabAddReservation);
+        // Assumed button ID in your layout
+        sortDateButton = view.findViewById(R.id.sortByDateButton);
+        // Assumed button ID in your layout
+        sortTimeButton = view.findViewById(R.id.sortByTimeButton);
         diningViewModel = new ViewModelProvider(this).get(DiningViewModel.class);
 
         addReservationFab.setOnClickListener(v -> showAddReservationDialog());
+        sortDateButton.setOnClickListener(v -> {
+            diningViewModel.sortReservationsByDate();
+            loadReservations();  // Reload the UI immediately after sorting
+        });
+        sortTimeButton.setOnClickListener(v -> {
+            diningViewModel.sortReservationsByTime();
+            loadReservations();  // Reload the UI immediately after sorting
+        });
         loadReservations();
 
         return view;
@@ -45,7 +60,8 @@ public class DiningFragment extends Fragment {
 
     private void showAddReservationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_reservation, null);
+        View dialogView =
+                LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_reservation, null);
         builder.setView(dialogView);
 
         final EditText locationInput = dialogView.findViewById(R.id.locationInput);
@@ -72,10 +88,14 @@ public class DiningFragment extends Fragment {
                     loadReservations();
                     dialog.dismiss();
                 } else {
-                    Toast.makeText(getContext(), "Invalid or duplicate reservation", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(
+                        getContext(), "Invalid or duplicate reservation", Toast.LENGTH_SHORT
+                    ).show();
                 }
             } else {
-                Toast.makeText(getContext(), "All fields must be filled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        getContext(), "All fields must be filled", Toast.LENGTH_SHORT
+                ).show();
             }
         });
 
@@ -87,9 +107,14 @@ public class DiningFragment extends Fragment {
         dateInput.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) -> {
-                String formattedDate = String.format(Locale.getDefault(), "%02d-%02d-%04d", month + 1, dayOfMonth, year);
+                String formattedDate = String.format(
+                    Locale.getDefault(), "%02d-%02d-%04d", month + 1, dayOfMonth, year
+                );
                 dateInput.setText(formattedDate);
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+            }, calendar.get(Calendar.YEAR),
+               calendar.get(Calendar.MONTH),
+               calendar.get(Calendar.DAY_OF_MONTH)
+            ).show();
         });
     }
 
@@ -99,7 +124,8 @@ public class DiningFragment extends Fragment {
             int hour = currentTime.get(Calendar.HOUR_OF_DAY);
             int minute = currentTime.get(Calendar.MINUTE);
             new TimePickerDialog(getContext(), (view, hourOfDay, minuteOfHour) -> {
-                String formattedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minuteOfHour);
+                String formattedTime =
+                        String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minuteOfHour);
                 timeInput.setText(formattedTime);
             }, hour, minute, true).show();
         });
@@ -114,15 +140,19 @@ public class DiningFragment extends Fragment {
     }
 
     private void displayReservation(DiningReservation reservation) {
-        View reservationView = LayoutInflater.from(getContext()).inflate(R.layout.reservation_item, reservationsContainer, false);
+        View reservationView = LayoutInflater.from(getContext())
+                .inflate(R.layout.reservation_item, reservationsContainer, false);
         TextView restaurantName = reservationView.findViewById(R.id.restaurantName);
         TextView restaurantDetails = reservationView.findViewById(R.id.restaurantDetails);
         TextView reservationDetails = reservationView.findViewById(R.id.reservationDetails);
-        TextView reviewStarsText = reservationView.findViewById(R.id.reviewStars);  // Reusing this TextView for stars
+        // Reusing this TextView for stars
+        TextView reviewStarsText = reservationView.findViewById(R.id.reviewStars);
 
         restaurantName.setText(reservation.getLocation());
         restaurantDetails.setText(reservation.getWebsite());
-        reservationDetails.setText(String.format("Time: %s, Date: %s", reservation.parseTime(), reservation.parseDate()));
+        reservationDetails.setText(
+            String.format("Time: %s, Date: %s", reservation.parseTime(), reservation.parseDate())
+        );
 
         // Format the review stars
         StringBuilder stars = new StringBuilder();
@@ -132,8 +162,15 @@ public class DiningFragment extends Fragment {
         for (int i = reservation.getReviewStars(); i < 5; i++) {
             stars.append("☆");
         }
+        reviewStarsText.setText(stars.toString()); // Display stars in the reused TextView
 
-        reviewStarsText.setText(stars.toString());  // Display stars in the reused TextView
+        // Check if the reservation is past and update the appearance
+        if (diningViewModel.isPastReservation(reservation)) {
+            reservationDetails.setTextColor(
+                getContext().getResources().getColor(R.color.expired_color)
+            ); // Change color to indicate expired
+            reservationDetails.setText(reservationDetails.getText() + " (Expired)");
+        }
 
         reservationsContainer.addView(reservationView);
     }

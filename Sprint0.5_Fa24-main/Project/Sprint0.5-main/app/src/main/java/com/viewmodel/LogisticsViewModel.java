@@ -4,8 +4,9 @@ package com.viewmodel;
 import androidx.lifecycle.ViewModel;
 
 import com.model.Database;
-import com.model.User;
+import com.model.UserDestinationData;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 
@@ -22,32 +23,40 @@ public class LogisticsViewModel extends ViewModel {
 
 
     public void inviteUser(String username, Runnable onSuccess, Consumer<String> onFail) {
-        Database db = Database.getInstance();
-        db.getUserDestinationData(username, destinationData -> {
-            destinationData.setCollaborating(true);
-            destinationData.setCollaboratorUsername(CurrentUserInfo.getInstance()
-                    .getUser().getUsername());
-            db.updateDestinationData(new User(username), destinationData);
-            onSuccess.run();
-        }, onFail);
+        Database.getInstance().checkUser(username,
+                data -> {
+                    if (data != null) {
+                        data.setCollaborating(true);
+                        data.setCollaboratorUsername(currentInfo.getUser().getUsername());
+                        Database.getInstance().updateUserData(data);
+                    }
+                },
+                error -> {
+                    //toast log maybe?
+                });
     }
 
     public void addNoteToCurrentVacation(String note, Runnable onSuccess, Consumer<String> onFail) {
         Database db = Database.getInstance();
-        db.getUserDestinationData(currentInfo.getUser().getUsername(),
-                destinationData -> {
-                    if (destinationData.isCollaborating()) {
-                        db.getUserDestinationData(destinationData.getCollaboratorUsername(),
-                                   destinationData2 -> {
-                                destinationData.addNote(note);
-                                db.updateDestinationData(new User(destinationData
-                                        .getCollaboratorUsername()), destinationData);
-                                onSuccess.run(); }, onFail);
-                    } else {
-                        destinationData.addNote(note);
-                        db.updateDestinationData(currentInfo.getUser(), destinationData);
-                    }
-                },
-                onFail);
+        UserDestinationData userdata = currentInfo.getUserDestinationData();
+        userdata.addNote(note);
+        db.updateDestinationData(currentInfo.getUser(), userdata);
+    }
+
+    public void removeNoteFromCurrentVacation(
+            String note, Runnable onSuccess, Consumer<String> onFail) {
+        Database db = Database.getInstance();
+        UserDestinationData userdata = currentInfo.getUserDestinationData();
+        userdata.removeNote(note);
+        db.updateDestinationData(currentInfo.getUser(), userdata);
+    }
+
+    public void loadNotes(Consumer<List<String>> onSuccess, Consumer<String> onFail) {
+        try {
+            List<String> notes = currentInfo.getUserDestinationData().getNotes();
+            onSuccess.accept(notes);
+        } catch (Exception e) {
+            onFail.accept("Failed to load notes: " + e.getMessage());
+        }
     }
 }

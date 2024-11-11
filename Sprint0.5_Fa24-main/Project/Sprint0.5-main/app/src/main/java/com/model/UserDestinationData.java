@@ -8,8 +8,6 @@ public class UserDestinationData {
     private String username;
     private List<Destination> destinations;
     private List<String> notes;
-    private boolean isCollaborating;
-    private String collaboratorUsername;
 
     public UserDestinationData() {
         this.destinations = new ArrayList<>();
@@ -19,9 +17,7 @@ public class UserDestinationData {
     public UserDestinationData(String username, List<Destination> destinations) {
         this.username = username;
         this.destinations = destinations;
-        isCollaborating = false;
-        collaboratorUsername = "";
-        notes = new ArrayList<>();
+        this.notes = new ArrayList<>();
     }
 
     public UserDestinationData(String username) {
@@ -53,27 +49,15 @@ public class UserDestinationData {
         destinations.add(destination);
     }
 
-    public boolean isCollaborating() {
-        return isCollaborating;
-    }
-
-    public void setCollaborating(boolean collaborating) {
-        isCollaborating = collaborating;
-    }
-
-    public String getCollaboratorUsername() {
-        return collaboratorUsername;
-    }
-
-    public void setCollaboratorUsername(String collaboratorUsername) {
-        this.collaboratorUsername = collaboratorUsername;
-    }
-
     public List<String> getNotes() {
         return notes;
     }
 
     public void addNote(String note) {
         notes.add(note);
+    }
+
+    public void removeNote(String note) {
+        notes.remove(note);
     }
 }

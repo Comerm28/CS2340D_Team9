@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/headerText"
-        android:layout_above="@id/fabAddReservation">
+        android:layout_above="@id/sortByDateButton">
 
         <LinearLayout
             android:id="@+id/reservationsContainer"
@@ -41,5 +41,27 @@
         android:layout_margin="16dp"
         android:src="@drawable/fab_add"
         app:fabSize="normal" />
+
+    <!-- Add button for sorting by date -->
+    <Button
+        android:id="@+id/sortByDateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sort by Date"
+        android:layout_above="@id/fabAddReservation"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Add button for sorting by time -->
+    <Button
+        android:id="@+id/sortByTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sort by Time"
+        android:layout_above="@id/sortByDateButton"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp" />
 
 </RelativeLayout>

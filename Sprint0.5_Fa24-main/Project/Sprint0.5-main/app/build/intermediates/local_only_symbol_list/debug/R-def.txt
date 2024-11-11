@@ -2,6 +2,7 @@ R_DEF: Internal format may change without notice
 local
 color black
 color blue
+color expired_color
 color green
 color purple_500
 color white
@@ -63,6 +64,10 @@ id resultTextView
 id reviewStars
 id roomInfoView
 id scrollView
+id sortByCheckInButton
+id sortByCheckOutButton
+id sortByDateButton
+id sortByTimeButton
 id spRoomType
 id splash_image
 id splash_text

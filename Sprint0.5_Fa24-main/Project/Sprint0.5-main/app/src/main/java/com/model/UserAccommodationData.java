@@ -1,76 +1,34 @@
 package com.model;
 
-import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 
 public class UserAccommodationData {
     private String username;
-    private Date checkInTime;
-    private Date checkOutTime;
-    private String location;
-    private int numberOfRooms;
-    private RoomType roomType;
+    private List<AccommodationReservation> reservations;
 
-    public UserAccommodationData() {}
-
-    public UserAccommodationData(String username){
-        username = username;
+    public UserAccommodationData() {
+        reservations = new ArrayList<>();
     }
 
-    public String getUsername(){return username;}
+    public UserAccommodationData(String username) {
+        this.username = username;
+        reservations = new ArrayList<>();
+    }
 
-    public void setUsername(String newName){
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String newName) {
         this.username = newName;
     }
 
-    public Date getCheckInTime() {
-        return checkInTime;
+    public void addReservation(AccommodationReservation reservation) {
+        reservations.add(reservation);
     }
 
-    public void setCheckInTime(Date checkInTime) {
-       this.checkInTime = checkInTime;
-    }
-
-    public Date getCheckOutTime() {
-        return checkOutTime;
-    }
-
-    public void setCheckOutTime(Date checkOutTime) {
-        this.checkOutTime = checkOutTime;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public int getNumberOfRooms() {
-        return numberOfRooms;
-    }
-
-    public void setNumberOfRooms(int numberOfRooms) {
-        this.numberOfRooms = numberOfRooms;
-    }
-
-    public RoomType getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(RoomType roomType) {
-        this.roomType = roomType;
-    }
-
-    public enum RoomType {
-        Single("Single"),
-        KingSuite("King Suite"),
-        Deluxe("Deluxe");
-
-        public final String displayString;
-
-        RoomType(String displayString) {
-            this.displayString = displayString;
-        }
+    public List<AccommodationReservation> getReservations() {
+        return reservations;
     }
 }

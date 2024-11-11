@@ -42,9 +42,9 @@ public class CurrentUserInfo {
         return instance;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-        dbRef.child("destinations").child(user.getUsername())
+    public void setUser(User userToBe) {
+        this.user = userToBe;
+        dbRef.child("users").child(user.getUsername())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -52,18 +52,18 @@ public class CurrentUserInfo {
                             userDestinationData = dataSnapshot.getValue(UserDestinationData.class);
 
                             if (userDestinationData == null) {
-                                userDestinationData = new UserDestinationData(user.getUsername());
-                                dbRef.child("destinations").child(user.getUsername())
-                                        .setValue(userDestinationData);
+                                user = new User(user.getUsername());
+                                dbRef.child("users").child(user.getUsername())
+                                        .setValue(user);
                             }
 
-                            userDestinationData.setUsername(user.getUsername());
+                            user.setUsername(user.getUsername());
 
                         } else {
-                            userDestinationData = new UserDestinationData(user.getUsername());
-                            dbRef.child("destinations")
-                                    .child(user.getUsername()).setValue(userDestinationData);
-                            userDestinationData.setUsername(user.getUsername());
+                            user = new User(user.getUsername());
+                            dbRef.child("users")
+                                    .child(user.getUsername()).setValue(user);
+                            user.setUsername(user.getUsername());
                         }
                     }
 
@@ -72,7 +72,41 @@ public class CurrentUserInfo {
                         // Handle possible errors perchance
                     }
                 });
-        dbRef.child("dining").child(user.getUsername())
+        String listeningUser;
+        if (user.isCollaborating()) {
+            listeningUser = user.getCollaboratorUsername();
+        } else {
+            listeningUser = user.getUsername();
+        }
+        dbRef.child("destinations").child(listeningUser)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            userDestinationData = dataSnapshot.getValue(UserDestinationData.class);
+
+                            if (userDestinationData == null) {
+                                userDestinationData = new UserDestinationData(listeningUser);
+                                dbRef.child("destinations").child(listeningUser)
+                                        .setValue(userDestinationData);
+                            }
+
+                            userDestinationData.setUsername(listeningUser);
+
+                        } else {
+                            userDestinationData = new UserDestinationData(listeningUser);
+                            dbRef.child("destinations")
+                                    .child(listeningUser).setValue(userDestinationData);
+                            userDestinationData.setUsername(listeningUser);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Handle possible errors perchance
+                    }
+                });
+        dbRef.child("dining").child(listeningUser)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -80,18 +114,18 @@ public class CurrentUserInfo {
                             userDiningData = dataSnapshot.getValue(UserDiningData.class);
 
                             if (userDiningData == null) {
-                                userDiningData = new UserDiningData(user.getUsername());
-                                dbRef.child("dining").child(user.getUsername())
+                                userDiningData = new UserDiningData(listeningUser);
+                                dbRef.child("dining").child(listeningUser)
                                         .setValue(userDiningData);
                             }
 
-                            userDiningData.setUsername(user.getUsername());
+                            userDiningData.setUsername(listeningUser);
 
                         } else {
-                            userDiningData = new UserDiningData(user.getUsername());
+                            userDiningData = new UserDiningData(listeningUser);
                             dbRef.child("dining")
-                                    .child(user.getUsername()).setValue(userDiningData);
-                            userDiningData.setUsername(user.getUsername());
+                                    .child(listeningUser).setValue(userDiningData);
+                            userDiningData.setUsername(listeningUser);
                         }
                     }
 
@@ -100,26 +134,27 @@ public class CurrentUserInfo {
                         // Handle possible errors perchance
                     }
                 });
-        dbRef.child("accommodations").child(user.getUsername())
+        dbRef.child("accommodations").child(listeningUser)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            userAccommodationData = dataSnapshot.getValue(UserAccommodationData.class);
+                            userAccommodationData =
+                                    dataSnapshot.getValue(UserAccommodationData.class);
 
                             if (userAccommodationData == null) {
-                                userAccommodationData = new UserAccommodationData(user.getUsername());
-                                dbRef.child("accommodations").child(user.getUsername())
+                                userAccommodationData = new UserAccommodationData(listeningUser);
+                                dbRef.child("accommodations").child(listeningUser)
                                         .setValue(userAccommodationData);
                             }
 
-                            userAccommodationData.setUsername(user.getUsername());
+                            userAccommodationData.setUsername(listeningUser);
 
                         } else {
-                            userAccommodationData = new UserAccommodationData(user.getUsername());
+                            userAccommodationData = new UserAccommodationData(listeningUser);
                             dbRef.child("accommodations")
-                                    .child(user.getUsername()).setValue(userAccommodationData);
-                            userAccommodationData.setUsername(user.getUsername());
+                                    .child(listeningUser).setValue(userAccommodationData);
+                            userAccommodationData.setUsername(listeningUser);
                         }
                     }
 
@@ -128,8 +163,6 @@ public class CurrentUserInfo {
                         // Handle possible errors perchance
                     }
                 });
-
-        dbRef.child("users").child(user.getUsername()).setValue(user);
     }
 
     public User getUser() {
@@ -137,9 +170,9 @@ public class CurrentUserInfo {
     }
 
     public void getDestinations(Consumer<List<Destination>> onLoad, Consumer<String> onFail) {
-        if (userDestinationData.isCollaborating()) {
+        if (user.isCollaborating()) {
             Database.getInstance()
-                    .getUserDestinationData(userDestinationData.getCollaboratorUsername(),
+                    .getUserDestinationData(user.getCollaboratorUsername(),
                         destinationData -> onLoad.accept(destinationData.getDestinations()),
                         onFail);
         } else {
@@ -150,24 +183,35 @@ public class CurrentUserInfo {
     public UserDestinationData getUserDestinationData() {
         return userDestinationData;
     }
-    public UserDiningData getUserDiningData() { return userDiningData; }
-    public UserAccommodationData getUserAccommodationData() { return userAccommodationData; }
+
+    public UserDiningData getUserDiningData() {
+        return userDiningData;
+    }
+
+    public UserAccommodationData getUserAccommodationData() {
+        return userAccommodationData;
+    }
 
     public void getAllottedVacationDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
-        if (userDestinationData.isCollaborating()) {
-            Database.getInstance()
-                    .getUserDestinationData(userDestinationData.getCollaboratorUsername(),
-                        destinationData -> onLoad.accept(user.getAllottedVacationDays()),
-                        onFail);
+        if (user.isCollaborating()) {
+            Database.getInstance().checkUser(user.getCollaboratorUsername(),
+                    data -> {
+                        if (data != null) {
+                            onLoad.accept(data.getAllottedVacationDays());
+                        } else {
+                            onLoad.accept(0);
+                        }
+                    },
+                    onFail);
         } else {
             onLoad.accept(user.getAllottedVacationDays());
         }
     }
 
     public void getNotes(Consumer<List<String>> onLoad, Consumer<String> onFail) {
-        if (userDestinationData.isCollaborating()) {
+        if (user.isCollaborating()) {
             Database.getInstance()
-                    .getUserDestinationData(userDestinationData.getCollaboratorUsername(),
+                    .getUserDestinationData(user.getCollaboratorUsername(),
                         destinationData -> onLoad.accept(destinationData.getNotes()),
                         onFail);
         } else {
@@ -197,8 +241,7 @@ public class CurrentUserInfo {
         }, onFail);
     }
 
-    public Date getUserActualDateAndTime()
-    {
+    public Date getUserActualDateAndTime() {
         Instant now = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             now = Instant.now();
