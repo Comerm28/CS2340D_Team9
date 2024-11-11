@@ -73,12 +73,9 @@ public class CurrentUserInfo {
                     }
                 });
         String listeningUser;
-        if(user.isCollaborating())
-        {
+        if (user.isCollaborating()) {
             listeningUser = user.getCollaboratorUsername();
-        }
-        else
-        {
+        } else {
             listeningUser = user.getUsername();
         }
         dbRef.child("destinations").child(listeningUser)
@@ -142,7 +139,8 @@ public class CurrentUserInfo {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            userAccommodationData = dataSnapshot.getValue(UserAccommodationData.class);
+                            userAccommodationData =
+                                    dataSnapshot.getValue(UserAccommodationData.class);
 
                             if (userAccommodationData == null) {
                                 userAccommodationData = new UserAccommodationData(listeningUser);
@@ -185,8 +183,14 @@ public class CurrentUserInfo {
     public UserDestinationData getUserDestinationData() {
         return userDestinationData;
     }
-    public UserDiningData getUserDiningData() { return userDiningData; }
-    public UserAccommodationData getUserAccommodationData() { return userAccommodationData; }
+
+    public UserDiningData getUserDiningData() {
+        return userDiningData;
+    }
+
+    public UserAccommodationData getUserAccommodationData() {
+        return userAccommodationData;
+    }
 
     public void getAllottedVacationDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
         if (user.isCollaborating()) {
@@ -237,8 +241,7 @@ public class CurrentUserInfo {
         }, onFail);
     }
 
-    public Date getUserActualDateAndTime()
-    {
+    public Date getUserActualDateAndTime() {
         Instant now = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             now = Instant.now();
