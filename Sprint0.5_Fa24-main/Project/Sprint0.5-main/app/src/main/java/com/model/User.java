@@ -1,8 +1,6 @@
 package com.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class User {
     private String username;
@@ -12,8 +10,7 @@ public class User {
     private boolean isCollaborating;
     private String collaboratorUsername;
 
-    public User() {
-    }
+    public User() { }
 
     public User(String username) {
         this.username = username;

@@ -69,7 +69,11 @@ public class AccommodationReservation extends Reservation {
         KingSuite("King Suite"),
         Deluxe("Deluxe");
 
-        public final String displayString;
+        private final String displayString;
+
+        public String getDisplayString() {
+            return displayString;
+        }
 
         RoomType(String displayString) {
             this.displayString = displayString;

@@ -4,9 +4,9 @@ package com.viewmodel;
 import androidx.lifecycle.ViewModel;
 
 import com.model.Database;
-import com.model.User;
 import com.model.UserDestinationData;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 
@@ -25,8 +25,7 @@ public class LogisticsViewModel extends ViewModel {
     public void inviteUser(String username, Runnable onSuccess, Consumer<String> onFail) {
         Database.getInstance().checkUser(username,
                 data -> {
-                    if(data != null)
-                    {
+                    if (data != null) {
                         data.setCollaborating(true);
                         data.setCollaboratorUsername(currentInfo.getUser().getUsername());
                         Database.getInstance().updateUserData(data);
@@ -42,5 +41,20 @@ public class LogisticsViewModel extends ViewModel {
         UserDestinationData userdata = currentInfo.getUserDestinationData();
         userdata.addNote(note);
         db.updateDestinationData(currentInfo.getUser(), userdata);
+    }
+
+    public void removeNoteFromCurrentVacation(
+            String note, Runnable onSuccess, Consumer<String> onFail) {
+        Database db = Database.getInstance();
+        UserDestinationData userdata = currentInfo.getUserDestinationData();
+        userdata.removeNote(note);
+        db.updateDestinationData(currentInfo.getUser(), userdata);
+    }
+
+    public void loadNotes(Consumer<List<String>> onSuccess, Consumer<String> onFail) {
+        Database db = Database.getInstance();
+        db.getUserDestinationData(currentInfo.getUser().getUsername(), data -> {
+            onSuccess.accept(data.getNotes());
+        }, onFail);
     }
 }

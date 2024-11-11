@@ -11,14 +11,16 @@ public class UserAccommodationData {
         reservations = new ArrayList<>();
     }
 
-    public UserAccommodationData(String username){
+    public UserAccommodationData(String username) {
         this.username = username;
         reservations = new ArrayList<>();
     }
 
-    public String getUsername(){return username;}
+    public String getUsername() {
+        return username;
+    }
 
-    public void setUsername(String newName){
+    public void setUsername(String newName) {
         this.username = newName;
     }
 

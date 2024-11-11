@@ -56,4 +56,8 @@ public class UserDestinationData {
     public void addNote(String note) {
         notes.add(note);
     }
+
+    public void removeNote(String note) {
+        notes.remove(note);
+    }
 }
