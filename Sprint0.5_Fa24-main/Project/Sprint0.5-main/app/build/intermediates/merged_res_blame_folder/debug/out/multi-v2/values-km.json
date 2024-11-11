@@ -4,7 +4,62 @@
             "outputFile": "com.example.sprintproject.app-mergeDebugResources-49:/values-km/values-km.xml",
             "map": [
                 {
+<<<<<<< Updated upstream
                     "source": "/Users/tvo/.gradle/caches/transforms-3/1b046af1dd3d9f3dd1da46bf083ed824/transformed/material-1.11.0/res/values-km/values-km.xml",
+=======
+                    "source": "C:\\Users\\ylinl\\.gradle\\caches\\transforms-3\\777c623e9b70c15cdd36e0c4405d1e10\\transformed\\core-1.9.0\\res\\values-km\\values-km.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "128",
+                        "startColumns": "4",
+                        "startOffsets": "11681",
+                        "endColumns": "100",
+                        "endOffsets": "11777"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ylinl\\.gradle\\caches\\transforms-3\\7aa6a8fb77b480a9439255b36c89ada0\\transformed\\navigation-ui-2.5.3\\res\\values-km\\values-km.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,160",
+                        "endColumns": "104,104",
+                        "endOffsets": "155,260"
+                    },
+                    "to": {
+                        "startLines": "124,125",
+                        "startColumns": "4,4",
+                        "startOffsets": "11304,11409",
+                        "endColumns": "104,104",
+                        "endOffsets": "11404,11509"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ylinl\\.gradle\\caches\\transforms-3\\d8398e728a7b272380f5ed52f6c733f0\\transformed\\browser-1.4.0\\res\\values-km\\values-km.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,152,249,382",
+                        "endColumns": "96,96,132,99",
+                        "endOffsets": "147,244,377,477"
+                    },
+                    "to": {
+                        "startLines": "61,64,65,66",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "6145,6401,6498,6631",
+                        "endColumns": "96,96,132,99",
+                        "endOffsets": "6237,6493,6626,6726"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ylinl\\.gradle\\caches\\transforms-3\\1b046af1dd3d9f3dd1da46bf083ed824\\transformed\\material-1.11.0\\res\\values-km\\values-km.xml",
+>>>>>>> Stashed changes
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -23,6 +78,7 @@
                     }
                 },
                 {
+<<<<<<< Updated upstream
                     "source": "/Users/tvo/.gradle/caches/transforms-3/d8398e728a7b272380f5ed52f6c733f0/transformed/browser-1.4.0/res/values-km/values-km.xml",
                     "from": {
                         "startLines": "2,3,4,5",
@@ -41,6 +97,9 @@
                 },
                 {
                     "source": "/Users/tvo/.gradle/caches/transforms-3/581f50f3920c362c106eda96465707ce/transformed/appcompat-1.6.1/res/values-km/values-km.xml",
+=======
+                    "source": "C:\\Users\\ylinl\\.gradle\\caches\\transforms-3\\581f50f3920c362c106eda96465707ce\\transformed\\appcompat-1.6.1\\res\\values-km\\values-km.xml",
+>>>>>>> Stashed changes
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -57,7 +116,11 @@
                     }
                 },
                 {
+<<<<<<< Updated upstream
                     "source": "/Users/tvo/.gradle/caches/transforms-3/b9d6df1de2f10457974c4cfb98fa05bd/transformed/play-services-basement-18.3.0/res/values-km/values.xml",
+=======
+                    "source": "C:\\Users\\ylinl\\.gradle\\caches\\transforms-3\\b9d6df1de2f10457974c4cfb98fa05bd\\transformed\\play-services-basement-18.3.0\\res\\values-km\\values.xml",
+>>>>>>> Stashed changes
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -74,6 +137,7 @@
                     }
                 },
                 {
+<<<<<<< Updated upstream
                     "source": "/Users/tvo/.gradle/caches/transforms-3/7aa6a8fb77b480a9439255b36c89ada0/transformed/navigation-ui-2.5.3/res/values-km/values-km.xml",
                     "from": {
                         "startLines": "2,3",
@@ -126,6 +190,9 @@
                 },
                 {
                     "source": "/Users/tvo/.gradle/caches/transforms-3/cd8f3646359d65671470a91dfa55539a/transformed/play-services-base-18.1.0/res/values-km/values.xml",
+=======
+                    "source": "C:\\Users\\ylinl\\.gradle\\caches\\transforms-3\\cd8f3646359d65671470a91dfa55539a\\transformed\\play-services-base-18.1.0\\res\\values-km\\values.xml",
+>>>>>>> Stashed changes
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -139,6 +206,23 @@
                         "startOffsets": "3924,4026,4181,4302,4407,4569,4693,4814,5072,5230,5347,5518,5643,5788,5946,6010,6068",
                         "endColumns": "101,154,120,104,161,123,120,108,157,116,170,124,144,157,63,57,76",
                         "endOffsets": "4021,4176,4297,4402,4564,4688,4809,4918,5225,5342,5513,5638,5783,5941,6005,6063,6140"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ylinl\\.gradle\\caches\\transforms-3\\1676dd73e9fb03f382385333fdd033a0\\transformed\\credentials-1.2.0-rc01\\res\\values-km\\values-km.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,171",
+                        "endColumns": "115,116",
+                        "endOffsets": "166,283"
+                    },
+                    "to": {
+                        "startLines": "33,34",
+                        "startColumns": "4,4",
+                        "startOffsets": "3007,3123",
+                        "endColumns": "115,116",
+                        "endOffsets": "3118,3235"
                     }
                 }
             ]

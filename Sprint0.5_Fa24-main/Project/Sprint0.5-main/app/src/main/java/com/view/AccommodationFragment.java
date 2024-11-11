@@ -31,10 +31,18 @@ public class AccommodationFragment extends Fragment {
     private LinearLayout accommodationsContainer;
     private AccomodationsViewModel accommodationsViewModel;
     private FloatingActionButton addAccommodationFab;
+<<<<<<< Updated upstream
+=======
+    private LinearLayout accommodationsContainer;
+    private Button sortCheckInButton;
+    private Button sortCheckOutButton;
+>>>>>>> Stashed changes
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_accommodation, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_accommodation,
+                container, false);
 
         accommodationsContainer = view.findViewById(R.id.accommodationsContainer);
         accommodationsViewModel = new ViewModelProvider(this).get(AccomodationsViewModel.class);
@@ -48,8 +56,14 @@ public class AccommodationFragment extends Fragment {
     }
 
     private void loadAccommodations() {
+<<<<<<< Updated upstream
         List<AccommodationReservation> accommodations = accommodationsViewModel.getAccommodations();
         accommodationsContainer.removeAllViews();
+=======
+        accommodationsContainer.removeAllViews();
+        List<AccommodationReservation> accommodations =
+                accommodationsViewModel.getAccommodations();
+>>>>>>> Stashed changes
         for (AccommodationReservation accommodation : accommodations) {
             View accommodationView = LayoutInflater.from(getContext()).inflate(R.layout.accommodation_item, accommodationsContainer, false);
             ((TextView) accommodationView.findViewById(R.id.locationView)).setText(accommodation.getLocation());
@@ -62,9 +76,50 @@ public class AccommodationFragment extends Fragment {
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    private void displayAccommodation(AccommodationReservation accommodation) {
+        View accommodationView = LayoutInflater.from(getContext()).inflate(
+                R.layout.accommodation_item, accommodationsContainer, false);
+        TextView reviewStarsText = accommodationView.findViewById(R.id.reviewStars);
+        // Reusing this TextView for stars
+        TextView locationView = accommodationView.findViewById(R.id.locationView);
+        TextView dateView = accommodationView.findViewById(R.id.dateView);
+        TextView roomInfoView = accommodationView.findViewById(R.id.roomInfoView);
+
+        // Format the review stars
+        StringBuilder stars = new StringBuilder();
+        for (int i = 0; i < accommodation.getReviewStars(); i++) {
+            stars.append("★");
+        }
+        for (int i = accommodation.getReviewStars(); i < 5; i++) {
+            stars.append("☆");
+        }
+        locationView.setText(accommodation.getLocation());
+        reviewStarsText.setText(stars.toString());
+        dateView.setText(String.format("Check-in: %s - Check-out: %s",
+                new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckInDate()),
+                new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckOutDate())));
+        roomInfoView.setText(String.format("Rooms: %d, Type: %s",
+                accommodation.getNumRooms(), accommodation.getRoomType().getDisplayString()));
+
+        // Check if the accommodation is past and update the appearance
+        if (accommodationsViewModel.isPastAccommodation(accommodation)) {
+            dateView.setTextColor(getContext().getResources().getColor(R.color.expired_color));
+            // Change color to indicate expired
+            dateView.setText(dateView.getText() + " (Expired)");
+        }
+
+        accommodationsContainer.addView(accommodationView);
+    }
+
+
+>>>>>>> Stashed changes
     private void showAddAccommodationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_accommodation, null);
+        View dialogView = LayoutInflater.from(getContext()).inflate(
+                R.layout.dialog_add_accommodation, null);
+
         builder.setView(dialogView);
 
         EditText locationInput = dialogView.findViewById(R.id.etLocation);
@@ -76,7 +131,9 @@ public class AccommodationFragment extends Fragment {
         setupDatePicker(checkInInput);
         setupDatePicker(checkOutInput);
 
-        ArrayAdapter<AccommodationReservation.RoomType> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, AccommodationReservation.RoomType.values());
+        ArrayAdapter<AccommodationReservation.RoomType> spinnerAdapter = new ArrayAdapter<>(
+                getContext(), android.R.layout.simple_spinner_dropdown_item,
+                AccommodationReservation.RoomType.values());
         roomTypeSpinner.setAdapter(spinnerAdapter);
 
         AlertDialog dialog = builder.create();
@@ -86,14 +143,22 @@ public class AccommodationFragment extends Fragment {
             String location = locationInput.getText().toString();
             String checkInDate = checkInInput.getText().toString();
             String checkOutDate = checkOutInput.getText().toString();
+<<<<<<< Updated upstream
             int numRooms = Integer.parseInt(numberOfRoomsInput.getText().toString());
             AccommodationReservation.RoomType selectedRoomType = (AccommodationReservation.RoomType) roomTypeSpinner.getSelectedItem();
+=======
+            String numRooms = numberOfRoomsInput.getText().toString();
+            AccommodationReservation.RoomType selectedRoomType =
+                    (AccommodationReservation.RoomType) roomTypeSpinner.getSelectedItem();
+>>>>>>> Stashed changes
 
-            if (accommodationsViewModel.addAccommodation(checkInDate, checkOutDate, location, numRooms, selectedRoomType)) {
+            if (accommodationsViewModel.addAccommodation(checkInDate, checkOutDate,
+                    location, numRooms, selectedRoomType)) {
                 loadAccommodations();
                 dialog.dismiss();
             } else {
-                Toast.makeText(getContext(), "Failed to add accommodation. Check your inputs.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Failed to add accommodation. Check your inputs.",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -104,8 +169,11 @@ public class AccommodationFragment extends Fragment {
         editText.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) ->
-                    editText.setText(new SimpleDateFormat("MM/dd/yyyy").format(new Calendar.Builder().setDate(year, month, dayOfMonth).build().getTime())),
-                    calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+                    editText.setText(new SimpleDateFormat("MM/dd/yyyy").format(
+                            new Calendar.Builder().setDate(year,
+                            month, dayOfMonth).build().getTime())),
+                    calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)).show();
         });
     }
 }
