@@ -52,9 +52,11 @@ public class LogisticsViewModel extends ViewModel {
     }
 
     public void loadNotes(Consumer<List<String>> onSuccess, Consumer<String> onFail) {
-        Database db = Database.getInstance();
-        db.getUserDestinationData(currentInfo.getUser().getUsername(), data -> {
-            onSuccess.accept(data.getNotes());
-        }, onFail);
+        try {
+            List<String> notes = currentInfo.getUserDestinationData().getNotes();
+            onSuccess.accept(notes);
+        } catch (Exception e) {
+            onFail.accept("Failed to load notes: " + e.getMessage());
+        }
     }
 }
