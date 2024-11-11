@@ -4,11 +4,7 @@
             "outputFile": "com.example.sprintproject.app-mergeDebugResources-49:/values-w600dp-land-v13/values-w600dp-land-v13.xml",
             "map": [
                 {
-<<<<<<< Updated upstream
-                    "source": "/Users/tvo/.gradle/caches/transforms-3/1b046af1dd3d9f3dd1da46bf083ed824/transformed/material-1.11.0/res/values-w600dp-land-v13/values-w600dp-land-v13.xml",
-=======
-                    "source": "C:\\Users\\ylinl\\.gradle\\caches\\transforms-3\\1b046af1dd3d9f3dd1da46bf083ed824\\transformed\\material-1.11.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
->>>>>>> Stashed changes
+                    "source": "C:\\Users\\ndave\\.gradle\\caches\\transforms-3\\1b046af1dd3d9f3dd1da46bf083ed824\\transformed\\material-1.11.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
