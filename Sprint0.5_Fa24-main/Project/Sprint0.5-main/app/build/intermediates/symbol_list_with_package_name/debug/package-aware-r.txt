@@ -3216,6 +3216,8 @@ id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
 id accommodationsContainer
+id accommodationsInput
+id accommodationsTextView
 id actionDown
 id actionDownUp
 id actionUp
@@ -3345,8 +3347,12 @@ id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
 id destinationFragmentLayout
+id destinationInput
+id destinationTextView
 id dialog_button
 id dimensions
+id diningReservationInput
+id diningReservationTextView
 id direct
 id disableHome
 id disableIntraAutoTransition
@@ -3363,6 +3369,7 @@ id dragStart
 id dragUp
 id dropdown_menu
 id durationInput
+id durationTextView
 id easeIn
 id easeInOut
 id easeOut
@@ -3384,6 +3391,7 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id fabAddAccommodation
+id fabAddButton
 id fabAddReservation
 id fade
 id fill
@@ -3535,6 +3543,8 @@ id normal
 id north
 id noteInput
 id notesContainer
+id notesInput
+id notesTextView
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -3581,6 +3591,7 @@ id quitButton
 id radio
 id ratio
 id rectangles
+id recyclerView
 id registerButton
 id report_drawn
 id reservationDetails
@@ -3601,6 +3612,7 @@ id roomInfoView
 id rounded
 id row_index_key
 id rtl
+id saveButton
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3719,6 +3731,8 @@ id transition_layout_save
 id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
+id transportationInput
+id transportationTextView
 id travelLogsContainer
 id triangle
 id tvHeader
@@ -3728,6 +3742,7 @@ id unlabeled
 id up
 id useLogo
 id usernameEditText
+id usernameTextView
 id vacationTimeCalculatorForm
 id validCharacters
 id vertical_only
@@ -3895,6 +3910,7 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout dialog_add_accommodation
 layout dialog_add_reservation
+layout dialog_create_post
 layout dialog_notes
 layout fragment_accommodation
 layout fragment_community
@@ -3902,6 +3918,7 @@ layout fragment_destination
 layout fragment_dining
 layout fragment_logistics
 layout fragment_transportation
+layout item_post
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
