@@ -9,8 +9,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.DatabaseError;
 
+import com.model.CommunityTravelEntriesData;
 import com.model.Database;
 import com.model.Destination;
+import com.model.TravelEntryData;
 import com.model.User;
 import com.model.UserAccommodationData;
 import com.model.UserDestinationData;
@@ -28,6 +30,7 @@ public class CurrentUserInfo {
     private UserDestinationData userDestinationData;
     private UserDiningData userDiningData;
     private UserAccommodationData userAccommodationData;
+    private CommunityTravelEntriesData communityTravelEntriesData;
 
     private DatabaseReference dbRef;
 
@@ -163,6 +166,31 @@ public class CurrentUserInfo {
                         // Handle possible errors perchance
                     }
                 });
+        dbRef.child("community").child(listeningUser)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            communityTravelEntriesData =
+                                    dataSnapshot.getValue(CommunityTravelEntriesData.class);
+
+                            if (communityTravelEntriesData == null) {
+                                communityTravelEntriesData = new CommunityTravelEntriesData();
+                                dbRef.child("community")
+                                        .setValue(communityTravelEntriesData);
+                            }
+                        } else {
+                            communityTravelEntriesData = new CommunityTravelEntriesData();
+                            dbRef.child("community")
+                                    .setValue(communityTravelEntriesData);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Handle possible errors perchance
+                    }
+                });
     }
 
     public User getUser() {
@@ -191,6 +219,8 @@ public class CurrentUserInfo {
     public UserAccommodationData getUserAccommodationData() {
         return userAccommodationData;
     }
+
+    public CommunityTravelEntriesData getCommunityTravelEntriesData() { return communityTravelEntriesData; }
 
     public void getAllottedVacationDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
         if (user.isCollaborating()) {
