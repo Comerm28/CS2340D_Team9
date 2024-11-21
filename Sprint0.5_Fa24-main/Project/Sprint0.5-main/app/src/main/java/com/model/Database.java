@@ -104,6 +104,10 @@ public class Database {
         }
     }
 
+    public void updateCommunityTravelEntriesData(CommunityTravelEntriesData communityTravelEntriesData) {
+        dbRef.child("community").setValue(communityTravelEntriesData);
+    }
+
     public void checkUser(String username, Consumer<User> dataLoaded,
                           Consumer<String> onFail) {
         dbRef.child("users").child(username)
