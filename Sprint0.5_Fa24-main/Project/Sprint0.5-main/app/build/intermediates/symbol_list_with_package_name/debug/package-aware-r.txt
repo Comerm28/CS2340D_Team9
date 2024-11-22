@@ -3369,7 +3369,6 @@ id dragStart
 id dragUp
 id dropdown_menu
 id durationInput
-id durationTextView
 id easeIn
 id easeInOut
 id easeOut
@@ -3380,6 +3379,7 @@ id elastic
 id embed
 id end
 id endDateInput
+id endDateTextView
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
@@ -3589,6 +3589,8 @@ id progress_circular
 id progress_horizontal
 id quitButton
 id radio
+id ratingInput
+id ratingTextView
 id ratio
 id rectangles
 id recyclerView
@@ -3675,6 +3677,7 @@ id standard
 id start
 id startButton
 id startDateInput
+id startDateTextView
 id startHorizontal
 id startToEnd
 id startVertical
@@ -3731,8 +3734,6 @@ id transition_layout_save
 id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
-id transportationInput
-id transportationTextView
 id travelLogsContainer
 id triangle
 id tvHeader

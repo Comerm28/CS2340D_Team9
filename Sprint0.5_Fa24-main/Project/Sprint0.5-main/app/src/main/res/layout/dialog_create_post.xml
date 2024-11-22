@@ -16,10 +16,16 @@
             android:hint="Destination" />
 
         <EditText
-            android:id="@+id/durationInput"
+            android:id="@+id/startDateInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Duration" />
+            android:hint="Start Date" />
+
+        <EditText
+            android:id="@+id/endDateInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="End Date" />
 
         <EditText
             android:id="@+id/accommodationsInput"
@@ -34,10 +40,10 @@
             android:hint="Dining Reservations" />
 
         <EditText
-            android:id="@+id/transportationInput"
+            android:id="@+id/ratingInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Transportation" />
+            android:hint="Rating" />
 
         <EditText
             android:id="@+id/notesInput"
@@ -52,3 +58,5 @@
             android:text="Save" />
     </LinearLayout>
 </ScrollView>
+
+
