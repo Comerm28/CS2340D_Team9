@@ -25,8 +25,6 @@ public class CommunityViewModel extends ViewModel {
     private CurrentUserInfo currentUserInfo;
 
     public CommunityViewModel() {
-
-
         currentUserInfo = CurrentUserInfo.getInstance();
     }
 
