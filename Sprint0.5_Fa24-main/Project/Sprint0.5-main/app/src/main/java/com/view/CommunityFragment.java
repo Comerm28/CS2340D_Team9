@@ -78,13 +78,20 @@ public class CommunityFragment extends Fragment {
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
             Post post = postList.get(position);
             holder.usernameTextView.setText(post.username);
-            holder.destinationTextView.setText(post.destination);
-            holder.startDateTextView.setText(dateFormat.format(post.startDate));
-            holder.endDateTextView.setText(dateFormat.format(post.endDate));
-            holder.accommodationsTextView.setText(post.accommodations);
-            holder.diningReservationTextView.setText(post.diningReservation);
-            holder.ratingTextView.setText(Integer.toString(post.rating));
-            holder.notesTextView.setText(post.notes);
+            holder.destinationTextView.setText("Destination: " + post.destination);
+            holder.startDateTextView.setText("Start Date: " + dateFormat.format(post.startDate));
+            holder.endDateTextView.setText("End Date: " + dateFormat.format(post.endDate));
+            holder.accommodationsTextView.setText("Accommodation: " + post.accommodations);
+            holder.diningReservationTextView.setText("Dining: " + post.diningReservation);
+            StringBuilder stars = new StringBuilder();
+            for (int i = 0; i < post.rating; i++) {
+                stars.append("★");
+            }
+            for (int i = post.rating; i < 5; i++) {
+                stars.append("☆");
+            }
+            holder.ratingTextView.setText("Rating: " + stars);
+            holder.notesTextView.setText("Notes: " + post.notes);
         }
 
         @Override
