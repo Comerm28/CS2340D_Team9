@@ -10,6 +10,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.viewmodel.CurrentUserInfo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class Database {
@@ -104,8 +106,8 @@ public class Database {
         }
     }
 
-    public void updateCommunityTravelEntriesData(CommunityTravelEntriesData communityTravelEntriesData) {
-        dbRef.child("community").setValue(communityTravelEntriesData);
+    public void addCommunityPost(Post post) {
+        dbRef.child("community").push().setValue(post);
     }
 
     public void checkUser(String username, Consumer<User> dataLoaded,
@@ -159,6 +161,29 @@ public class Database {
                             dataLoaded.accept(dataSnapshot.getValue(UserAccommodationData.class));
                         } else {
                             onFail.accept("User not present.");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        onFail.accept(databaseError.getMessage());
+                    }
+                });
+    }
+
+    public void getCommunityPosts(Consumer<List<Post>> dataLoaded, Consumer<String> onFail) {
+        dbRef.child("community")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            List<Post> posts = new ArrayList<>();
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                posts.add(snapshot.getValue(Post.class));
+                            }
+                            dataLoaded.accept(posts);
+                        } else {
+                            onFail.accept("not present");
                         }
                     }
 

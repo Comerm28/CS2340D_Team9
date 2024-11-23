@@ -3,15 +3,15 @@ package com.model;
 import java.util.List;
 
 public class CommunityTravelEntriesData {
-    List<TravelEntryData> travelEntries;
+    List<Post> travelEntries;
 
     public CommunityTravelEntriesData() {}
 
-    public List<TravelEntryData> getTravelEntries() {
+    public List<Post> getTravelEntries() {
         return travelEntries;
     }
 
-    public void addTravelEntry(TravelEntryData t)
+    public void addTravelEntry(Post t)
     {
         travelEntries.add(t);
     }

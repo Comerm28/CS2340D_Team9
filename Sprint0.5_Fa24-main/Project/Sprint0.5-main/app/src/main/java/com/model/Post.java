@@ -1,21 +1,27 @@
 package com.model;
 
+import java.util.Date;
+
 public class Post {
     public String username;
     public String destination;
-    public String duration;
+    public Date startDate;
+    public Date endDate;
     public String accommodations;
     public String diningReservation;
-    public String transportation;
     public String notes;
+    public int rating;
 
-    public Post(String username, String destination, String duration, String accommodations, String diningReservation, String transportation, String notes) {
+    public Post() {}
+
+    public Post(String username, String destination, Date startDate, Date endDate, String accommodations, String diningReservation, int rating, String notes) {
         this.username = username;
         this.destination = destination;
-        this.duration = duration;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.accommodations = accommodations;
         this.diningReservation = diningReservation;
-        this.transportation = transportation;
+        this.rating = rating;
         this.notes = notes;
     }
 }

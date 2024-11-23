@@ -16,6 +16,8 @@ import com.example.sprintproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.model.Post;
 import com.viewmodel.CommunityViewModel;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +37,12 @@ public class CommunityFragment extends Fragment {
         final PostAdapter adapter = new PostAdapter();
         recyclerView.setAdapter(adapter);
 
-        // Observe posts data
         communityViewModel.getPosts().observe(getViewLifecycleOwner(), adapter::submitList);
+        communityViewModel.loadPosts(
+                () -> adapter.submitList(communityViewModel.getPosts().getValue())
+        );
+        // Observe posts data
+//        communityViewModel.getPosts().observe(getViewLifecycleOwner(), adapter::submitList);
 
         // Set up FloatingActionButton
         FloatingActionButton fabAddButton = view.findViewById(R.id.fabAddButton);
@@ -69,13 +75,15 @@ public class CommunityFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
             Post post = postList.get(position);
             holder.usernameTextView.setText(post.username);
             holder.destinationTextView.setText(post.destination);
-            holder.durationTextView.setText(post.duration);
+            holder.startDateTextView.setText(dateFormat.format(post.startDate));
+            holder.endDateTextView.setText(dateFormat.format(post.endDate));
             holder.accommodationsTextView.setText(post.accommodations);
             holder.diningReservationTextView.setText(post.diningReservation);
-            holder.transportationTextView.setText(post.transportation);
+            holder.ratingTextView.setText(Integer.toString(post.rating));
             holder.notesTextView.setText(post.notes);
         }
 
@@ -85,16 +93,17 @@ public class CommunityFragment extends Fragment {
         }
 
         class PostViewHolder extends RecyclerView.ViewHolder {
-            TextView usernameTextView, destinationTextView, durationTextView, accommodationsTextView, diningReservationTextView, transportationTextView, notesTextView;
+            TextView usernameTextView, destinationTextView, startDateTextView, endDateTextView, accommodationsTextView, diningReservationTextView, ratingTextView, notesTextView;
 
             public PostViewHolder(@NonNull View itemView) {
                 super(itemView);
                 usernameTextView = itemView.findViewById(R.id.usernameTextView);
                 destinationTextView = itemView.findViewById(R.id.destinationTextView);
-                durationTextView = itemView.findViewById(R.id.durationTextView);
+                startDateTextView = itemView.findViewById(R.id.startDateTextView);
+                endDateTextView = itemView.findViewById(R.id.endDateTextView);
                 accommodationsTextView = itemView.findViewById(R.id.accommodationsTextView);
                 diningReservationTextView = itemView.findViewById(R.id.diningReservationTextView);
-                transportationTextView = itemView.findViewById(R.id.transportationTextView);
+                ratingTextView = itemView.findViewById(R.id.ratingTextView);
                 notesTextView = itemView.findViewById(R.id.notesTextView);
             }
         }

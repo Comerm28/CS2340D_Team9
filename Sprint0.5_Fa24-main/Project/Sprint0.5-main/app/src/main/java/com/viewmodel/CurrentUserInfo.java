@@ -12,7 +12,6 @@ import com.google.firebase.database.DatabaseError;
 import com.model.CommunityTravelEntriesData;
 import com.model.Database;
 import com.model.Destination;
-import com.model.TravelEntryData;
 import com.model.User;
 import com.model.UserAccommodationData;
 import com.model.UserDestinationData;
@@ -158,31 +157,6 @@ public class CurrentUserInfo {
                             dbRef.child("accommodations")
                                     .child(listeningUser).setValue(userAccommodationData);
                             userAccommodationData.setUsername(listeningUser);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        // Handle possible errors perchance
-                    }
-                });
-        dbRef.child("community").child(listeningUser)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            communityTravelEntriesData =
-                                    dataSnapshot.getValue(CommunityTravelEntriesData.class);
-
-                            if (communityTravelEntriesData == null) {
-                                communityTravelEntriesData = new CommunityTravelEntriesData();
-                                dbRef.child("community")
-                                        .setValue(communityTravelEntriesData);
-                            }
-                        } else {
-                            communityTravelEntriesData = new CommunityTravelEntriesData();
-                            dbRef.child("community")
-                                    .setValue(communityTravelEntriesData);
                         }
                     }
 

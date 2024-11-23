@@ -11,13 +11,13 @@ import com.model.Database;
 import com.model.Destination;
 import com.model.DiningReservation;
 import com.model.Post;
-import com.model.TravelEntryData;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class CommunityViewModel extends ViewModel {
     //temporary just to make view functional
@@ -25,35 +25,50 @@ public class CommunityViewModel extends ViewModel {
     private CurrentUserInfo currentUserInfo;
 
     public CommunityViewModel() {
-        // Populate with default values
-        initializeDefaultPosts();
+
+
         currentUserInfo = CurrentUserInfo.getInstance();
     }
 
-    public boolean addPost(String startDate, String endDate, String location, String diningWebsite,
-                        String diningLocation, String diningTime, String accomodationLocation, int numRooms,
-                        AccommodationReservation.RoomType roomType, int rating)
-    {
-        Date st = isValidDate(startDate);
-        Date en = isValidDate(endDate);
-        Date dTime = isValidDate(diningTime);
-        if(st == null || en == null || dTime == null)
-        {
-            return false;
-        }
-        Destination dest = new Destination(location, st, en);
-        AccommodationReservation accom = new AccommodationReservation(accomodationLocation, st, en, numRooms, roomType);
-        DiningReservation dining = new DiningReservation(diningLocation, diningWebsite, dTime);
-        TravelEntryData travelEntry = new TravelEntryData(st, en, dest, accom, dining, rating);
-
-        CommunityTravelEntriesData communityTravelEntriesData = currentUserInfo.getCommunityTravelEntriesData();
-        communityTravelEntriesData.addTravelEntry(travelEntry);
-        Database.getInstance().updateCommunityTravelEntriesData(communityTravelEntriesData);
-
-        return true;
+    public void loadPosts(Runnable onSuccess) {
+            Database.getInstance().getCommunityPosts(loadedPosts -> {
+            loadedPosts.add(0, new Post("User1", "Paris", Destination.parseDate("10-05-2024"), Destination.parseDate("10-06-2024"), "Hotel de France", "Chez Marie", 5, "Loved the Eiffel Tower!"));
+            loadedPosts.add(1, new Post("User2", "Tokyo", Destination.parseDate("11-05-2024"), Destination.parseDate("11-16-2024"), "Shinjuku Inn", "Sushi Saito", 5, "Explored amazing temples and culture."));
+            posts.setValue(loadedPosts);
+            onSuccess.run();
+        }, fail -> {
+            ArrayList<Post> loadedPosts = new ArrayList<>();
+            loadedPosts.add(0, new Post("User1", "Paris", Destination.parseDate("10-05-2024"), Destination.parseDate("10-06-2024"), "Hotel de France", "Chez Marie", 5, "Loved the Eiffel Tower!"));
+            loadedPosts.add(1, new Post("User2", "Tokyo", Destination.parseDate("11-05-2024"), Destination.parseDate("11-16-2024"), "Shinjuku Inn", "Sushi Saito", 5, "Explored amazing temples and culture."));
+            posts.setValue(loadedPosts);
+            onSuccess.run();
+        });
     }
 
-    public List<TravelEntryData> getTravelPosts()
+//    public boolean addPost(String startDate, String endDate, String location, String diningWebsite,
+//                        String diningLocation, String diningTime, String accomodationLocation, int numRooms,
+//                        AccommodationReservation.RoomType roomType, int rating)
+//    {
+//        Date st = isValidDate(startDate);
+//        Date en = isValidDate(endDate);
+//        Date dTime = isValidDate(diningTime);
+//        if(st == null || en == null || dTime == null)
+//        {
+//            return false;
+//        }
+//        Destination dest = new Destination(location, st, en);
+//        AccommodationReservation accom = new AccommodationReservation(accomodationLocation, st, en, numRooms, roomType);
+//        DiningReservation dining = new DiningReservation(diningLocation, diningWebsite, dTime);
+//        TravelEntryData travelEntry = new TravelEntryData(st, en, dest, accom, dining, rating);
+//
+//        CommunityTravelEntriesData communityTravelEntriesData = currentUserInfo.getCommunityTravelEntriesData();
+//        communityTravelEntriesData.addTravelEntry(travelEntry);
+//        Database.getInstance().updateCommunityTravelEntriesData(communityTravelEntriesData);
+//
+//        return true;
+//    }
+
+    public List<Post> getTravelPosts()
     {
         return currentUserInfo.getCommunityTravelEntriesData().getTravelEntries();
     }
@@ -64,18 +79,11 @@ public class CommunityViewModel extends ViewModel {
 
     public void addPost(Post post) {
         List<Post> currentPosts = posts.getValue();
+        Database.getInstance().addCommunityPost(post);
         if (currentPosts != null) {
             currentPosts.add(post);
             posts.setValue(currentPosts);
         }
-    }
-
-    private void initializeDefaultPosts() {
-        List<Post> defaultPosts = new ArrayList<>();
-        defaultPosts.add(new Post("User1", "Paris", "5 days", "Hotel de France", "Chez Marie", "Airplane", "Loved the Eiffel Tower!"));
-        defaultPosts.add(new Post("User2", "Tokyo", "7 days", "Shinjuku Inn", "Sushi Saito", "Train", "Explored amazing temples and culture."));
-
-        posts.setValue(defaultPosts);
     }
 
     private Date isValidDate(String date) {

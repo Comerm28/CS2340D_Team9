@@ -36,8 +36,8 @@ id destinationTextView
 id diningReservationInput
 id diningReservationTextView
 id durationInput
-id durationTextView
 id endDateInput
+id endDateTextView
 id etCheckIn
 id etCheckOut
 id etLocation
@@ -62,6 +62,8 @@ id notesTextView
 id passwordEditText
 id pieChart
 id quitButton
+id ratingInput
+id ratingTextView
 id recyclerView
 id registerButton
 id reservationDetails
@@ -85,9 +87,8 @@ id splash_image
 id splash_text
 id startButton
 id startDateInput
+id startDateTextView
 id timeInput
-id transportationInput
-id transportationTextView
 id travelLogsContainer
 id tvHeader
 id usernameEditText
