@@ -1,5 +1,4 @@
 package com.view;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import com.example.sprintproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.model.Post;
 import com.viewmodel.CommunityViewModel;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
