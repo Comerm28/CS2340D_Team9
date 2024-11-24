@@ -11,8 +11,7 @@ public class Destination {
     private Date endDate;
     private int durationDays;
 
-    public Destination() {
-    }
+    public Destination() { }
 
     public Destination(String locationName, Date startDate, Date endDate) {
         this.locationName = locationName;
