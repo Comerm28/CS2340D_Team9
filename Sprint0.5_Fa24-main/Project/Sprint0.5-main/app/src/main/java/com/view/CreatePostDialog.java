@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import com.example.sprintproject.R;
-import com.model.Database;
 import com.model.Destination;
 import com.model.Post;
 import com.viewmodel.CurrentUserInfo;
@@ -23,17 +22,14 @@ public class CreatePostDialog extends DialogFragment {
 
     private final OnPostCreatedListener listener;
 
-    public interface OnPostCreatedListener {
-        void onPostCreated(Post post);
-    }
-
     public CreatePostDialog(OnPostCreatedListener listener) {
         this.listener = listener;
     }
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_create_post, container, false);
 
         EditText destinationInput = view.findViewById(R.id.destinationInput);
@@ -65,20 +61,23 @@ public class CreatePostDialog extends DialogFragment {
                 return;
             }
 
-            Post post = new Post(
-                    CurrentUserInfo.getInstance().getUser().getUsername(),
-                    destinationInput.getText().toString(),
-                    startDate,
-                    endDate,
-                    accommodationsInput.getText().toString(),
-                    diningReservationInput.getText().toString(),
-                    rating,
-                    notesInput.getText().toString()
-            );
+            Post post = new Post();
+            post.setUsername(CurrentUserInfo.getInstance().getUser().getUsername());
+            post.setDestination(destinationInput.getText().toString());
+            post.setStartDate(startDate);
+            post.setEndDate(endDate);
+            post.setAccommodations(accommodationsInput.getText().toString());
+            post.setDiningReservation(diningReservationInput.getText().toString());
+            post.setRating(rating);
+            post.setNotes(notesInput.getText().toString());
             listener.onPostCreated(post);
             dismiss();
         });
 
         return view;
+    }
+
+    public interface OnPostCreatedListener {
+        void onPostCreated(Post post);
     }
 }
