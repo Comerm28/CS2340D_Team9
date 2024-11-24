@@ -194,7 +194,9 @@ public class CurrentUserInfo {
         return userAccommodationData;
     }
 
-    public CommunityTravelEntriesData getCommunityTravelEntriesData() { return communityTravelEntriesData; }
+    public CommunityTravelEntriesData getCommunityTravelEntriesData() {
+        return communityTravelEntriesData;
+    }
 
     public void getAllottedVacationDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
         if (user.isCollaborating()) {
