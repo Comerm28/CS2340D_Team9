@@ -5,11 +5,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.model.AccommodationReservation;
-import com.model.CommunityTravelEntriesData;
 import com.model.Database;
 import com.model.Destination;
-import com.model.DiningReservation;
 import com.model.Post;
 
 import java.text.ParseException;
@@ -17,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class CommunityViewModel extends ViewModel {
     //temporary just to make view functional
@@ -30,44 +26,56 @@ public class CommunityViewModel extends ViewModel {
 
     public void loadPosts(Runnable onSuccess) {
             Database.getInstance().getCommunityPosts(loadedPosts -> {
-            loadedPosts.add(0, new Post("User1", "Paris", Destination.parseDate("10-05-2024"), Destination.parseDate("10-06-2024"), "Hotel de France", "Chez Marie", 5, "Loved the Eiffel Tower!"));
-            loadedPosts.add(1, new Post("User2", "Tokyo", Destination.parseDate("11-05-2024"), Destination.parseDate("11-16-2024"), "Shinjuku Inn", "Sushi Saito", 5, "Explored amazing temples and culture."));
+            Post post = new Post();
+            post.setUsername("User1");
+            post.setDestination("Paris");
+            post.setStartDate(Destination.parseDate("10-05-2024"));
+            post.setEndDate(Destination.parseDate("10-06-2024"));
+            post.setAccommodations("Hotel de France");
+            post.setDiningReservation("Chez Marie");
+            post.setRating(5);
+            post.setNotes("Loved the Eiffel Tower!");
+
+            Post post2 = new Post();
+            post2.setUsername("User2");
+            post2.setDestination("Tokyo");
+            post2.setStartDate(Destination.parseDate("11-05-2024"));
+            post2.setEndDate(Destination.parseDate("11-06-2024"));
+            post2.setAccommodations("Shinjuku Inn");
+            post2.setDiningReservation("Sushi Saito");
+            post2.setRating(5);
+            post2.setNotes("Explored amazing temples and culture.");
+            loadedPosts.add(1, post2);
             posts.setValue(loadedPosts);
             onSuccess.run();
         }, fail -> {
             ArrayList<Post> loadedPosts = new ArrayList<>();
-            loadedPosts.add(0, new Post("User1", "Paris", Destination.parseDate("10-05-2024"), Destination.parseDate("10-06-2024"), "Hotel de France", "Chez Marie", 5, "Loved the Eiffel Tower!"));
-            loadedPosts.add(1, new Post("User2", "Tokyo", Destination.parseDate("11-05-2024"), Destination.parseDate("11-16-2024"), "Shinjuku Inn", "Sushi Saito", 5, "Explored amazing temples and culture."));
+            Post post = new Post();
+            post.setUsername("User1");
+            post.setDestination("Paris");
+            post.setStartDate(Destination.parseDate("10-05-2024"));
+            post.setEndDate(Destination.parseDate("10-06-2024"));
+            post.setAccommodations("Hotel de France");
+            post.setDiningReservation("Chez Marie");
+            post.setRating(5);
+            post.setNotes("Loved the Eiffel Tower!");
+
+            Post post2 = new Post();
+            post2.setUsername("User2");
+            post2.setDestination("Tokyo");
+            post2.setStartDate(Destination.parseDate("11-05-2024"));
+            post2.setEndDate(Destination.parseDate("11-06-2024"));
+            post2.setAccommodations("Shinjuku Inn");
+            post2.setDiningReservation("Sushi Saito");
+            post2.setRating(5);
+            post2.setNotes("Explored amazing temples and culture.");
+            loadedPosts.add(1, post2);
             posts.setValue(loadedPosts);
             onSuccess.run();
         });
     }
 
-//    public boolean addPost(String startDate, String endDate, String location, String diningWebsite,
-//                        String diningLocation, String diningTime, String accomodationLocation, int numRooms,
-//                        AccommodationReservation.RoomType roomType, int rating)
-//    {
-//        Date st = isValidDate(startDate);
-//        Date en = isValidDate(endDate);
-//        Date dTime = isValidDate(diningTime);
-//        if(st == null || en == null || dTime == null)
-//        {
-//            return false;
-//        }
-//        Destination dest = new Destination(location, st, en);
-//        AccommodationReservation accom = new AccommodationReservation(accomodationLocation, st, en, numRooms, roomType);
-//        DiningReservation dining = new DiningReservation(diningLocation, diningWebsite, dTime);
-//        TravelEntryData travelEntry = new TravelEntryData(st, en, dest, accom, dining, rating);
-//
-//        CommunityTravelEntriesData communityTravelEntriesData = currentUserInfo.getCommunityTravelEntriesData();
-//        communityTravelEntriesData.addTravelEntry(travelEntry);
-//        Database.getInstance().updateCommunityTravelEntriesData(communityTravelEntriesData);
-//
-//        return true;
-//    }
-
-    public List<Post> getTravelPosts()
-    {
+    public List<Post> getTravelPosts() {
         return currentUserInfo.getCommunityTravelEntriesData().getTravelEntries();
     }
 

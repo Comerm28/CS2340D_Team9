@@ -3,7 +3,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
@@ -23,7 +22,8 @@ public class CommunityFragment extends Fragment {
     private CommunityViewModel communityViewModel;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_community, container, false);
 
         // ViewModel initialization
@@ -40,7 +40,7 @@ public class CommunityFragment extends Fragment {
                 () -> adapter.submitList(communityViewModel.getPosts().getValue())
         );
         // Observe posts data
-//        communityViewModel.getPosts().observe(getViewLifecycleOwner(), adapter::submitList);
+        // communityViewModel.getPosts().observe(getViewLifecycleOwner(), adapter::submitList);
 
         // Set up FloatingActionButton
         FloatingActionButton fabAddButton = view.findViewById(R.id.fabAddButton);
@@ -67,7 +67,8 @@ public class CommunityFragment extends Fragment {
         @NonNull
         @Override
         public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post, parent, false);
+            View view = LayoutInflater.from(
+                    parent.getContext()).inflate(R.layout.item_post, parent, false);
             return new PostViewHolder(view);
         }
 
@@ -75,21 +76,21 @@ public class CommunityFragment extends Fragment {
         public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
             Post post = postList.get(position);
-            holder.usernameTextView.setText(post.username);
-            holder.destinationTextView.setText("Destination: " + post.destination);
-            holder.startDateTextView.setText("Start Date: " + dateFormat.format(post.startDate));
-            holder.endDateTextView.setText("End Date: " + dateFormat.format(post.endDate));
-            holder.accommodationsTextView.setText("Accommodation: " + post.accommodations);
-            holder.diningReservationTextView.setText("Dining: " + post.diningReservation);
+            holder.usernameTextView.setText(post.getUsername());
+            holder.destinationTextView.setText("Destination: " + post.getDestination());
+            holder.startDateTextView.setText("Start Date: " + dateFormat.format(post.getStartDate()));
+            holder.endDateTextView.setText("End Date: " + dateFormat.format(post.getEndDate()));
+            holder.accommodationsTextView.setText("Accommodation: " + post.getAccommodations());
+            holder.diningReservationTextView.setText("Dining: " + post.getDiningReservation());
             StringBuilder stars = new StringBuilder();
-            for (int i = 0; i < post.rating; i++) {
+            for (int i = 0; i < post.getRating(); i++) {
                 stars.append("★");
             }
-            for (int i = post.rating; i < 5; i++) {
+            for (int i = post.getRating(); i < 5; i++) {
                 stars.append("☆");
             }
             holder.ratingTextView.setText("Rating: " + stars);
-            holder.notesTextView.setText("Notes: " + post.notes);
+            holder.notesTextView.setText("Notes: " + post.getNotes());
         }
 
         @Override
@@ -98,7 +99,14 @@ public class CommunityFragment extends Fragment {
         }
 
         class PostViewHolder extends RecyclerView.ViewHolder {
-            TextView usernameTextView, destinationTextView, startDateTextView, endDateTextView, accommodationsTextView, diningReservationTextView, ratingTextView, notesTextView;
+            private TextView usernameTextView;
+            private TextView destinationTextView;
+            private TextView startDateTextView;
+            private TextView endDateTextView;
+            private TextView accommodationsTextView;
+            private TextView diningReservationTextView;
+            private TextView ratingTextView;
+            private TextView notesTextView;
 
             public PostViewHolder(@NonNull View itemView) {
                 super(itemView);

@@ -3,25 +3,78 @@ package com.model;
 import java.util.Date;
 
 public class Post {
-    public String username;
-    public String destination;
-    public Date startDate;
-    public Date endDate;
-    public String accommodations;
-    public String diningReservation;
-    public String notes;
-    public int rating;
+    private String username;
+    private String destination;
+    private Date startDate;
+    private Date endDate;
+    private String accommodations;
+    private String diningReservation;
+    private String notes;
+    private int rating;
 
-    public Post() {}
+    public Post() { }
 
-    public Post(String username, String destination, Date startDate, Date endDate, String accommodations, String diningReservation, int rating, String notes) {
+    public String getUsername() {
+        return username;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public String getAccommodations() {
+        return accommodations;
+    }
+
+    public String getDiningReservation() {
+        return diningReservation;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setDestination(String destination) {
         this.destination = destination;
+    }
+
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public void setAccommodations(String accommodations) {
         this.accommodations = accommodations;
+    }
+
+    public void setDiningReservation(String diningReservation) {
         this.diningReservation = diningReservation;
-        this.rating = rating;
+    }
+
+    public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }
