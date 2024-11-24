@@ -19,13 +19,21 @@
             android:id="@+id/startDateInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Start Date" />
+            android:hint="Start Date"
+            android:focusable="false"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:layout_marginTop="8dp"/>
 
         <EditText
             android:id="@+id/endDateInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="End Date" />
+            android:hint="End Date"
+            android:focusable="false"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:layout_marginTop="8dp"/>
 
         <EditText
             android:id="@+id/accommodationsInput"
@@ -43,7 +51,7 @@
             android:id="@+id/ratingInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Rating" />
+            android:hint="Rating (0-5)" />
 
         <EditText
             android:id="@+id/notesInput"

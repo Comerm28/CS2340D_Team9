@@ -25,7 +25,7 @@ public class CommunityViewModel extends ViewModel {
     }
 
     public void loadPosts(Runnable onSuccess) {
-        Database.getInstance().getCommunityPosts(loadedPosts -> {
+            Database.getInstance().getCommunityPosts(loadedPosts -> {
             Post post = new Post();
             post.setUsername("User1");
             post.setDestination("Paris");
@@ -35,24 +35,21 @@ public class CommunityViewModel extends ViewModel {
             post.setDiningReservation("Chez Marie");
             post.setRating(5);
             post.setNotes("Loved the Eiffel Tower!");
-            loadedPosts.add(0, post);
 
             Post post2 = new Post();
             post2.setUsername("User2");
             post2.setDestination("Tokyo");
             post2.setStartDate(Destination.parseDate("11-05-2024"));
-            post2.setEndDate(Destination.parseDate("11-16-2024"));
+            post2.setEndDate(Destination.parseDate("11-06-2024"));
             post2.setAccommodations("Shinjuku Inn");
             post2.setDiningReservation("Sushi Saito");
             post2.setRating(5);
             post2.setNotes("Explored amazing temples and culture.");
-
             loadedPosts.add(1, post2);
             posts.setValue(loadedPosts);
             onSuccess.run();
         }, fail -> {
             ArrayList<Post> loadedPosts = new ArrayList<>();
-
             Post post = new Post();
             post.setUsername("User1");
             post.setDestination("Paris");
@@ -62,25 +59,21 @@ public class CommunityViewModel extends ViewModel {
             post.setDiningReservation("Chez Marie");
             post.setRating(5);
             post.setNotes("Loved the Eiffel Tower!");
-            loadedPosts.add(0, post);
 
             Post post2 = new Post();
             post2.setUsername("User2");
             post2.setDestination("Tokyo");
             post2.setStartDate(Destination.parseDate("11-05-2024"));
-            post2.setEndDate(Destination.parseDate("11-16-2024"));
+            post2.setEndDate(Destination.parseDate("11-06-2024"));
             post2.setAccommodations("Shinjuku Inn");
             post2.setDiningReservation("Sushi Saito");
             post2.setRating(5);
             post2.setNotes("Explored amazing temples and culture.");
-
             loadedPosts.add(1, post2);
-
             posts.setValue(loadedPosts);
             onSuccess.run();
         });
     }
-
 
     public List<Post> getTravelPosts() {
         return currentUserInfo.getCommunityTravelEntriesData().getTravelEntries();
