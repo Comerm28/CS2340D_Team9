@@ -66,6 +66,7 @@ public class AccommodationReservation extends Reservation {
 
     public enum RoomType {
         Single("Single"),
+        Penthouse("Penthouse"),
         KingSuite("King Suite"),
         Deluxe("Deluxe");
 
