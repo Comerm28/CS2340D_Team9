@@ -36,7 +36,7 @@ public class CommunityFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         communityViewModel.getPosts().observe(getViewLifecycleOwner(), adapter::submitList);
-        communityViewModel.loadPosts(
+        communityViewModel.loadPosts(getContext(),
                 () -> adapter.submitList(communityViewModel.getPosts().getValue())
         );
         // Observe posts data
@@ -78,7 +78,8 @@ public class CommunityFragment extends Fragment {
             Post post = postList.get(position);
             holder.usernameTextView.setText(post.getUsername());
             holder.destinationTextView.setText("Destination: " + post.getDestination());
-            holder.startDateTextView.setText("Start Date: " + dateFormat.format(post.getStartDate()));
+            holder.startDateTextView.setText("Start Date: "
+                    + dateFormat.format(post.getStartDate()));
             holder.endDateTextView.setText("End Date: " + dateFormat.format(post.getEndDate()));
             holder.accommodationsTextView.setText("Accommodation: " + post.getAccommodations());
             holder.diningReservationTextView.setText("Dining: " + post.getDiningReservation());

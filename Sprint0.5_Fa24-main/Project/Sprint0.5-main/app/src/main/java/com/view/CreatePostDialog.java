@@ -7,18 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import com.example.sprintproject.R;
-import com.model.Destination;
 import com.model.Post;
+import com.model.PostFactory;
 import com.viewmodel.CurrentUserInfo;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class CreatePostDialog extends DialogFragment {
@@ -48,57 +46,23 @@ public class CreatePostDialog extends DialogFragment {
         setupDatePicker(endDateInput);
 
         saveButton.setOnClickListener(v -> {
-            Date startDate = Destination.parseDate(startDateInput.getText().toString());
-            Date endDate = Destination.parseDate(endDateInput.getText().toString());
-            if (startDate == null || endDate == null) {
-                Toast.makeText(
-                        getContext(), "Invalid date format", Toast.LENGTH_SHORT
-                ).show();
-                return;
+            PostFactory postFactory = new PostFactory();
+            String[] postDetails = new String[7];
+            postDetails[0] = destinationInput.getText().toString();
+            postDetails[1] = startDateInput.getText().toString();
+            postDetails[2] = endDateInput.getText().toString();
+            postDetails[3] = accommodationsInput.getText().toString();
+            postDetails[4] = diningReservationInput.getText().toString();
+            postDetails[5] = ratingInput.getText().toString();
+            postDetails[6] = notesInput.getText().toString();
+            Post post = postFactory.createPost(getContext(),
+                    CurrentUserInfo.getInstance().getUser().getUsername(), postDetails);
+            if (post != null) {
+                listener.onPostCreated(post);
+                dismiss();
             }
-            if (startDate.compareTo(endDate) > 0) {
-                Toast.makeText(getContext(), "End date cannot be before start date.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            String destination = destinationInput.getText().toString().trim();
-            if (destination.isEmpty()) {
-                Toast.makeText(getContext(), "Destination cannot be blank.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            int rating;
-            try {
-                rating = Integer.parseInt(ratingInput.getText().toString().trim());
-                if (rating < 0 || rating > 5) {
-                    Toast.makeText(getContext(), "Rating must be between 0 and 5.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-            } catch (Exception e) {
-                Toast.makeText(
-                        getContext(), "Failed to parse rating", Toast.LENGTH_SHORT
-                ).show();
-                return;
-            }
-
-            Post post = new Post();
-            post.setUsername(CurrentUserInfo.getInstance().getUser().getUsername());
-            post.setDestination(destination);
-            post.setStartDate(startDate);
-            post.setEndDate(endDate);
-            post.setAccommodations(accommodationsInput.getText().toString().trim());
-            post.setDiningReservation(diningReservationInput.getText().toString().trim());
-            post.setRating(rating);
-            post.setNotes(notesInput.getText().toString().trim());
-            listener.onPostCreated(post);
-            dismiss();
         });
-
         return view;
-    }
-
-    public interface OnPostCreatedListener {
-        void onPostCreated(Post post);
     }
 
     private void setupDatePicker(EditText dateInput) {
@@ -114,5 +78,9 @@ public class CreatePostDialog extends DialogFragment {
                     calendar.get(Calendar.DAY_OF_MONTH)
             ).show();
         });
+    }
+
+    public interface OnPostCreatedListener {
+        void onPostCreated(Post post);
     }
 }

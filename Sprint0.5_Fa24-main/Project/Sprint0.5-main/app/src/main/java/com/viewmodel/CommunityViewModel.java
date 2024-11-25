@@ -6,8 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.model.Database;
-import com.model.Destination;
 import com.model.Post;
+import com.model.PostFactory;
+import android.content.Context;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,51 +25,53 @@ public class CommunityViewModel extends ViewModel {
         currentUserInfo = CurrentUserInfo.getInstance();
     }
 
-    public void loadPosts(Runnable onSuccess) {
-            Database.getInstance().getCommunityPosts(loadedPosts -> {
-            Post post = new Post();
-            post.setUsername("User1");
-            post.setDestination("Paris");
-            post.setStartDate(Destination.parseDate("10-05-2024"));
-            post.setEndDate(Destination.parseDate("10-06-2024"));
-            post.setAccommodations("Hotel de France");
-            post.setDiningReservation("Chez Marie");
-            post.setRating(5);
-            post.setNotes("Loved the Eiffel Tower!");
-
-            Post post2 = new Post();
-            post2.setUsername("User2");
-            post2.setDestination("Tokyo");
-            post2.setStartDate(Destination.parseDate("11-05-2024"));
-            post2.setEndDate(Destination.parseDate("11-06-2024"));
-            post2.setAccommodations("Shinjuku Inn");
-            post2.setDiningReservation("Sushi Saito");
-            post2.setRating(5);
-            post2.setNotes("Explored amazing temples and culture.");
+    public void loadPosts(Context context, Runnable onSuccess) {
+        Database.getInstance().getCommunityPosts(loadedPosts -> {
+            PostFactory postFactory = new PostFactory();
+            String[] postDetails = new String[7];
+            postDetails[0] = "Paris";
+            postDetails[1] = "10-05-2024";
+            postDetails[2] = "10-06-2024";
+            postDetails[3] = "Hotel de France";
+            postDetails[4] = "Chez Marie";
+            postDetails[5] = "5";
+            postDetails[6] = "Loved the Eiffel Tower!";
+            Post post = postFactory.createPost(context, "User1", postDetails);
+            String[] post2Details = new String[7];
+            post2Details[0] = "Tokyo";
+            post2Details[1] = "11-05-2024";
+            post2Details[2] = "11-06-2024";
+            post2Details[3] = "Shinjuku Inn";
+            post2Details[4] = "Sushi Saito";
+            post2Details[5] = "5";
+            post2Details[6] = "Explored amazing temples and culture.";
+            Post post2 = postFactory.createPost(context, "User2", post2Details);
+            loadedPosts.add(0, post);
             loadedPosts.add(1, post2);
             posts.setValue(loadedPosts);
             onSuccess.run();
         }, fail -> {
             ArrayList<Post> loadedPosts = new ArrayList<>();
-            Post post = new Post();
-            post.setUsername("User1");
-            post.setDestination("Paris");
-            post.setStartDate(Destination.parseDate("10-05-2024"));
-            post.setEndDate(Destination.parseDate("10-06-2024"));
-            post.setAccommodations("Hotel de France");
-            post.setDiningReservation("Chez Marie");
-            post.setRating(5);
-            post.setNotes("Loved the Eiffel Tower!");
-
-            Post post2 = new Post();
-            post2.setUsername("User2");
-            post2.setDestination("Tokyo");
-            post2.setStartDate(Destination.parseDate("11-05-2024"));
-            post2.setEndDate(Destination.parseDate("11-06-2024"));
-            post2.setAccommodations("Shinjuku Inn");
-            post2.setDiningReservation("Sushi Saito");
-            post2.setRating(5);
-            post2.setNotes("Explored amazing temples and culture.");
+            PostFactory postFactory = new PostFactory();
+            String[] postDetails = new String[7];
+            postDetails[0] = "Paris";
+            postDetails[1] = "10-05-2024";
+            postDetails[2] = "10-06-2024";
+            postDetails[3] = "Hotel de France";
+            postDetails[4] = "Chez Marie";
+            postDetails[5] = "5";
+            postDetails[6] = "Loved the Eiffel Tower!";
+            Post post = postFactory.createPost(context, "User1", postDetails);
+            String[] post2Details = new String[7];
+            post2Details[0] = "Tokyo";
+            post2Details[1] = "11-05-2024";
+            post2Details[2] = "11-06-2024";
+            post2Details[3] = "Shinjuku Inn";
+            post2Details[4] = "Sushi Saito";
+            post2Details[5] = "5";
+            post2Details[6] = "Explored amazing temples and culture.";
+            Post post2 = postFactory.createPost(context, "User2", post2Details);
+            loadedPosts.add(0, post);
             loadedPosts.add(1, post2);
             posts.setValue(loadedPosts);
             onSuccess.run();
@@ -109,6 +112,4 @@ public class CommunityViewModel extends ViewModel {
         }
         return null;
     }
-
-
 }

@@ -51,6 +51,7 @@ dependencies {
 
     //diningfragment
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.test:core:1.6.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
