@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class Database {
+    private final String users;
+    private final String destinations;
+    private final String accommodations;
     private static Database instance;
     private final DatabaseReference dbRef;
     private final FirebaseAuth mAuth;
@@ -22,6 +25,9 @@ public class Database {
     private Database() {
         dbRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
+        this.users = "users";
+        this.destinations = "destinations";
+        this.accommodations = "accommodations";
     }
 
     public static Database getInstance() {
@@ -52,7 +58,7 @@ public class Database {
         mAuth.signInWithEmailAndPassword(User.formatEmail(username), password)
                 .addOnSuccessListener(task -> {
                     CurrentUserInfo currentUserInfo = CurrentUserInfo.getInstance();
-                    dbRef.child("users").child(username).addListenerForSingleValueEvent(
+                    dbRef.child(users).child(username).addListenerForSingleValueEvent(
                             new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -77,16 +83,16 @@ public class Database {
     }
 
     public void updateUserData(User user) {
-        dbRef.child("users").child(user.getUsername()).setValue(user);
+        dbRef.child(users).child(user.getUsername()).setValue(user);
     }
 
     public void updateDestinationData(User user, UserDestinationData userDestinationData) {
         if (user.isCollaborating()) {
-            dbRef.child("destinations").child(
+            dbRef.child(destinations).child(
                 user.getCollaboratorUsername()
             ).setValue(userDestinationData);
         } else {
-            dbRef.child("destinations").child(user.getUsername()).setValue(userDestinationData);
+            dbRef.child(destinations).child(user.getUsername()).setValue(userDestinationData);
         }
     }
 
@@ -100,9 +106,9 @@ public class Database {
 
     public void updateUserAccommodationData(User user, UserAccommodationData data) {
         if (user.isCollaborating()) {
-            dbRef.child("accommodations").child(user.getCollaboratorUsername()).setValue(data);
+            dbRef.child(accommodations).child(user.getCollaboratorUsername()).setValue(data);
         } else {
-            dbRef.child("accommodations").child(user.getUsername()).setValue(data);
+            dbRef.child(accommodations).child(user.getUsername()).setValue(data);
         }
     }
 
@@ -112,7 +118,7 @@ public class Database {
 
     public void checkUser(String username, Consumer<User> dataLoaded,
                           Consumer<String> onFail) {
-        dbRef.child("users").child(username)
+        dbRef.child(users).child(username)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -132,7 +138,7 @@ public class Database {
 
     public void getUserDestinationData(String username, Consumer<UserDestinationData> dataLoaded,
                                        Consumer<String> onFail) {
-        dbRef.child("destinations").child(username)
+        dbRef.child(destinations).child(username)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -153,7 +159,7 @@ public class Database {
     public void getUserAccommodationData(
             String username, Consumer<UserAccommodationData> dataLoaded,
                                        Consumer<String> onFail) {
-        dbRef.child("accommodations").child(username)
+        dbRef.child(accommodations).child(username)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {

@@ -7,54 +7,63 @@ import java.util.Date;
 
 public class PostFactory {
     public PostFactory() {
-
+        //accomodate firebase
     }
 
-    public Post createPost(Context context, String username,
-                           String[] postDetails) {
-        String destinationString = postDetails[0];
-        Date startDate = Destination.parseDate(postDetails[1]);
-        Date endDate = Destination.parseDate(postDetails[2]);
-        if (startDate == null || endDate == null) {
-            if (context != null) {
-                Toast.makeText(
-                        context, "Invalid date format", Toast.LENGTH_SHORT
-                ).show();
-            }
+    public Post createPost(Context context, String username, String[] postDetails) {
+        if (postDetails == null || postDetails.length < 7) {
+            showToast(context, "Invalid post details");
             return null;
         }
-        if (startDate.compareTo(endDate) > 0) {
-            if (context != null) {
-                Toast.makeText(context, "End date cannot be before start date.",
-                        Toast.LENGTH_SHORT).show();
-            }
+    
+        Date startDate = parseDateWithToast(context, postDetails[1], "Invalid start date format");
+        Date endDate = parseDateWithToast(context, postDetails[2], "Invalid end date format");
+        if (startDate == null || endDate == null || startDate.compareTo(endDate) > 0) {
+            showToast(context, "End date cannot be before start date.");
             return null;
         }
-        String destination = destinationString.trim();
+    
+        String destination = postDetails[0].trim();
         if (destination.isEmpty()) {
-            if (context != null) {
-                Toast.makeText(context, "Destination cannot be blank.", Toast.LENGTH_SHORT).show();
-            }
+            showToast(context, "Destination cannot be blank.");
             return null;
         }
-        int rating;
+    
+        int rating = parseRatingWithToast(context, postDetails[5]);
+        if (rating == -1) return null;
+    
+        return createPostObject(username, destination, startDate, endDate, postDetails, rating);
+    }
+    
+    private void showToast(Context context, String message) {
+        if (context != null) {
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        }
+    }
+    
+    private Date parseDateWithToast(Context context, String dateStr, String errorMessage) {
+        Date date = Destination.parseDate(dateStr);
+        if (date == null) {
+            showToast(context, errorMessage);
+        }
+        return date;
+    }
+    
+    private int parseRatingWithToast(Context context, String ratingStr) {
         try {
-            rating = Integer.parseInt(postDetails[5].trim());
+            int rating = Integer.parseInt(ratingStr.trim());
             if (rating < 0 || rating > 5) {
-                if (context != null) {
-                    Toast.makeText(context, "Rating must be between 0 and 5.",
-                            Toast.LENGTH_SHORT).show();
-                }
-                return null;
+                showToast(context, "Rating must be between 0 and 5.");
+                return -1;
             }
+            return rating;
         } catch (Exception e) {
-            if (context != null) {
-                Toast.makeText(
-                        context, "Failed to parse rating", Toast.LENGTH_SHORT
-                ).show();
-            }
-            return null;
+            showToast(context, "Failed to parse rating");
+            return -1;
         }
+    }
+    
+    private Post createPostObject(String username, String destination, Date startDate, Date endDate, String[] postDetails, int rating) {
         Post post = new Post();
         post.setUsername(username);
         post.setDestination(destination);
@@ -65,5 +74,5 @@ public class PostFactory {
         post.setRating(rating);
         post.setNotes(postDetails[6].trim());
         return post;
-    }
+    }    
 }

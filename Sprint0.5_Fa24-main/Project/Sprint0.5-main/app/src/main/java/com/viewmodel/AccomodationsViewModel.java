@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel;
 import com.model.AccommodationReservation;
 import com.model.Database;
 import com.model.UserAccommodationData;
-import com.viewmodel.SortingAlgos.CheckInSort;
-import com.viewmodel.SortingAlgos.CheckOutSort;
-import com.viewmodel.SortingAlgos.ViewSort;
+import com.viewmodel.sortingalgos.CheckInSort;
+import com.viewmodel.sortingalgos.CheckOutSort;
+import com.viewmodel.sortingalgos.ViewSort;
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -16,8 +16,6 @@ import java.text.SimpleDateFormat;
 
 public class AccomodationsViewModel extends ViewModel {
     private CurrentUserInfo currentUserInfo;
-    private ViewSort<AccommodationReservation> checkInSort = new CheckInSort();
-    private ViewSort<AccommodationReservation> checkOutSort = new CheckOutSort();
 
     public AccomodationsViewModel() {
         currentUserInfo = CurrentUserInfo.getInstance();

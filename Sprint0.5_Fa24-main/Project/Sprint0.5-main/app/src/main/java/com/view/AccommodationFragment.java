@@ -29,11 +29,9 @@ import java.util.Calendar;
 import java.util.List;
 
 public class AccommodationFragment extends Fragment {
+    private final String dateFormat = "MM/dd/yyyy";
     private AccomodationsViewModel accommodationsViewModel;
-    private FloatingActionButton addAccommodationFab;
     private LinearLayout accommodationsContainer;
-    private Button sortCheckInButton;
-    private Button sortCheckOutButton;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -42,9 +40,9 @@ public class AccommodationFragment extends Fragment {
 
         accommodationsContainer = view.findViewById(R.id.accommodationsContainer);
         accommodationsViewModel = new ViewModelProvider(this).get(AccomodationsViewModel.class);
-        addAccommodationFab = view.findViewById(R.id.fabAddAccommodation);
-        sortCheckInButton = view.findViewById(R.id.sortByCheckInButton);
-        sortCheckOutButton = view.findViewById(R.id.sortByCheckOutButton);
+        FloatingActionButton addAccommodationFab = view.findViewById(R.id.fabAddAccommodation);
+        Button sortCheckInButton = view.findViewById(R.id.sortByCheckInButton);
+        Button sortCheckOutButton = view.findViewById(R.id.sortByCheckOutButton);
 
         addAccommodationFab.setOnClickListener(v -> showAddAccommodationDialog());
         sortCheckInButton.setOnClickListener(v -> {
@@ -89,8 +87,8 @@ public class AccommodationFragment extends Fragment {
         locationView.setText(accommodation.getLocation());
         reviewStarsText.setText(stars.toString());
         dateView.setText(String.format("Check-in: %s - Check-out: %s",
-                new SimpleDateFormat("MM/dd/yyyy").format(accommodation.getCheckInDate()),
-                new SimpleDateFormat("MM/dd/yyyy").format(accommodation
+                new SimpleDateFormat(dateFormat).format(accommodation.getCheckInDate()),
+                new SimpleDateFormat(dateFormat).format(accommodation
                         .getCheckOutDate())));
         roomInfoView.setText(String.format("Rooms: %d, Type: %s",
                 accommodation.getNumRooms(), accommodation.getRoomType().getDisplayString()));
@@ -153,7 +151,7 @@ public class AccommodationFragment extends Fragment {
         editText.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             new DatePickerDialog(getContext(), (view, year, month, dayOfMonth) ->
-                    editText.setText(new SimpleDateFormat("MM/dd/yyyy")
+                    editText.setText(new SimpleDateFormat(dateFormat)
                             .format(new Calendar.Builder().setDate(year, month, dayOfMonth)
                                     .build().getTime())),
                     calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),

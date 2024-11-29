@@ -39,6 +39,6 @@ public class AuthenticationViewModel extends ViewModel {
                 || username.trim().isEmpty() || password.trim().isEmpty()) {
             return false;
         }
-        return username.matches("^[a-zA-Z0-9_]+$");
+        return username.matches("^\\w+$");
     }
 }

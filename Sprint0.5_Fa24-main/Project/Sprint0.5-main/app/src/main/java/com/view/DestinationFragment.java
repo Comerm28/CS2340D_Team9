@@ -34,21 +34,14 @@ public class DestinationFragment extends Fragment {
     private EditText startDateInput;
     private EditText endDateInput;
     private EditText durationInput;
-    private TextView calculatedField;
-    private TextView travelLocationLabel;
-    private TextView startDateLabel;
-    private TextView endDateLabel;
-    private Button calculateVacationTimeButton;
-    private Button logTravelButton;
     private EditText travelLocationInput;
     private EditText estimatedStartDateInput;
     private EditText estimatedEndDateInput;
     private List<String> travelLogs;
     private DestinationViewModel destinationViewModel;
     private View resultScreen;
-    private Button resetButton;
     private TextView resultTextView;
-    private Button calculateVacationTime;
+    
 
     private CurrentUserInfo currentUser = CurrentUserInfo.getInstance();
 
@@ -63,16 +56,16 @@ public class DestinationFragment extends Fragment {
         // Initialization of views
         vacationTimeCalculatorForm = view.findViewById(R.id.vacationTimeCalculatorForm);
         travelLogsContainer = view.findViewById(R.id.travelLogsContainer);
-        startDateInput = view.findViewById(R.id.startDateInput);
-        endDateInput = view.findViewById(R.id.endDateInput);
+        TextView startDateInput = view.findViewById(R.id.startDateInput);
+        TextView endDateInput = view.findViewById(R.id.endDateInput);
         durationInput = view.findViewById(R.id.durationInput);
-        calculatedField = view.findViewById(R.id.calculatedField);
-        calculateVacationTimeButton = view.findViewById(R.id.calculateVacationTimeButton);
-        logTravelButton = view.findViewById(R.id.logTravelButton);
+        TextView calculatedField = view.findViewById(R.id.calculatedField);
+        Button calculateVacationTimeButton = view.findViewById(R.id.calculateVacationTimeButton);
+        Button logTravelButton = view.findViewById(R.id.logTravelButton);
         destinationViewModel = new DestinationViewModel();
-        resetButton = view.findViewById(R.id.resetButton);
+        Button resetButton = view.findViewById(R.id.resetButton);
         resultTextView = view.findViewById(R.id.resultTextView);
-        calculateVacationTime = view.findViewById(R.id.calculateVacationTime);
+        Button calculateVacationTime = view.findViewById(R.id.calculateVacationTime);
 
         travelLogs = new ArrayList<>();
 
@@ -171,7 +164,7 @@ public class DestinationFragment extends Fragment {
         dialogLayout.setPadding(20, 20, 20, 20); // Add some padding
 
         // Create TextView for the result
-        TextView resultTextView = new TextView(getContext());
+        resultTextView = new TextView(getContext());
         resultTextView.setText("Result: " + text);
         resultTextView.setTextSize(18); // Set the text size
         dialogLayout.addView(resultTextView); // Add result TextView to the layout
@@ -209,7 +202,7 @@ public class DestinationFragment extends Fragment {
         LinearLayout travelLogLayout = new LinearLayout(getContext());
         travelLogLayout.setOrientation(LinearLayout.VERTICAL);
 
-        travelLocationLabel = new TextView(getContext());
+        TextView travelLocationLabel = new TextView(getContext());
         travelLocationLabel.setText("Travel Location");
         travelLocationInput = new EditText(getContext());
         startDateLabel = new TextView(getContext());
@@ -311,11 +304,5 @@ public class DestinationFragment extends Fragment {
                 travelLogsContainer.addView(logTextView);
             }
         }
-    }
-
-    //Travel log
-    private int calculateDuration(String startDate, String endDate) {
-        return destinationViewModel.getDurationFromStrings(startDate, endDate);
-        // ViewModel needs to replace with actual logic
     }
 }

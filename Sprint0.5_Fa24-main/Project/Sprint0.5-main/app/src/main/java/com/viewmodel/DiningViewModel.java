@@ -11,13 +11,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import com.viewmodel.SortingAlgos.DateSort;
-import com.viewmodel.SortingAlgos.TimeSort;
-import com.viewmodel.SortingAlgos.ViewSort;
+import com.viewmodel.sortingalgos.DateSort;
+import com.viewmodel.sortingalgos.TimeSort;
+import com.viewmodel.sortingalgos.ViewSort;
 
 public class DiningViewModel extends ViewModel {
     private CurrentUserInfo currentUserInfo;
-    private List<DiningReservation> reservations; // Placeholder for reservations
     private ViewSort<DiningReservation> dateSort = new DateSort();
     private ViewSort<DiningReservation> timeSort = new TimeSort();
     public DiningViewModel() {
@@ -44,7 +43,7 @@ public class DiningViewModel extends ViewModel {
 
     private boolean validReservation(String location, String website, String time, String date) {
         if (!website.matches(".*\\..*")
-                || !time.matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$")
+                || !time.matches("^([01]?\\d|2\\d{1}):[0-5]\\d$")
                 || !date.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
             return false;
         }
@@ -86,23 +85,4 @@ public class DiningViewModel extends ViewModel {
     public boolean isPastReservation(DiningReservation reservation) {
         return reservation.getDateAndTime().before(new Date());
     }
-
-
-    //    private Date isValidDate(String date) {
-    //        if (date == null || date.trim().isEmpty()) {
-    //            return null;
-    //        }
-    //
-    //        if (date.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
-    //            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter =
-    //                    new SimpleDateFormat("MM-dd-yyyy");
-    //            formatter.setLenient(false);
-    //            try {
-    //                return formatter.parse(date);
-    //            } catch (ParseException e) {
-    //                return null;
-    //            }
-    //        }
-    //        return null;
-    //    }
 }

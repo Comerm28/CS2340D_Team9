@@ -12,7 +12,9 @@ public class Post {
     private String notes;
     private int rating;
 
-    public Post() { }
+    public Post() {
+        //to accomodate firebase
+    }
 
     public String getUsername() {
         return username;

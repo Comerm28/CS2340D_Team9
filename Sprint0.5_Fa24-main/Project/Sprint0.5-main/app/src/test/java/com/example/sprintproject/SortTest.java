@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import com.model.DiningReservation;
-import com.viewmodel.SortingAlgos.DateSort;
-import com.viewmodel.SortingAlgos.TimeSort;
+import com.viewmodel.sortingalgos.DateSort;
+import com.viewmodel.sortingalgos.TimeSort;
 
 import org.junit.Test;
 

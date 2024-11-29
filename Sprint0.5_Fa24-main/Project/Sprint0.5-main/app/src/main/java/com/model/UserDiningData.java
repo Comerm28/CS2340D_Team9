@@ -6,7 +6,6 @@ import java.util.List;
 public class UserDiningData {
     private String username;
     private List<DiningReservation> reservations;
-    private List<OnReservationChangeListener> listeners = new ArrayList<>();
 
     public UserDiningData() {
         reservations = new ArrayList<>();

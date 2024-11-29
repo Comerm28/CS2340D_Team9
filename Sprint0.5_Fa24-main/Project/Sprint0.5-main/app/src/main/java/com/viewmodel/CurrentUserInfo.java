@@ -46,126 +46,66 @@ public class CurrentUserInfo {
 
     public void setUser(User userToBe) {
         this.user = userToBe;
-        dbRef.child("users").child(user.getUsername())
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            userDestinationData = dataSnapshot.getValue(UserDestinationData.class);
-
-                            if (userDestinationData == null) {
-                                user = new User(user.getUsername());
-                                dbRef.child("users").child(user.getUsername())
-                                        .setValue(user);
-                            }
-
-                            user.setUsername(user.getUsername());
-
-                        } else {
-                            user = new User(user.getUsername());
-                            dbRef.child("users")
-                                    .child(user.getUsername()).setValue(user);
-                            user.setUsername(user.getUsername());
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        // Handle possible errors perchance
-                    }
-                });
-        String listeningUser;
-        if (user.isCollaborating()) {
-            listeningUser = user.getCollaboratorUsername();
-        } else {
-            listeningUser = user.getUsername();
-        }
-        dbRef.child("destinations").child(listeningUser)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            userDestinationData = dataSnapshot.getValue(UserDestinationData.class);
-
-                            if (userDestinationData == null) {
-                                userDestinationData = new UserDestinationData(listeningUser);
-                                dbRef.child("destinations").child(listeningUser)
-                                        .setValue(userDestinationData);
-                            }
-
-                            userDestinationData.setUsername(listeningUser);
-
-                        } else {
-                            userDestinationData = new UserDestinationData(listeningUser);
-                            dbRef.child("destinations")
-                                    .child(listeningUser).setValue(userDestinationData);
-                            userDestinationData.setUsername(listeningUser);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        // Handle possible errors perchance
-                    }
-                });
-        dbRef.child("dining").child(listeningUser)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            userDiningData = dataSnapshot.getValue(UserDiningData.class);
-
-                            if (userDiningData == null) {
-                                userDiningData = new UserDiningData(listeningUser);
-                                dbRef.child("dining").child(listeningUser)
-                                        .setValue(userDiningData);
-                            }
-
-                            userDiningData.setUsername(listeningUser);
-
-                        } else {
-                            userDiningData = new UserDiningData(listeningUser);
-                            dbRef.child("dining")
-                                    .child(listeningUser).setValue(userDiningData);
-                            userDiningData.setUsername(listeningUser);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        // Handle possible errors perchance
-                    }
-                });
-        dbRef.child("accommodations").child(listeningUser)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            userAccommodationData =
-                                    dataSnapshot.getValue(UserAccommodationData.class);
-
-                            if (userAccommodationData == null) {
-                                userAccommodationData = new UserAccommodationData(listeningUser);
-                                dbRef.child("accommodations").child(listeningUser)
-                                        .setValue(userAccommodationData);
-                            }
-
-                            userAccommodationData.setUsername(listeningUser);
-
-                        } else {
-                            userAccommodationData = new UserAccommodationData(listeningUser);
-                            dbRef.child("accommodations")
-                                    .child(listeningUser).setValue(userAccommodationData);
-                            userAccommodationData.setUsername(listeningUser);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        // Handle possible errors perchance
-                    }
-                });
+    
+        final String USERS = "users";
+        final String DESTINATIONS = "destinations";
+        final String DINING = "dining";
+        final String ACCOMMODATIONS = "accommodations";
+    
+        updateUserData(user.getUsername(), USERS, UserDestinationData.class);
+        
+        String listeningUser = user.isCollaborating() ? user.getCollaboratorUsername() : user.getUsername();
+        
+        updateUserData(listeningUser, DESTINATIONS, UserDestinationData.class);
+        updateUserData(listeningUser, DINING, UserDiningData.class);
+        updateUserData(listeningUser, ACCOMMODATIONS, UserAccommodationData.class);
     }
+    
+    private <T> void updateUserData(String username, String dataType, Class<T> dataClass) {
+        dbRef.child(dataType).child(username).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                T userData = dataSnapshot.getValue(dataClass);
+    
+                if (userData == null) {
+                    try {
+                        userData = dataClass.getConstructor(String.class).newInstance(username);
+                    } catch (Exception e) {
+                        throw new RuntimeException("Error creating instance of " + dataClass.getName(), e);
+                    }
+                    dbRef.child(dataType).child(username).setValue(userData);
+                }
+    
+                if (userData instanceof UserDestinationData) {
+                    ((UserDestinationData) userData).setUsername(username);
+                } else if (userData instanceof UserDiningData) {
+                    ((UserDiningData) userData).setUsername(username);
+                } else if (userData instanceof UserAccommodationData) {
+                    ((UserAccommodationData) userData).setUsername(username);
+                }
+            }
+    
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getContext(), "Failed to load " + dataType, Toast.LENGTH_SHORT).show();
+                displayEmptyData(dataType);
+            }
+        });
+    }
+    
+    private void displayEmptyData(String dataType) {
+        switch (dataType) {
+            case "destinations":
+                displayEmptyPieChart();
+                break;
+            case "dining":
+                break;
+            case "accommodations":
+                break;
+            default:
+                break;
+        }
+    }    
 
     public User getUser() {
         return user;
@@ -198,7 +138,7 @@ public class CurrentUserInfo {
         return communityTravelEntriesData;
     }
 
-    public void getAllottedVacationDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
+    public void getAllottedVacationDays(IntConsumer onLoad, Consumer<String> onFail) {
         if (user.isCollaborating()) {
             Database.getInstance().checkUser(user.getCollaboratorUsername(),
                     data -> {
@@ -237,7 +177,7 @@ public class CurrentUserInfo {
         Database.getInstance().updateDestinationData(user, userDestinationData);
     }
 
-    public void getPlannedDays(Consumer<Integer> onLoad, Consumer<String> onFail) {
+    public void getPlannedDays(IntConsumer onLoad, Consumer<String> onFail) {
         getDestinations(destinations -> {
             int sum = 0;
             for (Destination d : destinations) {

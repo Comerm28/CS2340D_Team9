@@ -5,7 +5,9 @@ import java.util.List;
 public class CommunityTravelEntriesData {
     private List<Post> travelEntries;
 
-    public CommunityTravelEntriesData() { }
+    public CommunityTravelEntriesData() {
+        //empty to accomodate for firebase
+    }
 
     public List<Post> getTravelEntries() {
         return travelEntries;
