@@ -79,22 +79,4 @@ public class CommunityViewModel extends ViewModel {
             posts.setValue(currentPosts);
         }
     }
-
-    private Date isValidDate(String date) {
-        if (date == null || date.trim().isEmpty()) {
-            return null;
-        }
-
-        if (date.matches("^\\d{2}-\\d{2}-\\d{4}$")) {
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter =
-                    new SimpleDateFormat("MM-dd-yyyy");
-            formatter.setLenient(false);
-            try {
-                return formatter.parse(date);
-            } catch (ParseException e) {
-                return null;
-            }
-        }
-        return null;
-    }
 }

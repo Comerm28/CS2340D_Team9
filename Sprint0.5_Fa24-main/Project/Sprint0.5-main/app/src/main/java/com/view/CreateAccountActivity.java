@@ -12,18 +12,15 @@ import com.google.android.material.snackbar.Snackbar;
 import com.viewmodel.AuthenticationViewModel;
 
 public class CreateAccountActivity extends AppCompatActivity {
-    private AuthenticationViewModel authenticationViewModel;
-    private EditText createUsernameEditText;
-    private EditText createPasswordEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account); // Reference to your create account layout
 
-        authenticationViewModel = new AuthenticationViewModel();
-        createUsernameEditText = findViewById(R.id.createUsernameEditText);
-        createPasswordEditText = findViewById(R.id.createPasswordEditText);
+        AuthenticationViewModel authenticationViewModel = new AuthenticationViewModel();
+        EditText createUsernameEditText = findViewById(R.id.createUsernameEditText);
+        EditText createPasswordEditText = findViewById(R.id.createPasswordEditText);
         Button registerButton = findViewById(R.id.registerButton);
         Button loginButton = findViewById(R.id.loginButton);
 
@@ -32,17 +29,16 @@ public class CreateAccountActivity extends AppCompatActivity {
             String username = createUsernameEditText.getText().toString();
             String password = createPasswordEditText.getText().toString();
             authenticationViewModel.signUp(username, password, () -> {
-                //todo: maybe bundle user name and password
-                // and autofill them into the edittext on login screen?
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
             }, fail -> Snackbar.make(view, fail, Snackbar.LENGTH_LONG).show());
         });
 
         // Handle login button click
-        loginButton.setOnClickListener(view -> {
-            startActivity(new Intent(this, LoginActivity.class));
-        });
+        loginButton.setOnClickListener(view -> 
+            startActivity(new Intent(this, LoginActivity.class))
+        );
+
     }
 
 }

@@ -33,7 +33,7 @@ public class DestinationViewModel extends ViewModel {
         if (destination == null || destination.trim().isEmpty()) {
             return false;
         }
-        return destination.matches("^[a-zA-Z0-9_]+$");
+        return destination.matches("^\\w+$");
     }
 
     private Date isValidDate(String date) {
@@ -100,9 +100,9 @@ public class DestinationViewModel extends ViewModel {
             db.checkUser(user.getCollaboratorUsername(), collab -> {
                 collab.setAllottedVacationDays(user.getAllottedVacationDays());
                 db.updateUserData(collab);
-            }, errorMessage -> {
-                System.out.println("Failed to load collaborator: " + errorMessage);
-            });
+            }, errorMessage -> 
+                Log.e(TAG, "Failed to load collaborator: " + errorMessage)
+            );
         } else {
             Database.getInstance().updateUserData(user);
         }

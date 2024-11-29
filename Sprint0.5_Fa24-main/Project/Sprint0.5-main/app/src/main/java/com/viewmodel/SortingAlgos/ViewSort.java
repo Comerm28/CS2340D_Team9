@@ -1,4 +1,4 @@
-package com.viewmodel.SortingAlgos;
+package com.viewmodel.sortingalgos;
 
 import java.util.List;
 

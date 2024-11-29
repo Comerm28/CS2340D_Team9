@@ -13,7 +13,6 @@ import com.viewmodel.AuthenticationViewModel;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity"; // Tag for logging
-    private AuthenticationViewModel authenticationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Log.d(TAG, "LoginActivity created"); // Log statement
 
-        authenticationViewModel = new AuthenticationViewModel();
+        AuthenticationViewModel authenticationViewModel = new AuthenticationViewModel();
         EditText usernameEditText = findViewById(R.id.usernameEditText);
         EditText passwordEditText = findViewById(R.id.passwordEditText);
 

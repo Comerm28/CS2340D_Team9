@@ -4,18 +4,23 @@ public abstract class Reservation {
     protected String location;
     protected String website;
     protected int reviewStars;
+    protected Random random;
 
-    public Reservation() { }
-
-    public Reservation(String location, String website) {
-        this.location = location;
-        this.website = website;
-        this.reviewStars = (int) (Math.random() * 5) + 1;
+    protected Reservation() {
+        //to accomodate firebase
     }
 
-    public Reservation(String location) {
+    protected Reservation(String location, String website) {
         this.location = location;
-        this.reviewStars = (int) (Math.random() * 5) + 1;
+        this.website = website;
+        random = new Random();
+        this.reviewStars = (int) (random.nextInt() * 5) + 1;
+    }
+
+    protected Reservation(String location) {
+        this.location = location;
+        random = new Random();
+        this.reviewStars = (int) (random.nextInt() * 5) + 1;
     }
 
     public String getLocation() {

@@ -39,8 +39,6 @@ public class CommunityFragment extends Fragment {
         communityViewModel.loadPosts(getContext(),
                 () -> adapter.submitList(communityViewModel.getPosts().getValue())
         );
-        // Observe posts data
-        // communityViewModel.getPosts().observe(getViewLifecycleOwner(), adapter::submitList);
 
         // Set up FloatingActionButton
         FloatingActionButton fabAddButton = view.findViewById(R.id.fabAddButton);

@@ -33,11 +33,8 @@ import java.util.List;
 
 public class LogisticsFragment extends Fragment {
 
+    private final String noDataMessage = "No Data";
     private PieChart pieChart;
-    private Button visualizeTripDaysButton;
-    private Button inviteUsersButton;
-    private Button viewNotesButton;
-    private Button listNotesButton;
     private EditText inviteUserEditText;
     private List<String> userNotes;
     private SharedPreferences sharedPreferences;
@@ -59,10 +56,10 @@ public class LogisticsFragment extends Fragment {
 
         // Initialize UI elements
         pieChart = view.findViewById(R.id.pieChart);
-        visualizeTripDaysButton = view.findViewById(R.id.visualizeTripDaysButton);
-        inviteUsersButton = view.findViewById(R.id.inviteUsersButton);
-        viewNotesButton = view.findViewById(R.id.viewNotesButton);
-        listNotesButton = view.findViewById(R.id.listNotesButton);
+        Button visualizeTripDaysButton = view.findViewById(R.id.visualizeTripDaysButton);
+        Button inviteUsersButton = view.findViewById(R.id.inviteUsersButton);
+        Button viewNotesButton = view.findViewById(R.id.viewNotesButton);
+        Button listNotesButton = view.findViewById(R.id.listNotesButton);
         inviteUserEditText = view.findViewById(R.id.inviteUserEditText);
 
         sharedPreferences = requireActivity().getSharedPreferences("NotesPrefs",
@@ -91,43 +88,38 @@ public class LogisticsFragment extends Fragment {
         pieChart.invalidate();
 
         // Fetch allotted days and planned days from CurrentUserInfo
-        CurrentUserInfo.getInstance().getAllottedVacationDays(allottedDays -> {
+        CurrentUserInfo.getInstance().getAllottedVacationDays(allottedDays ->
             CurrentUserInfo.getInstance().getPlannedDays(plannedDays -> {
-
                 List<PieEntry> entries = new ArrayList<>();
-
                 // Check if there's no data
                 if (plannedDays == 0 && allottedDays == 0) {
                     // No data available, so create a placeholder entry
-                    entries.add(new PieEntry(1, "No Data"));
+                    entries.add(new PieEntry(1, noDataMessage));
                 } else {
                     // Add actual data entries
                     entries.add(new PieEntry(plannedDays, "Planned Days"));
                     entries.add(new PieEntry(allottedDays - plannedDays, "Allotted Days"));
                 }
-
                 PieDataSet dataSet = new PieDataSet(entries, "");
                 dataSet.setColors(new int[]{
                         ContextCompat.getColor(getContext(), R.color.blue),
                         ContextCompat.getColor(getContext(), R.color.green)
                 });
-                if (entries.size() == 1 && "No Data".equals(entries.get(0).getLabel())) {
+                if (entries.size() == 1 && noDataMessage.equals(entries.get(0).getLabel())) {
                     // Placeholder color for no data
                     dataSet.setColor(ContextCompat.getColor(getContext(), R.color.white));
                 }
                 PieData pieData = new PieData(dataSet);
-
                 pieChart.setData(pieData);
                 pieChart.invalidate();
                 pieChart.setVisibility(View.VISIBLE);
-
             }, fail -> {
                 // Handle failure for fetching planned days
                 Toast.makeText(getContext(), "Failed to load planned days: " + fail,
                         Toast.LENGTH_SHORT).show();
                 displayEmptyPieChart();
-            });
-        }, fail -> {
+            })
+        , fail -> {
             // Handle failure for fetching allotted days
             Toast.makeText(getContext(), "Failed to load allotted days: " + fail,
                     Toast.LENGTH_SHORT).show();
@@ -137,7 +129,7 @@ public class LogisticsFragment extends Fragment {
 
     private void displayEmptyPieChart() {
         List<PieEntry> emptyEntries = new ArrayList<>();
-        emptyEntries.add(new PieEntry(1, "No Data"));
+        emptyEntries.add(new PieEntry(1, noDataMessage));
         PieDataSet dataSet = new PieDataSet(emptyEntries, "");
         // Placeholder color for no data
         dataSet.setColor(ContextCompat.getColor(getContext(), R.color.white));
@@ -218,10 +210,9 @@ public class LogisticsFragment extends Fragment {
             // Create and show the dialog
             notesDialog = builder.create();
             notesDialog.show();
-        }, fail -> {
-            Toast.makeText(getContext(), "Failed to load notes.",
-                    Toast.LENGTH_SHORT).show();
-        });
+        }, fail -> Toast.makeText(getContext(), "Failed to load notes.", 
+                        Toast.LENGTH_SHORT).show()
+        );
     }
 
     private LinearLayout createNoteLayout(String note, int index) {
